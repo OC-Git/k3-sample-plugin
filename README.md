@@ -6,6 +6,7 @@
 pnpm i
 pnpm run build --watch &
 pnpm run serve &
+pnpm run deploy
 ```
 
 ## Development
