@@ -1,20 +1,11 @@
-// @ts-nocheck
-
-import { PrimaryJuwel, SecondaryJuwels } from "./Diamond";
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
 
-const PropsDialog = () => {
-  return <div>Editor</div>;
-};
-
+// eslint-disable-next-line react-refresh/only-export-components
 const WeddingRing = (props: any) => {
-  const z = 0; // -4
   return (
     <group scale={[props.width, props.height, props.depth]}>
-      {/* <PrimaryJuwel position={[0, 5, z]} />
-      <SecondaryJuwels position={[0, 5, z]} /> */}
-      <Ring position={[0, 0, z]} radius={props.radius} />
+      <Ring position={props.position} radius={props.radius} />
     </group>
   );
 };
