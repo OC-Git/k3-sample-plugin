@@ -4,8 +4,11 @@ import Image from "../public/Image.png";
 // eslint-disable-next-line react-refresh/only-export-components
 const WeddingRing = (props: any) => {
   return (
-    <group scale={[props.width, props.height, props.depth]}>
-      <Ring position={props.position} radius={props.radius} />
+    <group
+      position={props.position}
+      scale={[props.width, props.height, props.depth]}
+    >
+      <Ring radius={props.radius} />
     </group>
   );
 };
