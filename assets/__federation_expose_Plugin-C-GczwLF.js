@@ -214,8 +214,14 @@ const Ring = (props) => {
 const Image = "/assets/Image-lYiF6YAQ.png";
 
 const WeddingRing = (props) => {
-  const z = 0;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("group", { scale: [props.width, props.height, props.depth], children: /* @__PURE__ */ jsxRuntimeExports.jsx(Ring, { position: [0, 0, z], radius: props.radius }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "group",
+    {
+      position: props.position,
+      scale: [props.width, props.height, props.depth],
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Ring, { radius: props.radius })
+    }
+  );
 };
 const dynamicRing = {
   type: "ringPlugin",
