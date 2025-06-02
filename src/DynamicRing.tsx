@@ -8,7 +8,11 @@ const WeddingRing = (props: any) => {
       position={props.position}
       scale={[props.width, props.height, props.depth]}
     >
-      <Ring radius={props.radius} />
+      <Ring
+        radius={props.radius}
+        segmentCount={props.segmentCount}
+        vGap={props.vGap}
+      />
     </group>
   );
 };
@@ -21,6 +25,7 @@ export const dynamicRing = {
   propsDialog: {
     basic: { type: "basic" },
     radius: {},
+    vGap: {},
     segmentCount: {},
     jewel: { type: "model", label: "The Jewel Model" },
   },
@@ -29,6 +34,7 @@ export const dynamicRing = {
     height: { expression: "1" },
     depth: { expression: "1" },
     radius: { expression: "1" },
+    vGap: { expression: "4" },
     segmentCount: { expression: "1" },
     jewel: [],
   },

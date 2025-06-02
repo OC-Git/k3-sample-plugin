@@ -6,11 +6,11 @@ import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUti
 const Segment = (props: any) => {
   const r = props.radius || 0.5;
   const points = [];
-  for (let i = 0; i <= 101; i++) {
+  for (let i = 0; i <= props.segmentCount + 1; i++) {
     points.push(
       new THREE.Vector3(
-        r * Math.sin((i * Math.PI * 2) / 100),
-        r * Math.cos((i * Math.PI * 2) / 100),
+        r * Math.sin((i * Math.PI * 2) / props.segmentCount),
+        r * Math.cos((i * Math.PI * 2) / props.segmentCount),
         0
       )
     );
@@ -19,7 +19,7 @@ const Segment = (props: any) => {
   const path = new THREE.CatmullRomCurve3(points);
 
   const extrudeSettings: THREE.ExtrudeGeometryOptions = {
-    steps: 100,
+    steps: props.segmentCount,
     curveSegments: 20,
     bevelEnabled: false,
     extrudePath: path,
@@ -29,24 +29,27 @@ const Segment = (props: any) => {
     props.shape,
     extrudeSettings
   );
-
+  // const mergedGeometry = BufferGeometryUtils.mergeVertices(
+  //   bufferExtrudeGeometry,
+  //   0.00000001
+  // );
   // Das sollte funktionieren: https://jsfiddle.net/hk34dLqs/3/
   // Vllt erst mit three 0.158?
-  const mergedGeometry = BufferGeometryUtils.toCreasedNormals(
+  const creasedGeometry = BufferGeometryUtils.toCreasedNormals(
     bufferExtrudeGeometry,
-    Math.PI
+    Math.PI / 2
   );
 
   // Problem! https://discourse.threejs.org/t/smooth-shading-for-extruded-circle/25782
   //const mergedGeometry = bufferExtrudeGeometry; // BufferGeometryUtils.mergeVertices(bufferExtrudeGeometry, 0.01);
 
-  mergedGeometry.computeVertexNormals();
+  //creasedGeometry.computeVertexNormals();
 
-  return <mesh geometry={mergedGeometry}>{props.children}</mesh>;
+  return <mesh geometry={creasedGeometry}>{props.children}</mesh>;
 };
 
 export const Ring = (props: any) => {
-  const vGap = 4;
+  const vGap = props.vGap;
   const vWidth = 4 + vGap;
 
   const gap = vGap / 50.0;
@@ -83,7 +86,11 @@ export const Ring = (props: any) => {
 
   return (
     <group {...props}>
-      <Segment shape={shape1} radius={props.radius}>
+      <Segment
+        shape={shape1}
+        radius={props.radius}
+        segmentCount={props.segmentCount}
+      >
         <meshStandardMaterial
           color={new THREE.Color(1.0, 0.866, 0.236)}
           roughness={0.1}
@@ -92,7 +99,11 @@ export const Ring = (props: any) => {
         />
       </Segment>
       {gap > 0 && (
-        <Segment shape={shape2} radius={props.radius}>
+        <Segment
+          shape={shape2}
+          radius={props.radius}
+          segmentCount={props.segmentCount}
+        >
           <meshStandardMaterial
             color={new THREE.Color(0.9, 0.9, 0.9)}
             roughness={0.4}
@@ -101,7 +112,11 @@ export const Ring = (props: any) => {
           />
         </Segment>
       )}
-      <Segment shape={shape3} radius={props.radius}>
+      <Segment
+        shape={shape3}
+        radius={props.radius}
+        segmentCount={props.segmentCount}
+      >
         <meshStandardMaterial
           color={new THREE.Color(1.0, 0.866, 0.236)}
           roughness={0.1}
