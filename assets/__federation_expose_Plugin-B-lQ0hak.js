@@ -122,16 +122,16 @@ const THREE = await importShared('three');
 const Segment = (props) => {
   const r = props.radius || 0.5;
   const points = [];
-  for (let i = 0; i <= props.segmentCount + 1; i++) {
+  for (let i = 0; i < props.segmentCount; i++) {
     points.push(
       new THREE.Vector3(
-        r * Math.sin(i * Math.PI * 2 / props.segmentCount),
-        r * Math.cos(i * Math.PI * 2 / props.segmentCount),
+        r * Math.sin(i * Math.PI * 2 / props.segmentCount + Math.PI),
+        r * Math.cos(i * Math.PI * 2 / props.segmentCount + Math.PI),
         0
       )
     );
   }
-  const path = new THREE.CatmullRomCurve3(points);
+  const path = new THREE.CatmullRomCurve3(points, true);
   const extrudeSettings = {
     steps: props.segmentCount,
     curveSegments: 20,
@@ -237,6 +237,7 @@ const Ring = (props) => {
 const Image = "/assets/Image-lYiF6YAQ.png";
 
 const WeddingRing = (props) => {
+  console.log("WeddingRing props", props);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "group",
     {
