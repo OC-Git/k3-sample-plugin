@@ -6,17 +6,17 @@ import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUti
 const Segment = (props: any) => {
   const r = props.radius || 0.5;
   const points = [];
-  for (let i = 0; i <= props.segmentCount + 1; i++) {
+  for (let i = 0; i < props.segmentCount; i++) {
     points.push(
       new THREE.Vector3(
-        r * Math.sin((i * Math.PI * 2) / props.segmentCount),
-        r * Math.cos((i * Math.PI * 2) / props.segmentCount),
+        r * Math.sin((i * Math.PI * 2) / props.segmentCount + Math.PI),
+        r * Math.cos((i * Math.PI * 2) / props.segmentCount + Math.PI),
         0
       )
     );
   }
 
-  const path = new THREE.CatmullRomCurve3(points);
+  const path = new THREE.CatmullRomCurve3(points, true);
 
   const extrudeSettings: THREE.ExtrudeGeometryOptions = {
     steps: props.segmentCount,

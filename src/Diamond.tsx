@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { RGBELoader } from "three-stdlib";
 
 export function Diamond(props: any) {
-  const { nodes } = useGLTF("./dflat.glb");
+  const { nodes } = useGLTF(props.model);
   // Use a custom envmap/scene-backdrop for the diamond material
   // This way we can have a clear BG while cube-cam can still film other objects
   const texture = useLoader(

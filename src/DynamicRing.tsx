@@ -1,8 +1,10 @@
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
+import { Diamond } from "./Diamond";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const WeddingRing = (props: any) => {
+  console.log("WeddingRing props", props);
   return (
     <group
       position={props.position}
@@ -13,6 +15,11 @@ const WeddingRing = (props: any) => {
         segmentCount={props.segmentCount}
         vGap={props.vGap}
       />
+      {/* <Diamond
+        model={props.jewel}
+        position={[0, props.vGap / 2, 0]}
+        scale={[props.radius * 0.3, props.radius * 0.3, props.radius * 0.3]}
+      /> */}
     </group>
   );
 };
