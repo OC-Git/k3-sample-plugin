@@ -1,5 +1,5 @@
-import { importShared } from './__federation_fn_import-BUlNzCqW.js';
 import { j as jsxRuntimeExports } from './jsx-runtime-DbeHX__G.js';
+import { importShared } from './__federation_fn_import-BUlNzCqW.js';
 
 const {BufferAttribute,BufferGeometry,Float32BufferAttribute,InstancedBufferAttribute,InterleavedBuffer,InterleavedBufferAttribute,TriangleFanDrawMode,TriangleStripDrawMode,TrianglesDrawMode,Vector3} = await importShared('three');
 
@@ -236,15 +236,8 @@ const Ring = (props) => {
 
 const Image = "/assets/Image-lYiF6YAQ.png";
 
-const {useMemo} = await importShared('react');
-
 const WeddingRing = (props) => {
   console.log("WeddingRing props", props);
-  const test = useMemo(() => {
-    console.log("WeddingRing useMemo called", props);
-    return props;
-  }, [props]);
-  console.log("WeddingRing useMemo result", test);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "group",
     {
