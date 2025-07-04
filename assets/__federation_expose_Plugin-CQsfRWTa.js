@@ -146,7 +146,7 @@ const Segment = (props) => {
     bufferExtrudeGeometry,
     Math.PI / 2
   );
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("mesh", { geometry: creasedGeometry, children: props.children });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("mesh", { geometry: creasedGeometry, material: props.material, children: props.children });
 };
 const Ring = (props) => {
   const vGap = props.vGap;
@@ -186,15 +186,7 @@ const Ring = (props) => {
         shape: shape1,
         radius: props.radius,
         segmentCount: props.segmentCount,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "meshStandardMaterial",
-          {
-            color: new THREE.Color(1, 0.866, 0.236),
-            roughness: 0.1,
-            metalness: 1,
-            toneMapped: true
-          }
-        )
+        material: props.materials.outer
       }
     ),
     gap > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -203,15 +195,7 @@ const Ring = (props) => {
         shape: shape2,
         radius: props.radius,
         segmentCount: props.segmentCount,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "meshStandardMaterial",
-          {
-            color: new THREE.Color(0.9, 0.9, 0.9),
-            roughness: 0.4,
-            metalness: 1,
-            toneMapped: true
-          }
-        )
+        material: props.materials.inner
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -220,15 +204,7 @@ const Ring = (props) => {
         shape: shape3,
         radius: props.radius,
         segmentCount: props.segmentCount,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "meshStandardMaterial",
-          {
-            color: new THREE.Color(1, 0.866, 0.236),
-            roughness: 0.1,
-            metalness: 1,
-            toneMapped: true
-          }
-        )
+        material: props.materials.outer
       }
     )
   ] });
@@ -248,7 +224,8 @@ const WeddingRing = (props) => {
         {
           radius: props.radius,
           segmentCount: props.segmentCount,
-          vGap: props.vGap
+          vGap: props.vGap,
+          materials: props.materials
         }
       )
     }
@@ -275,7 +252,7 @@ const dynamicRing = {
     segmentCount: { expression: "1" },
     jewel: []
   },
-  materials: ["surface"],
+  materials: ["outer", "inner"],
   repositionApplicator: null,
   screenshot: Image
 };
