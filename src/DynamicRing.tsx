@@ -1,10 +1,10 @@
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
-import { Diamond } from "./Diamond";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const WeddingRing = (props: any) => {
   console.log("WeddingRing props", props);
+
   return (
     <group
       position={props.position}
@@ -14,9 +14,11 @@ const WeddingRing = (props: any) => {
         radius={props.radius}
         segmentCount={props.segmentCount}
         vGap={props.vGap}
+        materials={props.materials}
       />
-      {/* <Diamond
-        model={props.jewel}
+      {/* 
+      <Diamond
+        model={props.jewel[0].model.path}
         position={[0, props.vGap / 2, 0]}
         scale={[props.radius * 0.3, props.radius * 0.3, props.radius * 0.3]}
       /> */}
@@ -45,7 +47,7 @@ export const dynamicRing = {
     segmentCount: { expression: "1" },
     jewel: [],
   },
-  materials: ["surface"],
+  materials: ["outer", "inner"],
   repositionApplicator: null,
   screenshot: Image,
 };

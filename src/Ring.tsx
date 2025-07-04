@@ -45,7 +45,11 @@ const Segment = (props: any) => {
 
   //creasedGeometry.computeVertexNormals();
 
-  return <mesh geometry={creasedGeometry}>{props.children}</mesh>;
+  return (
+    <mesh geometry={creasedGeometry} material={props.material}>
+      {props.children}
+    </mesh>
+  );
 };
 
 export const Ring = (props: any) => {
@@ -90,40 +94,22 @@ export const Ring = (props: any) => {
         shape={shape1}
         radius={props.radius}
         segmentCount={props.segmentCount}
-      >
-        <meshStandardMaterial
-          color={new THREE.Color(1.0, 0.866, 0.236)}
-          roughness={0.1}
-          metalness={1}
-          toneMapped={true}
-        />
-      </Segment>
+        material={props.materials.outer}
+      ></Segment>
       {gap > 0 && (
         <Segment
           shape={shape2}
           radius={props.radius}
           segmentCount={props.segmentCount}
-        >
-          <meshStandardMaterial
-            color={new THREE.Color(0.9, 0.9, 0.9)}
-            roughness={0.4}
-            metalness={1}
-            toneMapped={true}
-          />
-        </Segment>
+          material={props.materials.inner}
+        ></Segment>
       )}
       <Segment
         shape={shape3}
         radius={props.radius}
         segmentCount={props.segmentCount}
-      >
-        <meshStandardMaterial
-          color={new THREE.Color(1.0, 0.866, 0.236)}
-          roughness={0.1}
-          metalness={1}
-          toneMapped={true}
-        />
-      </Segment>
+        material={props.materials.outer}
+      ></Segment>
     </group>
   );
 };
