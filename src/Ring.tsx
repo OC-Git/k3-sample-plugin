@@ -94,21 +94,21 @@ export const Ring = (props: any) => {
         shape={shape1}
         radius={props.radius}
         segmentCount={props.segmentCount}
-        material={props.materials.outer}
+        material={props.materials?.outer}
       ></Segment>
       {gap > 0 && (
         <Segment
           shape={shape2}
           radius={props.radius}
           segmentCount={props.segmentCount}
-          material={props.materials.inner}
+          material={props.materials?.inner}
         ></Segment>
       )}
       <Segment
         shape={shape3}
         radius={props.radius}
         segmentCount={props.segmentCount}
-        material={props.materials.outer}
+        material={props.materials?.outer}
       ></Segment>
     </group>
   );

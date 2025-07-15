@@ -1,14 +1,19 @@
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
+// import { useMemo } from "react";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const WeddingRing = (props: any) => {
   console.log("WeddingRing props", props);
 
+  // useMemo(() => {
+  //   console.log("useMemo");
+  // }, [props.jewel]);
   return (
     <group
       position={props.position}
       scale={[props.width, props.height, props.depth]}
+      userData={{ modelId: props.id }} // Add modelId to userData so camera focusing works
     >
       <Ring
         radius={props.radius}
