@@ -9,17 +9,6 @@ export default defineConfig({
     federation({
       name: "k3-ring",
       filename: "remoteEntry.js",
-
-      remotes: {
-        shared_app: {
-          type: "module",
-          name: "shared_app",
-          entry: "https://[...]/remoteEntry.js",
-          entryGlobalName: "remote",
-          shareScope: "default",
-        },
-      },
-
       exposes: {
         "./Plugin": "./src/Plugin.tsx",
       },
