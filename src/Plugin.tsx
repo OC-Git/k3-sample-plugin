@@ -1,5 +1,6 @@
 import { ColorChooser } from "./ColorChooser";
 import { dynamicRing } from "./DynamicRing";
+import { PriceDisplay } from "./PriceDisplay";
 
 export default {
   dynamicModels: [dynamicRing],
@@ -11,4 +12,5 @@ export default {
       component: ColorChooser,
     },
   ],
+  layoutComponents: { PriceDisplay },
 };

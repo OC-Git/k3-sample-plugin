@@ -1,11 +1,12 @@
-import { TextField } from "@mui/material";
+import { Input, Stack, TextField } from "@mui/material";
 
 export const ColorChooser = () => (props: any) => {
   return (
-    <div>
-      <input
+    <Stack direction="row" gap={3}>
+      <Input
         type="color"
         data-cy="color-picker-input"
+        sx={{ width: "60px" }}
         value={"" + props.selection?.data?.inputText || "#000000"}
         onChange={(e) =>
           props.onChange(props.value.id, { inputText: e.target.value })
@@ -14,10 +15,9 @@ export const ColorChooser = () => (props: any) => {
       <TextField
         value={props.selection?.data?.inputText}
         label={props.variable.label}
-        onBlur={(e) =>
-          props.onChange(props.value.id, { inputText: e.target.value })
-        }
+        disabled
+        fullWidth
       />
-    </div>
+    </Stack>
   );
 };
