@@ -1,47 +1,42 @@
+import { j as jsxRuntimeExports } from './jsx-runtime-dGY4lsZt.js';
 import { a as index_cjs, k as k3_mf_2_ring__mf_v__runtimeInit__mf_v__ } from './k3_mf_2_ring__mf_v__runtimeInit__mf_v__-Csdh1Uln.js';
 
-var jsxRuntime = {exports: {}};
+// dev uses dynamic import to separate chunks
+    
+    const {loadShare: loadShare$1} = index_cjs;
+    const {initPromise: initPromise$1} = k3_mf_2_ring__mf_v__runtimeInit__mf_v__;
+    const res$1 = initPromise$1.then(_ => loadShare$1("@mui/material", {
+    customShareInfo: {shareConfig:{
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: "^7.1.1"
+    }}}));
+    const exportModule$1 = await res$1.then(factory => factory());
+    var k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__ = exportModule$1;
 
-var reactJsxRuntime_production = {};
-
-/**
- * @license React
- * react-jsx-runtime.production.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"),
-  REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-function jsxProd(type, config, maybeKey) {
-  var key = null;
-  undefined !== maybeKey && (key = "" + maybeKey);
-  undefined !== config.key && (key = "" + config.key);
-  if ("key" in config) {
-    maybeKey = {};
-    for (var propName in config)
-      "key" !== propName && (maybeKey[propName] = config[propName]);
-  } else maybeKey = config;
-  config = maybeKey.ref;
-  return {
-    $$typeof: REACT_ELEMENT_TYPE,
-    type: type,
-    key: key,
-    ref: undefined !== config ? config : null,
-    props: maybeKey
-  };
-}
-reactJsxRuntime_production.Fragment = REACT_FRAGMENT_TYPE;
-reactJsxRuntime_production.jsx = jsxProd;
-reactJsxRuntime_production.jsxs = jsxProd;
-
-{
-  jsxRuntime.exports = reactJsxRuntime_production;
-}
-
-var jsxRuntimeExports = jsxRuntime.exports;
+const ColorChooser = () => (props) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Stack, { direction: "row", gap: 3, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Input,
+      {
+        type: "color",
+        "data-cy": "color-picker-input",
+        sx: { width: "60px" },
+        value: "" + props.selection?.data?.inputText || "#000000",
+        onChange: (e) => props.onChange(props.value.id, { inputText: e.target.value })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.TextField,
+      {
+        value: props.selection?.data?.inputText,
+        label: props.variable.label,
+        disabled: true,
+        fullWidth: true
+      }
+    )
+  ] });
+};
 
 // dev uses dynamic import to separate chunks
     
@@ -49,8 +44,8 @@ var jsxRuntimeExports = jsxRuntime.exports;
     const {initPromise} = k3_mf_2_ring__mf_v__runtimeInit__mf_v__;
     const res = initPromise.then(_ => loadShare("three", {
     customShareInfo: {shareConfig:{
-      singleton: false,
-      strictVersion: undefined,
+      singleton: true,
+      strictVersion: false,
       requiredVersion: "^0.177.0"
     }}}));
     const exportModule = await res.then(factory => factory());
@@ -285,15 +280,14 @@ const WeddingRing = (props) => {
 };
 const dynamicRing = {
   type: "ringPlugin",
-  label: "Ring",
+  label: "Ehering",
   disabledForAR: false,
   component: WeddingRing,
   propsDialog: {
     basic: { type: "basic" },
     radius: {},
     vGap: {},
-    segmentCount: {},
-    jewel: { type: "model", label: "The Jewel Model" }
+    segmentCount: {}
   },
   defaultProps: {
     width: { expression: "1" },
@@ -301,16 +295,36 @@ const dynamicRing = {
     depth: { expression: "1" },
     radius: { expression: "1" },
     vGap: { expression: "4" },
-    segmentCount: { expression: "1" },
-    jewel: []
+    segmentCount: { expression: "1" }
   },
   materials: ["outer", "inner"],
-  repositionApplicator: null,
   screenshot: Image
 };
 
+const PriceDisplay = (props) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Stack, { direction: "row", gap: 3, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Typography, { children: [
+      "Anzahl Artikel: ",
+      props.ctx.bom.length
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Typography, { children: [
+      "Preis: ",
+      props.ctx.price
+    ] })
+  ] });
+};
+
 const Plugin = {
-  dynamicModels: [dynamicRing]
+  dynamicModels: [dynamicRing],
+  variableTemplates: [
+    {
+      key: "colorChooser",
+      label: "Farbwähler",
+      type: "color",
+      component: ColorChooser
+    }
+  ],
+  layoutComponents: { PriceDisplay }
 };
 
 export { Plugin as default };
