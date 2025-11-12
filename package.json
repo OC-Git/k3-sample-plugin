@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist --dotfiles"
   },
   "devDependencies": {
+    "k3-plugin-api": "^1.0.7",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.5",

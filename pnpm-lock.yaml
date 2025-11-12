@@ -62,6 +62,9 @@ importers:
       globals:
         specifier: ^15.14.0
         version: 15.14.0
+      k3-plugin-api:
+        specifier: ^1.0.7
+        version: 1.0.7
       react:
         specifier: 19.1.1
         version: 19.1.1
@@ -1293,6 +1296,9 @@ packages:
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+
+  k3-plugin-api@1.0.7:
+    resolution: {integrity: sha512-2N+/w0n1aOZqWrSbxKd4dc4XHKWU5yPAJ1pXS4VbZP9PaYwM5LncrxR2PbgmrYU/B4sq+sTT18pcdQuCRgkf5g==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -3031,6 +3037,8 @@ snapshots:
       universalify: 2.0.1
     optionalDependencies:
       graceful-fs: 4.2.11
+
+  k3-plugin-api@1.0.7: {}
 
   keyv@4.5.4:
     dependencies:

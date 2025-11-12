@@ -1,5 +1,6 @@
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
+import { DynamicModel } from "k3-plugin-api";
 // import { useMemo } from "react";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -31,9 +32,9 @@ const WeddingRing = (props: any) => {
   );
 };
 
-export const dynamicRing = {
+export const dynamicRing: DynamicModel = {
   type: "ringPlugin",
-  label: "Ring",
+  label: "Ehering",
   disabledForAR: false,
   component: WeddingRing,
   propsDialog: {
@@ -41,7 +42,6 @@ export const dynamicRing = {
     radius: {},
     vGap: {},
     segmentCount: {},
-    jewel: { type: "model", label: "The Jewel Model" },
   },
   defaultProps: {
     width: { expression: "1" },
@@ -50,9 +50,7 @@ export const dynamicRing = {
     radius: { expression: "1" },
     vGap: { expression: "4" },
     segmentCount: { expression: "1" },
-    jewel: [],
   },
   materials: ["outer", "inner"],
-  repositionApplicator: null,
   screenshot: Image,
 };
