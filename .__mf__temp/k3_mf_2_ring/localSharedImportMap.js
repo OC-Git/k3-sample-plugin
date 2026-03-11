@@ -28,6 +28,16 @@
           return pkg
         }
       ,
+        "@react-three/drei": async () => {
+          let pkg = await import("__mf__virtual/k3_mf_2_ring__prebuild___mf_0_react_mf_2_three_mf_1_drei__prebuild__.js")
+          return pkg
+        }
+      ,
+        "@react-three/fiber": async () => {
+          let pkg = await import("__mf__virtual/k3_mf_2_ring__prebuild___mf_0_react_mf_2_three_mf_1_fiber__prebuild__.js")
+          return pkg
+        }
+      ,
         "react": async () => {
           let pkg = await import("__mf__virtual/k3_mf_2_ring__prebuild__react__prebuild__.js")
           return pkg
@@ -152,7 +162,7 @@
         ,
           "@mui/styled-engine": {
             name: "@mui/styled-engine",
-            version: "7.3.5",
+            version: "7.1.1",
             scope: ["default"],
             loaded: false,
             from: "k3-ring",
@@ -173,6 +183,58 @@
             shareConfig: {
               singleton: true,
               requiredVersion: "^7.1.1"
+            }
+          }
+        ,
+          "@react-three/drei": {
+            name: "@react-three/drei",
+            version: "10.5.1",
+            scope: ["default"],
+            loaded: false,
+            from: "k3-ring",
+            async get () {
+              usedShared["@react-three/drei"].loaded = true
+              const {"@react-three/drei": pkgDynamicImport} = importMap 
+              const res = await pkgDynamicImport()
+              const exportModule = {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^10.1.2"
+            }
+          }
+        ,
+          "@react-three/fiber": {
+            name: "@react-three/fiber",
+            version: "9.2.0",
+            scope: ["default"],
+            loaded: false,
+            from: "k3-ring",
+            async get () {
+              usedShared["@react-three/fiber"].loaded = true
+              const {"@react-three/fiber": pkgDynamicImport} = importMap 
+              const res = await pkgDynamicImport()
+              const exportModule = {...res}
+              // All npm packages pre-built by vite will be converted to esm
+              Object.defineProperty(exportModule, "__esModule", {
+                value: true,
+                enumerable: false
+              })
+              return function () {
+                return exportModule
+              }
+            },
+            shareConfig: {
+              singleton: true,
+              requiredVersion: "^9.1.2"
             }
           }
         ,

@@ -1,0 +1,10 @@
+{
+  "name": "k3-plugin-api",
+  "version": "1.0.9",
+  "main": "index.js",
+  "types": "index.ts",
+  "scripts": {
+    "prepublishOnly": "tsc --emitDeclarationOnly"
+  },
+  "yalcSig": "ab3b7c5dc713bfbc825b0c280b1256a6"
+}
