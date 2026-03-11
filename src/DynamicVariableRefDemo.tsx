@@ -11,12 +11,14 @@ import {
   DynamicModel,
   ResolvedVar,
   VariableType,
+  makePluginSubGroupVirtualId,
+  type PluginModelContext,
   type Value,
   type ComponentVariableValue,
 } from "k3-plugin-api";
 import { Text } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import { Suspense, useMemo } from "react";
+import { Suspense, useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { TextureLoader } from "three";
 
@@ -40,6 +42,7 @@ type Props = {
   imageVar: ResolvedVar<string | null> | null;
   partsVar: ResolvedVar<ComponentVariableValue[] | null> | null;
   anyVar: ResolvedVar | null;
+  context: PluginModelContext;
 };
 
 const FALLBACK_COLOR = "#888888";
@@ -260,6 +263,7 @@ const VariableRefDemoComponent = (props: Props) => {
     imageVar,
     partsVar,
     anyVar,
+    context,
   } = props;
 
   useMemo(() => {
@@ -275,6 +279,15 @@ const VariableRefDemoComponent = (props: Props) => {
   const activeRaw = activeVar?.root;
   const imageRaw = imageVar?.root;
   const instances: ComponentVariableValue[] = partsVar?.root ?? [];
+
+  // Register each MP instance as a highlightable sub-group so hovering
+  // its UI card outlines the matching 3D column.
+  useEffect(() => {
+    const subs = instances.map((inst) =>
+      context.registerSubGroup?.(inst.instanceId),
+    );
+    return () => subs.forEach((s) => s?.unregister());
+  }, [instances, context.registerSubGroup]);
 
   const stackCount =
     typeof countRaw === "number" ? Math.max(1, Math.round(countRaw)) : 1;
@@ -368,8 +381,16 @@ const VariableRefDemoComponent = (props: Props) => {
             y: i * (BOX_SIZE + BOX_GAP),
           }));
           const colHeight = colCount * (BOX_SIZE + BOX_GAP);
+          const subGroupUserData = context.modelActionId
+            ? {
+                modelActionUniqueId: makePluginSubGroupVirtualId(
+                  context.modelActionId,
+                  key,
+                ),
+              }
+            : {};
           return (
-            <group key={key} position={[x, 0, 0]}>
+            <group key={key} position={[x, 0, 0]} userData={subGroupUserData}>
               {active &&
                 colBoxes.map(({ key: bKey, y }) => (
                   <group key={bKey} position={[0, y, 0]}>

@@ -141,3 +141,20 @@ export interface PluginModelContext {
    */
   registerSubGroup?: (selectionId: string) => PluginSubGroup | undefined;
 }
+
+/**
+ * Build the virtual unique ID for a plugin sub-group.
+ * Use this at render time to construct `userData` for a group;
+ * pair with `context.registerSubGroup` in a `useEffect` for
+ * the registration side-effect.
+ *
+ * @example
+ * ```tsx
+ * const virtualId = makePluginSubGroupVirtualId(context.modelActionId!, item.instanceId);
+ * <group userData={{ modelActionUniqueId: virtualId }}>…</group>
+ * ```
+ */
+export const makePluginSubGroupVirtualId = (
+  modelActionId: string,
+  selectionId: string,
+): string => `${modelActionId}::${selectionId}`;
