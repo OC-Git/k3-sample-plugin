@@ -25,6 +25,17 @@ import { TextureLoader } from "three";
 // ---------------------------------------------------------------------------
 // 3D component
 // ---------------------------------------------------------------------------
+
+/**
+ * Props injected by K3 into the component:
+ *   position / rotation / scale — set by the "basic" propsDialog editor
+ *   width / height / depth       — required when using "basic"; expression-evaluated
+ *   id                           — unique instance ID; put on userData.modelId so
+ *                                  the camera "focus" feature can find the mesh
+ *
+ * All `*Var` props are ResolvedVar<T> instances (or null when no variable has
+ * been assigned by the admin yet). See the top-level comment for the API.
+ */
 type Props = {
   position: [number, number, number];
   rotation: [number, number, number];
@@ -42,6 +53,11 @@ type Props = {
   imageVar: ResolvedVar<string | null> | null;
   partsVar: ResolvedVar<ComponentVariableValue[] | null> | null;
   anyVar: ResolvedVar | null;
+  // context is injected by K3 — provides runtime info about this placed instance:
+  //   context.modelActionId  — the unique ID of this DynamicModel placement
+  //                            (used to build sub-group virtual IDs for highlighting)
+  //   context.registerSubGroup(instanceId) — registers a component instance as
+  //                            a separately highlightable sub-group
   context: PluginModelContext;
 };
 
@@ -168,7 +184,7 @@ const BadgeRenderer = ({ value }: { value: unknown }) => {
       <group>
         <mesh>
           <planeGeometry args={[0.28, 0.14]} />
-          <meshStandardMaterial color="#0e2a30" transparent opacity={0.6} />
+          <meshStandardMaterial color="#0e2a30" />
         </mesh>
         <Text
           fontSize={0.09}
@@ -201,7 +217,7 @@ const BadgeRenderer = ({ value }: { value: unknown }) => {
       <group>
         <mesh>
           <planeGeometry args={[pillW, 0.14]} />
-          <meshStandardMaterial color="#3b1f6e" transparent opacity={0.85} />
+          <meshStandardMaterial color="#3b1f6e" />
         </mesh>
         <Text
           position={[0, 0, 0.01]}
@@ -266,6 +282,8 @@ const VariableRefDemoComponent = (props: Props) => {
     context,
   } = props;
 
+  // Debug helper — logs current prop values whenever they change.
+  // Safe to remove in production; does not affect rendering.
   useMemo(() => {
     console.log(`[VariableRefDemo id=${id}] anyVar:`, anyVar);
     console.log(`[VariableRefDemo id=${id}] partsVar:`, partsVar);
@@ -273,15 +291,23 @@ const VariableRefDemoComponent = (props: Props) => {
     console.log(`[VariableRefDemo id=${id}] activeVar:`, activeVar);
   }, [anyVar, partsVar, colorVar, activeVar, id]);
 
-  // Root scalar values
+  // .root gives the global / top-level value regardless of instance context.
+  // Use this when you just need a single scalar to drive the whole model.
   const countRaw = countVar?.root;
   const labelRaw = labelVar?.root;
   const activeRaw = activeVar?.root;
   const imageRaw = imageVar?.root;
+  // partsVar is a Components variable — .root is an array of ComponentVariableValue,
+  // one entry per placed MP instance that references this model.
   const instances: ComponentVariableValue[] = partsVar?.root ?? [];
 
-  // Register each MP instance as a highlightable sub-group so hovering
-  // its UI card outlines the matching 3D column.
+  // Sub-group registration — links each MP instance in the sidebar to the
+  // matching 3D group so that hovering the sidebar card outlines that column.
+  //
+  // context.registerSubGroup(instanceId) tells K3 to treat the group whose
+  // userData.modelActionUniqueId equals makePluginSubGroupVirtualId(..., instanceId)
+  // as a highlight target for that instance.  The returned object has an
+  // `unregister()` method to clean up when the instance is removed.
   useEffect(() => {
     const subs = instances.map((inst) =>
       context.registerSubGroup?.(inst.instanceId),
@@ -381,6 +407,12 @@ const VariableRefDemoComponent = (props: Props) => {
             y: i * (BOX_SIZE + BOX_GAP),
           }));
           const colHeight = colCount * (BOX_SIZE + BOX_GAP);
+          // Attach a virtual sub-group ID to this group's userData so K3's
+          // outline / highlight system can find it when the sidebar is hovered.
+          // makePluginSubGroupVirtualId(modelActionId, instanceId) produces the
+          // canonical "parentMA::instanceId" string K3 resolves during raycasting.
+          // Without this, hovering the sidebar card would highlight the entire
+          // model instead of just this column.
           const subGroupUserData = context.modelActionId
             ? {
                 modelActionUniqueId: makePluginSubGroupVirtualId(
