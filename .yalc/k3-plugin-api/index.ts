@@ -65,49 +65,6 @@ export interface Value {
   value?: string | boolean | null;
   label: string;
 }
-
-/** One spawned component instance (from a Components variable). */
-export interface ComponentVariableValue {
-  instanceId: string;
-  valueId: number | string | null | undefined;
-  value: Value | null;
-  variables: Record<number | string, unknown>;
-}
-
-/**
- * Structured accessor for a resolved VariableRef prop.
- * Plugins receive an instance of this as the value of any `variable` prop.
- *
- *   prop.root              → global value (null if variable is instance-only)
- *   prop.forInstance(id)   → 3-tier: exact instance → ancestor → root
- */
-export interface ResolvedVar<T = unknown> {
-  /** Value at root scope (context: null). null if the variable is instance-only. */
-  readonly root: T | null;
-  /**
-   * Resolves the value for a component instance with 3-tier fallback:
-   * 1. Exact leaf match — variable set directly on this instance
-   * 2. Ancestor entry  — variable set on a parent (e.g. MP level)
-   * 3. Root            — variable is global
-   */
-  forInstance(instanceId: string): T | null;
-}
-
-// ---------------------------------------------------------------------------
-// Plugin sub-group API (per-item "Komponente hervorheben" for MP items)
-// ---------------------------------------------------------------------------
-
-/**
- * Returned by `context.registerSubGroup()`. Spread `userData` onto the R3F
- * group and call `unregister()` in the useEffect cleanup.
- */
-export interface PluginSubGroup {
-  virtualId: string;
-  /** Spread onto the R3F group: `<group userData={sub.userData}>` */
-  userData: { modelActionUniqueId: string };
-  unregister: () => void;
-}
-
 // ---------------------------------------------------------------------------
 // Plugin model context
 // ---------------------------------------------------------------------------
@@ -120,41 +77,4 @@ export interface PluginModelContext {
   screenshotCameraName?: string;
   /** The unique ID of the model action this instance is rendered for. */
   modelActionId?: string;
-  /**
-   * Register an MP item as a distinct highlightable sub-group so K3 can
-   * outline that specific 3D part when the matching UI card is hovered.
-   *
-   * @param selectionId – the instanceId of the MP item (same value used as
-   *   `targetSelectionId` on the HighlightFrame for that item's UI card)
-   *
-   * @example
-   * ```tsx
-   * useEffect(() => {
-   *   const subs = items.map(item => context.registerSubGroup?.(item.instanceId));
-   *   return () => subs.forEach(s => s?.unregister());
-   * }, [items, context.registerSubGroup]);
-   *
-   * // In JSX:
-   * const sub = context.registerSubGroup?.(item.instanceId);
-   * <group userData={sub?.userData ?? {}}>…</group>
-   * ```
-   */
-  registerSubGroup?: (selectionId: string) => PluginSubGroup | undefined;
 }
-
-/**
- * Build the virtual unique ID for a plugin sub-group.
- * Use this at render time to construct `userData` for a group;
- * pair with `context.registerSubGroup` in a `useEffect` for
- * the registration side-effect.
- *
- * @example
- * ```tsx
- * const virtualId = makePluginSubGroupVirtualId(context.modelActionId!, item.instanceId);
- * <group userData={{ modelActionUniqueId: virtualId }}>…</group>
- * ```
- */
-export const makePluginSubGroupVirtualId = (
-  modelActionId: string,
-  selectionId: string,
-): string => `${modelActionId}::${selectionId}`;
