@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /**
  * DynamicVariableRefDemo
  *
@@ -302,7 +303,7 @@ export const dynamicVariableRefDemo: DynamicModel = {
   materials: [],
   tag: "demo",
 
-  component: VariableRefDemoComponent as any,
+  component: VariableRefDemoComponent,
 
   propsDialog: {
     basic: { type: "basic" },

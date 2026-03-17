@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "k3-plugin-api": {
-      "signature": "c8f5fbf8b0f71d6d746571afd98f4507",
+      "signature": "7673e1001c7d63b631d8a65d3b2db6fd",
       "file": true,
       "replaced": "^1.0.7"
     }
