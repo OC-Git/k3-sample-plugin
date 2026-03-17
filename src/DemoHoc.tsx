@@ -62,10 +62,34 @@ const LABEL_STYLE: React.CSSProperties = {
   opacity: 0.85,
 };
 
-const WRAPPER_STYLE = (color: string): React.CSSProperties => ({
+/**
+ * Slots that must fill their parent (flex/grid children needing w+h 100%).
+ * All others are auto-sized (decorative labels, panels, buttons, etc.).
+ */
+const FILL_SLOTS = new Set([
+  "root",
+  "canvas",
+  "contentView",
+  "configurator",
+  "demoScene",
+  "labelsDisplay",
+  "labelsMobile",
+]);
+
+const WRAPPER_STYLE = (
+  color: string,
+  fill: boolean,
+): React.CSSProperties => ({
   position: "relative",
   outline: `1px dashed ${color}`,
   outlineOffset: -1,
+  ...(fill && {
+    width: "100%",
+    height: "100%",
+    minWidth: 0,
+    minHeight: 0,
+    flex: "1 1 auto",
+  }),
 });
 
 /**
@@ -77,8 +101,9 @@ export const createSlotHOC =
   (Wrapped) =>
   (props) => {
     const color = SLOT_COLORS[slotKey] ?? "#888";
+    const fill = FILL_SLOTS.has(slotKey);
     return (
-      <div style={WRAPPER_STYLE(color)}>
+      <div style={WRAPPER_STYLE(color, fill)}>
         <span style={{ ...LABEL_STYLE, background: color }}>{slotKey}</span>
         <Wrapped {...props} />
       </div>
