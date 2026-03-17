@@ -1,5 +1,5 @@
 import type { K3VariableComponentProps } from "k3-plugin-api";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * DemoSliderInput — full variable renderer (Darstellung) for number-type variables.
@@ -16,6 +16,7 @@ export const DemoSliderInput = ({
   const max = variable?.settings?.templateOptions?.max ?? 100;
   const initial = Number(selection?.data?.inputValue ?? min);
   const [current, setCurrent] = useState(initial);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Sync external selection changes (e.g. rule-engine override)
   useEffect(() => {
@@ -25,8 +26,11 @@ export const DemoSliderInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = Number(e.target.value);
     setCurrent(num);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
     const firstValue = values?.[0];
-    if (firstValue) onChange(firstValue.id, { inputValue: num });
+    debounceRef.current = setTimeout(() => {
+      if (firstValue) onChange(firstValue.id, { inputValue: num });
+    }, 200);
   };
 
   return (
