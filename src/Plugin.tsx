@@ -44,15 +44,69 @@ export default {
     },
 
     inputs: {
-      list: [{ key: "sample.list", label: "List Demo", component: createGenericInput(VariableType.List) }],
-      color: [{ key: "sample.colorChooser", label: "Farbwähler", component: ColorChooser }],
-      number: [{ key: "sample.slider", label: "Slider Demo", component: DemoSliderInput }],
-      text: [{ key: "sample.text", label: "Text Demo", component: createGenericInput(VariableType.Text) }],
-      boolean: [{ key: "sample.boolean", label: "Boolean Demo", component: createGenericInput(VariableType.Boolean) }],
-      image: [{ key: "sample.image", label: "Image Demo", component: createGenericInput(VariableType.Image) }],
-      upload: [{ key: "sample.upload", label: "Upload Demo", component: createGenericInput(VariableType.Upload) }],
-      components: [{ key: "sample.components", label: "Components Demo", component: createGenericInput(VariableType.Components) }],
-      information: [{ key: "sample.information", label: "Information Demo", component: createGenericInput(VariableType.Information) }],
+      list: [
+        {
+          key: "sample.list",
+          label: "List Demo",
+          component: createGenericInput(VariableType.List),
+        },
+      ],
+      color: [
+        {
+          key: "sample.colorChooser",
+          label: "Farbwähler",
+          component: ColorChooser,
+        },
+      ],
+      number: [
+        {
+          key: "sample.slider",
+          label: "Slider Demo",
+          component: DemoSliderInput,
+        },
+      ],
+      text: [
+        {
+          key: "sample.text",
+          label: "Text Demo",
+          component: createGenericInput(VariableType.Text),
+        },
+      ],
+      boolean: [
+        {
+          key: "sample.boolean",
+          label: "Boolean Demo",
+          component: createGenericInput(VariableType.Boolean),
+        },
+      ],
+      image: [
+        {
+          key: "sample.image",
+          label: "Image Demo",
+          component: createGenericInput(VariableType.Image),
+        },
+      ],
+      upload: [
+        {
+          key: "sample.upload",
+          label: "Upload Demo",
+          component: createGenericInput(VariableType.Upload),
+        },
+      ],
+      components: [
+        {
+          key: "sample.components",
+          label: "Components Demo",
+          component: createGenericInput(VariableType.Components),
+        },
+      ],
+      information: [
+        {
+          key: "sample.information",
+          label: "Information Demo",
+          component: createGenericInput(VariableType.Information),
+        },
+      ],
     },
 
     dialogs: {
@@ -70,7 +124,9 @@ export default {
       warnings: {
         invalidSelection: createSlotHOC("warningInvalidSelection"),
         invalidSelectionIcon: createSlotHOC("warningInvalidSelectionIcon"),
-        invalidSelectionTooltip: createSlotHOC("warningInvalidSelectionTooltip"),
+        invalidSelectionTooltip: createSlotHOC(
+          "warningInvalidSelectionTooltip",
+        ),
         numberWarningTooltip: createSlotHOC("warningNumberWarningTooltip"),
       },
     },
@@ -100,21 +156,49 @@ export default {
       },
     },
     config: {
-      onUpdate: (config) => { console.log("[plugin] onUpdate", config); return config; },
-      onSave: (config) => { console.log("[plugin] onSave", config); return config; },
-      onSaveFiles: (files) => { console.log("[plugin] onSaveFiles", files); return files; },
-      onSaveEvent: (payload) => { console.log("[plugin] onSaveEvent", payload); return payload; },
+      onUpdate: (config) => {
+        console.log("[plugin] onUpdate", config);
+        return config;
+      },
+      onSave: (config) => {
+        console.log("[plugin] onSave", config);
+        return config;
+      },
+      onSaveFiles: (files) => {
+        console.log("[plugin] onSaveFiles", files);
+        return files;
+      },
+      onSaveEvent: (payload) => {
+        console.log("[plugin] onSaveEvent", payload);
+        return payload;
+      },
     },
     camera: {
-      onSetScreenshotCameras: (cameras) => { console.log("[plugin] onSetScreenshotCameras", cameras); return cameras; },
-      onSetCameraList: (cameras) => { console.log("[plugin] onSetCameraList", cameras); return cameras; },
-      getScreenshotDimensions: (dim) => { console.log("[plugin] getScreenshotDimensions", dim); return dim; },
+      onSetScreenshotCameras: (cameras) => {
+        console.log("[plugin] onSetScreenshotCameras", cameras);
+        return cameras;
+      },
+      onSetCameraList: (cameras) => {
+        console.log("[plugin] onSetCameraList", cameras);
+        return cameras;
+      },
+      getScreenshotDimensions: (dim) => {
+        console.log("[plugin] getScreenshotDimensions", dim);
+        return dim;
+      },
     },
     core: {
-      preprocessFullApp: (app) => { console.log("[plugin] preprocessFullApp", app); return app; },
-      onOpenPdf: (result) => { console.log("[plugin] onOpenPdf", result); },
-      onExportAR: async (ctx) => { console.log("[plugin] onExportAR", ctx); return new Blob(); },
-      setExpressionEngineSelections: (selections) => { console.log("[plugin] setExpressionEngineSelections", selections); return selections; },
+      preprocessFullApp: (app) => {
+        console.log("[plugin] preprocessFullApp", app);
+        return app;
+      },
+      onOpenPdf: (result) => {
+        console.log("[plugin] onOpenPdf", result);
+      },
+      onExportAR: async (ctx) => {
+        console.log("[plugin] onExportAR", ctx);
+        return new Blob();
+      },
     },
   },
 

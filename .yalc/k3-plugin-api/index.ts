@@ -338,7 +338,7 @@ export interface K3Configuration {
 /** A configuration not yet persisted (no `id` or `code`). */
 export type K3NewConfiguration = Omit<K3Configuration, "id" | "code">;
 
-/** An individual variable selection state. Passed to `core.setExpressionEngineSelections`. */
+/** An individual variable selection state. */
 export interface K3Selection {
   /** Unique selection ID. */
   id: string;
@@ -400,9 +400,6 @@ export interface K3LogicExtensions {
     preprocessFullApp?: (app: K3FullApp) => K3FullApp;
     onOpenPdf?: (result: K3SaveResult) => void;
     onExportAR?: (ctx: K3ARExportContext) => Promise<Blob>;
-    setExpressionEngineSelections?: (
-      selections: K3Selection[],
-    ) => K3Selection[];
   };
 }
 
