@@ -13,7 +13,22 @@
 import { Ring } from "./Ring";
 import Image from "../public/Image.png";
 import { DynamicModel } from "k3-plugin-api";
+import type * as THREE from "three";
 // import { useMemo } from "react";
+
+type WeddingRingProps = {
+  id: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: [number, number, number];
+  width: number;
+  height: number;
+  depth: number;
+  radius: number;
+  vGap: number;
+  segmentCount: number;
+  materials: Record<string, THREE.Material>;
+};
 
 /**
  * The React (R3F) component K3 renders for each placed instance.
@@ -27,7 +42,7 @@ import { DynamicModel } from "k3-plugin-api";
  *   position, rotation, scale — set by the "basic" propsDialog editor.
  */
 // eslint-disable-next-line react-refresh/only-export-components
-const WeddingRing = (props: any) => {
+const WeddingRing = (props: WeddingRingProps) => {
   console.log("WeddingRing props", props);
 
   // useMemo(() => {

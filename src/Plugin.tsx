@@ -93,7 +93,7 @@ export default {
 
   logic: {
     pricing: {
-      onPriceCalculate: (price) => {
+      onPriceCalculate: (price: number) => {
         const result = Math.round(price * 1.19 * 100) / 100;
         console.log("[plugin] onPriceCalculate", price, "→", result);
         return result;

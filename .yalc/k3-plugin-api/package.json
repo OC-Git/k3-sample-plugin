@@ -6,5 +6,5 @@
   "scripts": {
     "prepublishOnly": "tsc --emitDeclarationOnly"
   },
-  "yalcSig": "7673e1001c7d63b631d8a65d3b2db6fd"
+  "yalcSig": "1a2c0e8cb109735db48e2f6298c1c88e"
 }

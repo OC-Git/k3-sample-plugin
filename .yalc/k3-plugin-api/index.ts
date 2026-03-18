@@ -189,6 +189,190 @@ export interface K3ViewerExtensions {
   };
 }
 
+// ─── Logic Callback Types ────────────────────────────────────────────────────
+
+/** [x, y, z] coordinate tuple used on camera objects. */
+export type K3Coordinates = [number, number, number];
+
+export type K3CameraScope =
+  | { type: "group" | "variable"; id: number }
+  | { type: "general"; id?: null };
+
+interface K3BaseCamera {
+  id: string;
+  name: string;
+  position: K3Coordinates;
+  lookAt: K3Coordinates;
+  rotation: K3Coordinates;
+  resolution?: { width: number; height: number };
+  threshold?: number;
+  focusType?: "dynamic" | "static";
+  scope?: K3CameraScope;
+  zoom?: number;
+  [key: string]: unknown;
+}
+
+/** A perspective camera configured in the K3 scene editor. */
+export interface K3PerspectiveCamera extends K3BaseCamera {
+  type: "PerspectiveCamera";
+  baseSettings?: { fov: number; aspect: number; near: number; far: number };
+}
+
+/** An orthographic camera configured in the K3 scene editor. */
+export interface K3OrthographicCamera extends K3BaseCamera {
+  type: "OrthographicCamera";
+  baseSettings?: {
+    left: number;
+    right: number;
+    top: number;
+    bottom: number;
+    near: number;
+    far: number;
+  };
+}
+
+/** A scene camera — perspective or orthographic. Passed to screenshot / camera-list callbacks. */
+export type K3Camera = K3PerspectiveCamera | K3OrthographicCamera;
+
+/** Pixel dimensions used for screenshot rendering. */
+export interface K3ScreenshotDimensions {
+  width: number;
+  height: number;
+}
+
+/** AR platform identifier. */
+export type K3ARPlatform = "iOS" | "AndroidOS";
+
+/**
+ * Minimal structural representation of a Three.js scene graph node.
+ * Cast to `import("three").Object3D` for full Three.js access.
+ */
+export interface K3Scene {
+  type: string;
+  children: readonly K3Scene[];
+  userData: Record<string, unknown>;
+  traverse(callback: (object: K3Scene) => void): void;
+  getObjectByName(name: string): K3Scene | undefined;
+}
+
+/** Context passed to `core.onExportAR`. */
+export interface K3ARExportContext {
+  /** Platform the AR export is targeting. */
+  platform: K3ARPlatform;
+  /**
+   * Live Three.js scene graph.
+   * Cast to `import("three").Object3D` for full Three.js access.
+   */
+  scene: K3Scene;
+}
+
+/** An uploaded file in a save operation (e.g. a screenshot per camera). */
+export interface K3UploadFile {
+  /** Camera name or custom key identifying this file. */
+  key: string;
+  /** The file data. */
+  file: Blob;
+  /** Optional explicit file name. */
+  fileName?: string;
+}
+
+/** Result returned to `core.onOpenPdf` after a save/order action. */
+export interface K3SaveResult {
+  /** Generated configuration code. */
+  code?: string;
+  /** Pricing verification info. */
+  price?: {
+    okay: boolean;
+    priceSent?: number;
+    priceCalculated?: number;
+  };
+  error?: boolean;
+  message?: string;
+  shopLink?: string;
+  /** URL to the generated PDF. */
+  pdf?: string;
+  pdfName?: string;
+  [key: string]: unknown;
+}
+
+/**
+ * Payload dispatched when a configuration is saved (e.g. "order", "cart", "pdf").
+ * Passed to `config.onSaveEvent`.
+ */
+export interface K3ConfigurationSavedEvent {
+  type: "K3ConfigurationSaved";
+  /** Save action key, e.g. "cart", "pdf", "email". */
+  actionKey: string;
+  /** Generated configuration code. */
+  code: string;
+  /** Optional customer data if collected during the save flow. */
+  customer?: {
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+/** A persisted configuration object. Passed to `config.onUpdate` and `config.onSave`. */
+export interface K3Configuration {
+  id: number | string;
+  appId: number;
+  code: string;
+  price: number | null;
+  /** ISO language code. */
+  lang: string;
+  /** Serialised selection state and BOM. */
+  json: {
+    variables: unknown[];
+    bom: unknown[];
+    summary: unknown;
+    [key: string]: unknown;
+  };
+  /** Screenshot files, keyed by camera name then file name. */
+  files: Record<string, Record<string, string>>;
+  [key: string]: unknown;
+}
+
+/** A configuration not yet persisted (no `id` or `code`). */
+export type K3NewConfiguration = Omit<K3Configuration, "id" | "code">;
+
+/** An individual variable selection state. Passed to `core.setExpressionEngineSelections`. */
+export interface K3Selection {
+  /** Unique selection ID. */
+  id: string;
+  variableId: number;
+  valueId?: number | string | null;
+  data?: {
+    /** Number variable input value. */
+    inputValue?: number;
+    /** Text variable input value. */
+    inputText?: string;
+    /** Image variable URL. */
+    url?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+/** Full application snapshot passed to `core.preprocessFullApp` before the store initialises. */
+export interface K3FullApp {
+  app: { id: number; [key: string]: unknown };
+  client: { id: number; [key: string]: unknown };
+  groups: Array<{ id: number; [key: string]: unknown }>;
+  variables: Array<{ id: number; [key: string]: unknown }>;
+  values: Array<{ id: number | string; [key: string]: unknown }>;
+  articles: Array<{ id: number; [key: string]: unknown }>;
+  prices: Array<{ id: number; [key: string]: unknown }>;
+  materials: Array<{ id: number; [key: string]: unknown }>;
+  models: Array<{ id: number; [key: string]: unknown }>;
+  images: Array<{ id: number; [key: string]: unknown }>;
+  rules: Array<{ id: number; [key: string]: unknown }>;
+  ruleItems: Array<{ id: number; [key: string]: unknown }>;
+  [key: string]: unknown;
+}
+
 // ─── Logic / Callback Extensions ────────────────────────────────────────────
 
 export interface K3LogicExtensions {
@@ -196,24 +380,29 @@ export interface K3LogicExtensions {
     onPriceCalculate?: (price: number) => number;
   };
   config?: {
-    onUpdate?: (config: unknown) => unknown;
-    onSave?: (config: unknown) => unknown;
-    onSaveFiles?: (files: unknown[]) => unknown[];
-    onSaveEvent?: (payload: unknown) => unknown;
+    onUpdate?: (config: K3Configuration) => K3Configuration;
+    onSave?: (
+      config: K3Configuration | K3NewConfiguration,
+    ) => K3Configuration | K3NewConfiguration;
+    onSaveFiles?: (files: K3UploadFile[]) => K3UploadFile[];
+    onSaveEvent?: (
+      payload: K3ConfigurationSavedEvent,
+    ) => K3ConfigurationSavedEvent;
   };
   camera?: {
-    onSetScreenshotCameras?: (cameras: unknown[]) => unknown[];
-    onSetCameraList?: (cameras: unknown[]) => unknown[];
-    getScreenshotDimensions?: (dim: { width: number; height: number }) => {
-      width: number;
-      height: number;
-    };
+    onSetScreenshotCameras?: (cameras: K3Camera[]) => K3Camera[];
+    onSetCameraList?: (cameras: K3Camera[]) => K3Camera[];
+    getScreenshotDimensions?: (
+      dim: K3ScreenshotDimensions,
+    ) => K3ScreenshotDimensions;
   };
   core?: {
-    preprocessFullApp?: (app: unknown) => unknown;
-    onOpenPdf?: (result: unknown) => void;
-    onExportAR?: (ctx: unknown) => Promise<Blob>;
-    setExpressionEngineSelections?: (selections: unknown[]) => unknown[];
+    preprocessFullApp?: (app: K3FullApp) => K3FullApp;
+    onOpenPdf?: (result: K3SaveResult) => void;
+    onExportAR?: (ctx: K3ARExportContext) => Promise<Blob>;
+    setExpressionEngineSelections?: (
+      selections: K3Selection[],
+    ) => K3Selection[];
   };
 }
 
