@@ -19,7 +19,7 @@ export interface K3PluginDescriptor {
   ui?: K3UIExtensions;
   /** Viewer / 3D extension points: canvas, scene components, layout components, dynamic models. */
   viewer?: K3ViewerExtensions;
-  /** Logic/callback hooks: pricing, config, camera, core. */
+  /** Logic/callback hooks: config, camera, core. */
   logic?: K3LogicExtensions;
 
   /** @deprecated Use viewer.models instead. */
@@ -374,9 +374,6 @@ export interface K3FullApp {
 // ─── Logic / Callback Extensions ────────────────────────────────────────────
 
 export interface K3LogicExtensions {
-  pricing?: {
-    onPriceCalculate?: (price: number) => number;
-  };
   config?: {
     onUpdate?: (config: K3Configuration) => K3Configuration;
     onSave?: (

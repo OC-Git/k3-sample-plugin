@@ -148,13 +148,6 @@ export default {
   // ── Logic & Events ───────────────────────────────────────────────────────
 
   logic: {
-    pricing: {
-      onPriceCalculate: (price: number) => {
-        const result = Math.round(price * 1.19 * 100) / 100;
-        console.log("[plugin] onPriceCalculate", price, "→", result);
-        return result;
-      },
-    },
     config: {
       onUpdate: (config) => {
         console.log("[plugin] onUpdate", config);
