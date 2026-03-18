@@ -460,7 +460,4 @@ export interface PluginModelContext {
 }
 
 /** @deprecated Use K3PluginDescriptor */
-export type K3Plugin = Pick<
-  K3PluginDescriptor,
-  "dynamicModels"
->;
+export type K3Plugin = Pick<K3PluginDescriptor, "dynamicModels">;
