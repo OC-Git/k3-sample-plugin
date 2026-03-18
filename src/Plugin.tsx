@@ -206,6 +206,4 @@ export default {
 
   /** @deprecated mapped to viewer.models internally */
   dynamicModels: [dynamicLegacyModel],
-  /** @deprecated mapped to viewer.customLayoutComponents internally */
-  layoutComponents: { PriceDisplay },
 } satisfies K3PluginDescriptor;

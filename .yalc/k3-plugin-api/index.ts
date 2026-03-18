@@ -24,8 +24,6 @@ export interface K3PluginDescriptor {
 
   /** @deprecated Use viewer.models instead. */
   dynamicModels?: DynamicModel[];
-  /** @deprecated Use viewer.customLayoutComponents instead. */
-  layoutComponents?: Record<string, React.ComponentType<any>>;
 }
 
 // ─── UI Extensions ──────────────────────────────────────────────────────────
@@ -467,5 +465,5 @@ export interface PluginModelContext {
 /** @deprecated Use K3PluginDescriptor */
 export type K3Plugin = Pick<
   K3PluginDescriptor,
-  "dynamicModels" | "layoutComponents"
+  "dynamicModels"
 >;
