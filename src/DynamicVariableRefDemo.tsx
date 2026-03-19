@@ -299,6 +299,18 @@ const VariableRefDemoComponent = (props: Props) => {
 export const dynamicVariableRefDemo: DynamicModel = {
   type: "variableRefDemo",
   label: "Variable Ref Demo",
+  description: `<p><strong>Variable Reference Demo</strong></p>
+<p>Dieses Dynamic Model demonstriert, wie ein Plugin über <em>VariableRef</em>-Props zur Laufzeit auf Konfigurator-Variablen zugreift. Im Gegensatz zu reinen Expression-Props wird hier kein statischer Zahlenwert übergeben, sondern eine direkte Referenz auf das Variable-Objekt.</p>
+<p>Folgende Prop-Typen werden demonstriert:</p>
+<ul>
+  <li><strong>countVar</strong> – Numerische Variable; der Wert wird als Zähler im 3D-Mesh angezeigt</li>
+  <li><strong>labelVar</strong> – Textvariable; wird als Label über dem Objekt gerendert</li>
+  <li><strong>activeVar</strong> – Boolean-Variable; steuert die Sichtbarkeit der Komponente</li>
+  <li><strong>colorVar</strong> – Farb- oder Listenvariable; steuert die Mesh-Farbe zur Laufzeit</li>
+  <li><strong>imageVar</strong> – Bild- oder Upload-Variable; wird als Textur auf das Mesh gemappt</li>
+  <li><strong>anyVar</strong> – Universelle Variable; zeigt Typ und aktuellen Wert als Status-Badge</li>
+</ul>
+<p>Dieses Modell eignet sich als Referenzimplementierung für alle Plugins, die Konfigurationsdaten direkt in die 3D-Szene einbinden müssen, ohne eigene Datenpfade aufzubauen.</p>`,
   disabledForAR: false,
   materials: [],
   tag: "demo",

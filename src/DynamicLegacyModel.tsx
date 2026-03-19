@@ -13,10 +13,7 @@ const LegacyBox = (props: any) => (
   >
     <mesh>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial
-        color="#f97316"
-        wireframe={false}
-      />
+      <meshStandardMaterial color="#f97316" wireframe={false} />
     </mesh>
   </group>
 );
@@ -24,6 +21,9 @@ const LegacyBox = (props: any) => (
 export const dynamicLegacyModel: DynamicModel = {
   type: "legacyBox",
   label: "Legacy Box (shim test)",
+  description: `<p><strong>Legacy Dynamic Model (Shim-Test)</strong></p>
+<p>Dieses Modell wird über den <em>veralteten</em> <code>plugin.dynamicModels</code>-Pfad registriert und testet den Backward-Compatibility-Shim von K3. Intern mappt K3 diesen Eintrag automatisch auf <code>viewer.models</code>.</p>
+<p><strong>Wichtig für Plugin-Entwickler:</strong> Neue Plugins sollten Dynamic Models ausschließlich über <code>viewer.models</code> registrieren. Der Shim bleibt für bestehende Plugins erhalten, wird aber in zukünftigen Hauptversionen entfernt.</p>`,
   disabledForAR: false,
   component: LegacyBox,
   propsDialog: {

@@ -92,6 +92,15 @@ const WeddingRing = (props: WeddingRingProps) => {
 export const dynamicRing: DynamicModel = {
   type: "ringPlugin",
   label: "Ehering",
+  description: `<p><strong>Parametrischer 3D-Ehering</strong></p>
+<p>Dieses Dynamic Model rendert einen vollständig parametrischen Ehering in der 3D-Szene. Der Ring wird prozedural aus einer Torus-Geometrie erzeugt und unterstützt folgende konfigurierbaren Eigenschaften:</p>
+<ul>
+  <li><strong>radius</strong> – Außenradius des Ringes in Szeneneinheiten</li>
+  <li><strong>vGap</strong> – Ringbreite (Abstand zwischen innerem und äußerem Torus)</li>
+  <li><strong>segmentCount</strong> – Anzahl der polygonalen Segmente (Detailgrad)</li>
+  <li><strong>outer / inner</strong> – Zwei unabhängige Materialslots für die Außen- und Innenfläche</li>
+</ul>
+<p>Position, Rotation und Skalierung werden über den eingebauten <em>basic</em>-Editor gesteuert. Expressions in <code>defaultProps</code> setzen die Startwerte beim Platzieren einer neuen Instanz.</p>`,
   disabledForAR: false,
   component: WeddingRing,
   propsDialog: {
