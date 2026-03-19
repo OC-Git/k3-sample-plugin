@@ -273,7 +273,15 @@ export default {
         description: "Fügt eine Demo-Szenenkomponente hinzu.",
       },
     },
-    customLayoutComponents: { PriceDisplay },
+    customLayoutComponents: {
+      // One can add it to the scene via <CustomLayoutComponent name="PriceDisplay2" price="2"/>.
+      PriceDisplay2: {
+        component: PriceDisplay,
+        label: "Price Display 2",
+        description:
+          "Registriert eine benutzerdefinierte Preisanzeige-Komponente, die über den Layout-Slot <CustomLayoutComponent name=\"PriceDisplay2\" price=\"2\"/> in der Szene platziert werden kann.",
+      },
+    },
     models: [dynamicRing, dynamicVariableRefDemo],
     labels: {
       display: {
