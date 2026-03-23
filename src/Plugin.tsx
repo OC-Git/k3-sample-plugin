@@ -267,20 +267,9 @@ export default {
       hoc: createSlotHOC("canvas"),
       description: "Überschreibt den 3D-Canvas-Bereich.",
     },
-    sceneComponents: {
-      demoScene: {
-        hoc: createSlotHOC("demoScene"),
-        description: "Fügt eine Demo-Szenenkomponente hinzu.",
-      },
-    },
     customLayoutComponents: {
       // One can add it to the scene via <CustomLayoutComponent name="PriceDisplay2" price="2"/>.
-      PriceDisplay2: {
-        component: PriceDisplay,
-        label: "Price Display 2",
-        description:
-          "Registriert eine benutzerdefinierte Preisanzeige-Komponente, die über den Layout-Slot <CustomLayoutComponent name=\"PriceDisplay2\" price=\"2\"/> in der Szene platziert werden kann.",
-      },
+      PriceDisplay2: PriceDisplay,
     },
     models: [dynamicRing, dynamicVariableRefDemo],
     labels: {
