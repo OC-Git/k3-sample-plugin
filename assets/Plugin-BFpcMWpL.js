@@ -1,33 +1,32 @@
-import { j as jsxRuntimeExports } from './jsx-runtime-dGY4lsZt.js';
-import { a as index_cjs, k as k3_mf_2_ring__mf_v__runtimeInit__mf_v__ } from './k3_mf_2_ring__mf_v__runtimeInit__mf_v__-Csdh1Uln.js';
+import { a as __mf_2, _ as __mf_1 } from './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react_mf_1_jsx_mf_2_runtime__loadShare__.mjs-fXKQsZNi.js';
+import { a as __mf_98, b as __mf_57, c as __mf_122, d as __mf_128 } from './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.mjs-HrW_Roe4.js';
+import { s as __mf_398, L as __mf_38, bl as __mf_335, r as __mf_397, bu as __mf_47, aV as __mf_113 } from './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__three__loadShare__.mjs-bRXpUYHh.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare___mf_0_mui_mf_1_styled_mf_2_engine__loadShare__.mjs-B0xJGbBg.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare___mf_0_emotion_mf_1_styled__loadShare__.mjs-CTKGR522.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare___mf_0_emotion_mf_1_react__loadShare__.mjs-DfArSKTg.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react__loadShare__.mjs-Cg0rfq73.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare___mf_0_emotion_mf_1_cache__loadShare__.mjs-D_qBeFsO.js';
+import './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react_mf_2_dom__loadShare__.mjs-6F4dlPkB.js';
+import './__virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react__loadShare__.mjs_commonjs-proxy-BhAEIthT.js';
 
-// dev uses dynamic import to separate chunks
-    
-    const {loadShare: loadShare$1} = index_cjs;
-    const {initPromise: initPromise$1} = k3_mf_2_ring__mf_v__runtimeInit__mf_v__;
-    const res$1 = initPromise$1.then(_ => loadShare$1("@mui/material", {
-    customShareInfo: {shareConfig:{
-      singleton: true,
-      strictVersion: false,
-      requiredVersion: "^7.1.1"
-    }}}));
-    const exportModule$1 = await res$1.then(factory => factory());
-    var k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__ = exportModule$1;
-
-const ColorChooser = () => (props) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Stack, { direction: "row", gap: 3, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Input,
+const ColorChooser = (props) => {
+  const valueId = props.values?.[0]?.id;
+  return /* @__PURE__ */ __mf_2(__mf_98, { direction: "row", gap: 3, children: [
+    /* @__PURE__ */ __mf_1(
+      __mf_57,
       {
         type: "color",
         "data-cy": "color-picker-input",
         sx: { width: "60px" },
         value: "" + props.selection?.data?.inputText || "#000000",
-        onChange: (e) => props.onChange(props.value.id, { inputText: e.target.value })
+        onChange: (e) => valueId != null && props.onChange(valueId, {
+          inputValue: void 0,
+          inputText: e.target.value
+        })
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.TextField,
+    /* @__PURE__ */ __mf_1(
+      __mf_122,
       {
         value: props.selection?.data?.inputText,
         label: props.variable.label,
@@ -37,19 +36,6 @@ const ColorChooser = () => (props) => {
     )
   ] });
 };
-
-// dev uses dynamic import to separate chunks
-    
-    const {loadShare} = index_cjs;
-    const {initPromise} = k3_mf_2_ring__mf_v__runtimeInit__mf_v__;
-    const res = initPromise.then(_ => loadShare("three", {
-    customShareInfo: {shareConfig:{
-      singleton: true,
-      strictVersion: false,
-      requiredVersion: "^0.177.0"
-    }}}));
-    const exportModule = await res.then(factory => factory());
-    var k3_mf_2_ring__loadShare__three__loadShare__ = exportModule;
 
 /**
  * Modifies the supplied geometry if it is non-indexed, otherwise creates a new,
@@ -66,11 +52,11 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 	const hashMultiplier = ( 1 + 1e-10 ) * 1e2;
 
 	// reusable vectors
-	const verts = [ new k3_mf_2_ring__loadShare__three__loadShare__.Vector3(), new k3_mf_2_ring__loadShare__three__loadShare__.Vector3(), new k3_mf_2_ring__loadShare__three__loadShare__.Vector3() ];
-	const tempVec1 = new k3_mf_2_ring__loadShare__three__loadShare__.Vector3();
-	const tempVec2 = new k3_mf_2_ring__loadShare__three__loadShare__.Vector3();
-	const tempNorm = new k3_mf_2_ring__loadShare__three__loadShare__.Vector3();
-	const tempNorm2 = new k3_mf_2_ring__loadShare__three__loadShare__.Vector3();
+	const verts = [ new __mf_398(), new __mf_398(), new __mf_398() ];
+	const tempVec1 = new __mf_398();
+	const tempVec2 = new __mf_398();
+	const tempNorm = new __mf_398();
+	const tempNorm2 = new __mf_398();
 
 	// hashes a vector
 	function hashVertex( v ) {
@@ -100,7 +86,7 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 		tempVec2.subVectors( a, b );
 
 		// add the normal to the map for all vertices
-		const normal = new k3_mf_2_ring__loadShare__three__loadShare__.Vector3().crossVectors( tempVec1, tempVec2 ).normalize();
+		const normal = new __mf_398().crossVectors( tempVec1, tempVec2 ).normalize();
 		for ( let n = 0; n < 3; n ++ ) {
 
 			const vert = verts[ n ];
@@ -120,7 +106,7 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 	// average normals from all vertices that share a common location if they are within the
 	// provided crease threshold
 	const normalArray = new Float32Array( posAttr.count * 3 );
-	const normAttr = new k3_mf_2_ring__loadShare__three__loadShare__.BufferAttribute( normalArray, 3, false );
+	const normAttr = new __mf_38( normalArray, 3, false );
 	for ( let i = 0, l = posAttr.count / 3; i < l; i ++ ) {
 
 		// get the face normal for this vertex
@@ -170,21 +156,21 @@ const Segment = (props) => {
   const points = [];
   for (let i = 0; i < props.segmentCount; i++) {
     points.push(
-      new k3_mf_2_ring__loadShare__three__loadShare__.Vector3(
+      new __mf_398(
         r * Math.sin(i * Math.PI * 2 / props.segmentCount + Math.PI),
         r * Math.cos(i * Math.PI * 2 / props.segmentCount + Math.PI),
         0
       )
     );
   }
-  const path = new k3_mf_2_ring__loadShare__three__loadShare__.CatmullRomCurve3(points, true);
+  const path = new __mf_47(points, true);
   const extrudeSettings = {
     steps: props.segmentCount,
     curveSegments: 20,
     bevelEnabled: false,
     extrudePath: path
   };
-  const bufferExtrudeGeometry = new k3_mf_2_ring__loadShare__three__loadShare__.ExtrudeGeometry(
+  const bufferExtrudeGeometry = new __mf_113(
     props.shape,
     extrudeSettings
   );
@@ -192,7 +178,7 @@ const Segment = (props) => {
     bufferExtrudeGeometry,
     Math.PI / 2
   );
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("mesh", { geometry: creasedGeometry, material: props.material, children: props.children });
+  return /* @__PURE__ */ __mf_1("mesh", { geometry: creasedGeometry, material: props.material, children: props.children });
 };
 const Ring = (props) => {
   const vGap = props.vGap;
@@ -201,32 +187,32 @@ const Ring = (props) => {
   const sink = 0.05;
   const rx = vWidth / 50;
   const ry = 0.05;
-  const shape1 = new k3_mf_2_ring__loadShare__three__loadShare__.Shape();
-  shape1.moveTo(gap, -0.05);
+  const shape1 = new __mf_335();
+  shape1.moveTo(gap, -ry);
   shape1.splineThru([
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(gap, -0.05),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(rx, -0.8 * ry),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(rx, 0.8 * ry),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(gap, ry)
+    new __mf_397(gap, -ry),
+    new __mf_397(rx, -0.8 * ry),
+    new __mf_397(rx, 0.8 * ry),
+    new __mf_397(gap, ry)
   ]);
-  shape1.lineTo(gap, -0.05);
-  const shape2 = new k3_mf_2_ring__loadShare__three__loadShare__.Shape();
-  shape2.moveTo(gap, -0.05 + sink);
+  shape1.lineTo(gap, -ry);
+  const shape2 = new __mf_335();
+  shape2.moveTo(gap, -ry + sink);
   shape2.lineTo(gap, ry - sink);
   shape2.lineTo(-gap, ry - sink);
-  shape2.lineTo(-gap, -0.05 + sink);
-  shape2.lineTo(gap, -0.05 + sink);
-  const shape3 = new k3_mf_2_ring__loadShare__three__loadShare__.Shape();
-  shape3.moveTo(-gap, -0.05);
+  shape2.lineTo(-gap, -ry + sink);
+  shape2.lineTo(gap, -ry + sink);
+  const shape3 = new __mf_335();
+  shape3.moveTo(-gap, -ry);
   shape3.splineThru([
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(-gap, -0.05),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(-rx, -0.8 * ry),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(-rx, 0.8 * ry),
-    new k3_mf_2_ring__loadShare__three__loadShare__.Vector2(-gap, ry)
+    new __mf_397(-gap, -ry),
+    new __mf_397(-rx, -0.8 * ry),
+    new __mf_397(-rx, 0.8 * ry),
+    new __mf_397(-gap, ry)
   ]);
-  shape3.lineTo(-gap, -0.05);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("group", { ...props, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
+  shape3.lineTo(-gap, -ry);
+  return /* @__PURE__ */ __mf_2("group", { ...props, children: [
+    /* @__PURE__ */ __mf_1(
       Segment,
       {
         shape: shape1,
@@ -235,7 +221,7 @@ const Ring = (props) => {
         material: props.materials?.outer
       }
     ),
-    gap > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+    gap > 0 && /* @__PURE__ */ __mf_1(
       Segment,
       {
         shape: shape2,
@@ -244,7 +230,7 @@ const Ring = (props) => {
         material: props.materials?.inner
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ __mf_1(
       Segment,
       {
         shape: shape3,
@@ -260,13 +246,13 @@ const Image = "/assets/Image-lYiF6YAQ.png";
 
 const WeddingRing = (props) => {
   console.log("WeddingRing props", props);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ __mf_1(
     "group",
     {
       position: props.position,
       scale: [props.width, props.height, props.depth],
       userData: { modelId: props.id },
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      children: /* @__PURE__ */ __mf_1(
         Ring,
         {
           radius: props.radius,
@@ -281,6 +267,7 @@ const WeddingRing = (props) => {
 const dynamicRing = {
   type: "ringPlugin",
   label: "Ehering",
+  description: "Sample wedding ring 3D model for K3 configurator",
   disabledForAR: false,
   component: WeddingRing,
   propsDialog: {
@@ -302,29 +289,37 @@ const dynamicRing = {
 };
 
 const PriceDisplay = (props) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Stack, { direction: "row", gap: 3, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Typography, { children: [
+  return /* @__PURE__ */ __mf_2(__mf_98, { direction: "row", gap: 3, children: [
+    /* @__PURE__ */ __mf_2(__mf_128, { children: [
       "Anzahl Artikel: ",
-      props.ctx.bom.length
+      props.bom.length
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(k3_mf_2_ring__loadShare___mf_0_mui_mf_1_material__loadShare__.Typography, { children: [
+    /* @__PURE__ */ __mf_2(__mf_128, { children: [
       "Preis: ",
-      props.ctx.price
+      props.totalPrice
     ] })
   ] });
 };
 
 const Plugin = {
-  dynamicModels: [dynamicRing],
-  variableTemplates: [
-    {
-      key: "colorChooser",
-      label: "Farbwähler",
-      type: "color",
-      component: ColorChooser
+  id: "sample.ring-plugin",
+  version: "0.0.0",
+  ui: {
+    inputs: {
+      color: [
+        {
+          key: "colorChooser",
+          label: "Farbwähler",
+          description: "Custom color picker with hex input",
+          component: ColorChooser
+        }
+      ]
     }
-  ],
-  layoutComponents: { PriceDisplay }
+  },
+  viewer: {
+    models: [dynamicRing],
+    customLayoutComponents: { PriceDisplay }
+  }
 };
 
 export { Plugin as default };

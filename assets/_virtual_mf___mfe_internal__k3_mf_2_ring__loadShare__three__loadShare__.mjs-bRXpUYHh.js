@@ -1,3 +1,21 @@
+function _mergeNamespaces(n, m) {
+	for (var i = 0; i < m.length; i++) {
+		const e = m[i];
+		if (typeof e !== 'string' && !Array.isArray(e)) { for (const k in e) {
+			if (k !== 'default' && !(k in n)) {
+				const d = Object.getOwnPropertyDescriptor(e, k);
+				if (d) {
+					Object.defineProperty(n, k, d.get ? d : {
+						enumerable: true,
+						get: () => e[k]
+					});
+				}
+			}
+		} }
+	}
+	return Object.freeze(Object.defineProperty(n, Symbol.toStringTag, { value: 'Module' }));
+}
+
 /**
  * @license
  * Copyright 2010-2025 Three.js Authors
@@ -76235,4 +76253,1731 @@ class WebGLRenderer {
 
 }
 
-export { ACESFilmicToneMapping, AddEquation, AddOperation, AdditiveAnimationBlendMode, AdditiveBlending, AgXToneMapping, AlphaFormat, AlwaysCompare, AlwaysDepth, AlwaysStencilFunc, AmbientLight, AnimationAction, AnimationClip, AnimationLoader, AnimationMixer, AnimationObjectGroup, AnimationUtils, ArcCurve, ArrayCamera, ArrowHelper, AttachedBindMode, Audio, AudioAnalyser, AudioContext, AudioListener, AudioLoader, AxesHelper, BackSide, BasicDepthPacking, BasicShadowMap, BatchedMesh, Bone, BooleanKeyframeTrack, Box2, Box3, Box3Helper, BoxGeometry, BoxHelper, BufferAttribute, BufferGeometry, BufferGeometryLoader, ByteType, Cache, Camera, CameraHelper, CanvasTexture, CapsuleGeometry, CatmullRomCurve3, CineonToneMapping, CircleGeometry, ClampToEdgeWrapping, Clock, Color, ColorKeyframeTrack, ColorManagement, CompressedArrayTexture, CompressedCubeTexture, CompressedTexture, CompressedTextureLoader, ConeGeometry, ConstantAlphaFactor, ConstantColorFactor, Controls, CubeCamera, CubeReflectionMapping, CubeRefractionMapping, CubeTexture, CubeTextureLoader, CubeUVReflectionMapping, CubicBezierCurve, CubicBezierCurve3, CubicInterpolant, CullFaceBack, CullFaceFront, CullFaceFrontBack, CullFaceNone, Curve, CurvePath, CustomBlending, CustomToneMapping, CylinderGeometry, Cylindrical, Data3DTexture, DataArrayTexture, DataTexture, DataTextureLoader, DataUtils, DecrementStencilOp, DecrementWrapStencilOp, DefaultLoadingManager, DepthFormat, DepthStencilFormat, DepthTexture, DetachedBindMode, DirectionalLight, DirectionalLightHelper, DiscreteInterpolant, DodecahedronGeometry, DoubleSide, DstAlphaFactor, DstColorFactor, DynamicCopyUsage, DynamicDrawUsage, DynamicReadUsage, EdgesGeometry, EllipseCurve, EqualCompare, EqualDepth, EqualStencilFunc, EquirectangularReflectionMapping, EquirectangularRefractionMapping, Euler, EventDispatcher, ExtrudeGeometry, FileLoader, Float16BufferAttribute, Float32BufferAttribute, FloatType, Fog, FogExp2, FramebufferTexture, FrontSide, Frustum, FrustumArray, GLBufferAttribute, GLSL1, GLSL3, GreaterCompare, GreaterDepth, GreaterEqualCompare, GreaterEqualDepth, GreaterEqualStencilFunc, GreaterStencilFunc, GridHelper, Group, HalfFloatType, HemisphereLight, HemisphereLightHelper, IcosahedronGeometry, ImageBitmapLoader, ImageLoader, ImageUtils, IncrementStencilOp, IncrementWrapStencilOp, InstancedBufferAttribute, InstancedBufferGeometry, InstancedInterleavedBuffer, InstancedMesh, Int16BufferAttribute, Int32BufferAttribute, Int8BufferAttribute, IntType, InterleavedBuffer, InterleavedBufferAttribute, Interpolant, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, InterpolationSamplingMode, InterpolationSamplingType, InvertStencilOp, KeepStencilOp, KeyframeTrack, LOD, LatheGeometry, Layers, LessCompare, LessDepth, LessEqualCompare, LessEqualDepth, LessEqualStencilFunc, LessStencilFunc, Light, LightProbe, Line, Line3, LineBasicMaterial, LineCurve, LineCurve3, LineDashedMaterial, LineLoop, LineSegments, LinearFilter, LinearInterpolant, LinearMipMapLinearFilter, LinearMipMapNearestFilter, LinearMipmapLinearFilter, LinearMipmapNearestFilter, LinearSRGBColorSpace, LinearToneMapping, LinearTransfer, Loader, LoaderUtils, LoadingManager, LoopOnce, LoopPingPong, LoopRepeat, MOUSE, Material, MaterialLoader, MathUtils, Matrix2, Matrix3, Matrix4, MaxEquation, Mesh, MeshBasicMaterial, MeshDepthMaterial, MeshDistanceMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, MinEquation, MirroredRepeatWrapping, MixOperation, MultiplyBlending, MultiplyOperation, NearestFilter, NearestMipMapLinearFilter, NearestMipMapNearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NeutralToneMapping, NeverCompare, NeverDepth, NeverStencilFunc, NoBlending, NoColorSpace, NoToneMapping, NormalAnimationBlendMode, NormalBlending, NotEqualCompare, NotEqualDepth, NotEqualStencilFunc, NumberKeyframeTrack, Object3D, ObjectLoader, ObjectSpaceNormalMap, OctahedronGeometry, OneFactor, OneMinusConstantAlphaFactor, OneMinusConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, OrthographicCamera, PCFShadowMap, PCFSoftShadowMap, PMREMGenerator, Path, PerspectiveCamera, Plane, PlaneGeometry, PlaneHelper, PointLight, PointLightHelper, Points, PointsMaterial, PolarGridHelper, PolyhedronGeometry, PositionalAudio, PropertyBinding, PropertyMixer, QuadraticBezierCurve, QuadraticBezierCurve3, Quaternion, QuaternionKeyframeTrack, QuaternionLinearInterpolant, RED_GREEN_RGTC2_Format, RED_RGTC1_Format, REVISION, RGBADepthPacking, RGBAFormat, RGBAIntegerFormat, RGBA_ASTC_10x10_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_BPTC_Format, RGBA_ETC2_EAC_Format, RGBA_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGBDepthPacking, RGBFormat, RGBIntegerFormat, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGB_PVRTC_2BPPV1_Format, RGB_PVRTC_4BPPV1_Format, RGB_S3TC_DXT1_Format, RGDepthPacking, RGFormat, RGIntegerFormat, RawShaderMaterial, Ray, Raycaster, RectAreaLight, RedFormat, RedIntegerFormat, ReinhardToneMapping, RenderTarget, RenderTarget3D, RepeatWrapping, ReplaceStencilOp, ReverseSubtractEquation, RingGeometry, SIGNED_RED_GREEN_RGTC2_Format, SIGNED_RED_RGTC1_Format, SRGBColorSpace, SRGBTransfer, Scene, ShaderChunk, ShaderLib, ShaderMaterial, ShadowMaterial, Shape, ShapeGeometry, ShapePath, ShapeUtils, ShortType, Skeleton, SkeletonHelper, SkinnedMesh, Source, Sphere, SphereGeometry, Spherical, SphericalHarmonics3, SplineCurve, SpotLight, SpotLightHelper, Sprite, SpriteMaterial, SrcAlphaFactor, SrcAlphaSaturateFactor, SrcColorFactor, StaticCopyUsage, StaticDrawUsage, StaticReadUsage, StereoCamera, StreamCopyUsage, StreamDrawUsage, StreamReadUsage, StringKeyframeTrack, SubtractEquation, SubtractiveBlending, TOUCH, TangentSpaceNormalMap, TetrahedronGeometry, Texture, TextureLoader, TextureUtils, TimestampQuery, TorusGeometry, TorusKnotGeometry, Triangle, TriangleFanDrawMode, TriangleStripDrawMode, TrianglesDrawMode, TubeGeometry, UVMapping, Uint16BufferAttribute, Uint32BufferAttribute, Uint8BufferAttribute, Uint8ClampedBufferAttribute, Uniform, UniformsGroup, UniformsLib, UniformsUtils, UnsignedByteType, UnsignedInt248Type, UnsignedInt5999Type, UnsignedIntType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedShortType, VSMShadowMap, Vector2, Vector3, Vector4, VectorKeyframeTrack, VideoFrameTexture, VideoTexture, WebGL3DRenderTarget, WebGLArrayRenderTarget, WebGLCoordinateSystem, WebGLCubeRenderTarget, WebGLRenderTarget, WebGLRenderer, WebGLUtils, WebGPUCoordinateSystem, WebXRController, WireframeGeometry, WrapAroundEnding, ZeroCurvatureEnding, ZeroFactor, ZeroSlopeEnding, ZeroStencilOp, createCanvasElement };
+const __mfPrebuildNamespace = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	ACESFilmicToneMapping,
+	AddEquation,
+	AddOperation,
+	AdditiveAnimationBlendMode,
+	AdditiveBlending,
+	AgXToneMapping,
+	AlphaFormat,
+	AlwaysCompare,
+	AlwaysDepth,
+	AlwaysStencilFunc,
+	AmbientLight,
+	AnimationAction,
+	AnimationClip,
+	AnimationLoader,
+	AnimationMixer,
+	AnimationObjectGroup,
+	AnimationUtils,
+	ArcCurve,
+	ArrayCamera,
+	ArrowHelper,
+	AttachedBindMode,
+	Audio,
+	AudioAnalyser,
+	AudioContext,
+	AudioListener,
+	AudioLoader,
+	AxesHelper,
+	BackSide,
+	BasicDepthPacking,
+	BasicShadowMap,
+	BatchedMesh,
+	Bone,
+	BooleanKeyframeTrack,
+	Box2,
+	Box3,
+	Box3Helper,
+	BoxGeometry,
+	BoxHelper,
+	BufferAttribute,
+	BufferGeometry,
+	BufferGeometryLoader,
+	ByteType,
+	Cache,
+	Camera,
+	CameraHelper,
+	CanvasTexture,
+	CapsuleGeometry,
+	CatmullRomCurve3,
+	CineonToneMapping,
+	CircleGeometry,
+	ClampToEdgeWrapping,
+	Clock,
+	Color,
+	ColorKeyframeTrack,
+	ColorManagement,
+	CompressedArrayTexture,
+	CompressedCubeTexture,
+	CompressedTexture,
+	CompressedTextureLoader,
+	ConeGeometry,
+	ConstantAlphaFactor,
+	ConstantColorFactor,
+	Controls,
+	CubeCamera,
+	CubeReflectionMapping,
+	CubeRefractionMapping,
+	CubeTexture,
+	CubeTextureLoader,
+	CubeUVReflectionMapping,
+	CubicBezierCurve,
+	CubicBezierCurve3,
+	CubicInterpolant,
+	CullFaceBack,
+	CullFaceFront,
+	CullFaceFrontBack,
+	CullFaceNone,
+	Curve,
+	CurvePath,
+	CustomBlending,
+	CustomToneMapping,
+	CylinderGeometry,
+	Cylindrical,
+	Data3DTexture,
+	DataArrayTexture,
+	DataTexture,
+	DataTextureLoader,
+	DataUtils,
+	DecrementStencilOp,
+	DecrementWrapStencilOp,
+	DefaultLoadingManager,
+	DepthFormat,
+	DepthStencilFormat,
+	DepthTexture,
+	DetachedBindMode,
+	DirectionalLight,
+	DirectionalLightHelper,
+	DiscreteInterpolant,
+	DodecahedronGeometry,
+	DoubleSide,
+	DstAlphaFactor,
+	DstColorFactor,
+	DynamicCopyUsage,
+	DynamicDrawUsage,
+	DynamicReadUsage,
+	EdgesGeometry,
+	EllipseCurve,
+	EqualCompare,
+	EqualDepth,
+	EqualStencilFunc,
+	EquirectangularReflectionMapping,
+	EquirectangularRefractionMapping,
+	Euler,
+	EventDispatcher,
+	ExtrudeGeometry,
+	FileLoader,
+	Float16BufferAttribute,
+	Float32BufferAttribute,
+	FloatType,
+	Fog,
+	FogExp2,
+	FramebufferTexture,
+	FrontSide,
+	Frustum,
+	FrustumArray,
+	GLBufferAttribute,
+	GLSL1,
+	GLSL3,
+	GreaterCompare,
+	GreaterDepth,
+	GreaterEqualCompare,
+	GreaterEqualDepth,
+	GreaterEqualStencilFunc,
+	GreaterStencilFunc,
+	GridHelper,
+	Group,
+	HalfFloatType,
+	HemisphereLight,
+	HemisphereLightHelper,
+	IcosahedronGeometry,
+	ImageBitmapLoader,
+	ImageLoader,
+	ImageUtils,
+	IncrementStencilOp,
+	IncrementWrapStencilOp,
+	InstancedBufferAttribute,
+	InstancedBufferGeometry,
+	InstancedInterleavedBuffer,
+	InstancedMesh,
+	Int16BufferAttribute,
+	Int32BufferAttribute,
+	Int8BufferAttribute,
+	IntType,
+	InterleavedBuffer,
+	InterleavedBufferAttribute,
+	Interpolant,
+	InterpolateDiscrete,
+	InterpolateLinear,
+	InterpolateSmooth,
+	InterpolationSamplingMode,
+	InterpolationSamplingType,
+	InvertStencilOp,
+	KeepStencilOp,
+	KeyframeTrack,
+	LOD,
+	LatheGeometry,
+	Layers,
+	LessCompare,
+	LessDepth,
+	LessEqualCompare,
+	LessEqualDepth,
+	LessEqualStencilFunc,
+	LessStencilFunc,
+	Light,
+	LightProbe,
+	Line,
+	Line3,
+	LineBasicMaterial,
+	LineCurve,
+	LineCurve3,
+	LineDashedMaterial,
+	LineLoop,
+	LineSegments,
+	LinearFilter,
+	LinearInterpolant,
+	LinearMipMapLinearFilter,
+	LinearMipMapNearestFilter,
+	LinearMipmapLinearFilter,
+	LinearMipmapNearestFilter,
+	LinearSRGBColorSpace,
+	LinearToneMapping,
+	LinearTransfer,
+	Loader,
+	LoaderUtils,
+	LoadingManager,
+	LoopOnce,
+	LoopPingPong,
+	LoopRepeat,
+	MOUSE,
+	Material,
+	MaterialLoader,
+	MathUtils,
+	Matrix2,
+	Matrix3,
+	Matrix4,
+	MaxEquation,
+	Mesh,
+	MeshBasicMaterial,
+	MeshDepthMaterial,
+	MeshDistanceMaterial,
+	MeshLambertMaterial,
+	MeshMatcapMaterial,
+	MeshNormalMaterial,
+	MeshPhongMaterial,
+	MeshPhysicalMaterial,
+	MeshStandardMaterial,
+	MeshToonMaterial,
+	MinEquation,
+	MirroredRepeatWrapping,
+	MixOperation,
+	MultiplyBlending,
+	MultiplyOperation,
+	NearestFilter,
+	NearestMipMapLinearFilter,
+	NearestMipMapNearestFilter,
+	NearestMipmapLinearFilter,
+	NearestMipmapNearestFilter,
+	NeutralToneMapping,
+	NeverCompare,
+	NeverDepth,
+	NeverStencilFunc,
+	NoBlending,
+	NoColorSpace,
+	NoToneMapping,
+	NormalAnimationBlendMode,
+	NormalBlending,
+	NotEqualCompare,
+	NotEqualDepth,
+	NotEqualStencilFunc,
+	NumberKeyframeTrack,
+	Object3D,
+	ObjectLoader,
+	ObjectSpaceNormalMap,
+	OctahedronGeometry,
+	OneFactor,
+	OneMinusConstantAlphaFactor,
+	OneMinusConstantColorFactor,
+	OneMinusDstAlphaFactor,
+	OneMinusDstColorFactor,
+	OneMinusSrcAlphaFactor,
+	OneMinusSrcColorFactor,
+	OrthographicCamera,
+	PCFShadowMap,
+	PCFSoftShadowMap,
+	PMREMGenerator,
+	Path,
+	PerspectiveCamera,
+	Plane,
+	PlaneGeometry,
+	PlaneHelper,
+	PointLight,
+	PointLightHelper,
+	Points,
+	PointsMaterial,
+	PolarGridHelper,
+	PolyhedronGeometry,
+	PositionalAudio,
+	PropertyBinding,
+	PropertyMixer,
+	QuadraticBezierCurve,
+	QuadraticBezierCurve3,
+	Quaternion,
+	QuaternionKeyframeTrack,
+	QuaternionLinearInterpolant,
+	RED_GREEN_RGTC2_Format,
+	RED_RGTC1_Format,
+	REVISION,
+	RGBADepthPacking,
+	RGBAFormat,
+	RGBAIntegerFormat,
+	RGBA_ASTC_10x10_Format,
+	RGBA_ASTC_10x5_Format,
+	RGBA_ASTC_10x6_Format,
+	RGBA_ASTC_10x8_Format,
+	RGBA_ASTC_12x10_Format,
+	RGBA_ASTC_12x12_Format,
+	RGBA_ASTC_4x4_Format,
+	RGBA_ASTC_5x4_Format,
+	RGBA_ASTC_5x5_Format,
+	RGBA_ASTC_6x5_Format,
+	RGBA_ASTC_6x6_Format,
+	RGBA_ASTC_8x5_Format,
+	RGBA_ASTC_8x6_Format,
+	RGBA_ASTC_8x8_Format,
+	RGBA_BPTC_Format,
+	RGBA_ETC2_EAC_Format,
+	RGBA_PVRTC_2BPPV1_Format,
+	RGBA_PVRTC_4BPPV1_Format,
+	RGBA_S3TC_DXT1_Format,
+	RGBA_S3TC_DXT3_Format,
+	RGBA_S3TC_DXT5_Format,
+	RGBDepthPacking,
+	RGBFormat,
+	RGBIntegerFormat,
+	RGB_BPTC_SIGNED_Format,
+	RGB_BPTC_UNSIGNED_Format,
+	RGB_ETC1_Format,
+	RGB_ETC2_Format,
+	RGB_PVRTC_2BPPV1_Format,
+	RGB_PVRTC_4BPPV1_Format,
+	RGB_S3TC_DXT1_Format,
+	RGDepthPacking,
+	RGFormat,
+	RGIntegerFormat,
+	RawShaderMaterial,
+	Ray,
+	Raycaster,
+	RectAreaLight,
+	RedFormat,
+	RedIntegerFormat,
+	ReinhardToneMapping,
+	RenderTarget,
+	RenderTarget3D,
+	RepeatWrapping,
+	ReplaceStencilOp,
+	ReverseSubtractEquation,
+	RingGeometry,
+	SIGNED_RED_GREEN_RGTC2_Format,
+	SIGNED_RED_RGTC1_Format,
+	SRGBColorSpace,
+	SRGBTransfer,
+	Scene,
+	ShaderChunk,
+	ShaderLib,
+	ShaderMaterial,
+	ShadowMaterial,
+	Shape,
+	ShapeGeometry,
+	ShapePath,
+	ShapeUtils,
+	ShortType,
+	Skeleton,
+	SkeletonHelper,
+	SkinnedMesh,
+	Source,
+	Sphere,
+	SphereGeometry,
+	Spherical,
+	SphericalHarmonics3,
+	SplineCurve,
+	SpotLight,
+	SpotLightHelper,
+	Sprite,
+	SpriteMaterial,
+	SrcAlphaFactor,
+	SrcAlphaSaturateFactor,
+	SrcColorFactor,
+	StaticCopyUsage,
+	StaticDrawUsage,
+	StaticReadUsage,
+	StereoCamera,
+	StreamCopyUsage,
+	StreamDrawUsage,
+	StreamReadUsage,
+	StringKeyframeTrack,
+	SubtractEquation,
+	SubtractiveBlending,
+	TOUCH,
+	TangentSpaceNormalMap,
+	TetrahedronGeometry,
+	Texture,
+	TextureLoader,
+	TextureUtils,
+	TimestampQuery,
+	TorusGeometry,
+	TorusKnotGeometry,
+	Triangle,
+	TriangleFanDrawMode,
+	TriangleStripDrawMode,
+	TrianglesDrawMode,
+	TubeGeometry,
+	UVMapping,
+	Uint16BufferAttribute,
+	Uint32BufferAttribute,
+	Uint8BufferAttribute,
+	Uint8ClampedBufferAttribute,
+	Uniform,
+	UniformsGroup,
+	UniformsLib,
+	UniformsUtils,
+	UnsignedByteType,
+	UnsignedInt248Type,
+	UnsignedInt5999Type,
+	UnsignedIntType,
+	UnsignedShort4444Type,
+	UnsignedShort5551Type,
+	UnsignedShortType,
+	VSMShadowMap,
+	Vector2,
+	Vector3,
+	Vector4,
+	VectorKeyframeTrack,
+	VideoFrameTexture,
+	VideoTexture,
+	WebGL3DRenderTarget,
+	WebGLArrayRenderTarget,
+	WebGLCoordinateSystem,
+	WebGLCubeRenderTarget,
+	WebGLRenderTarget,
+	WebGLRenderer,
+	WebGLUtils,
+	WebGPUCoordinateSystem,
+	WebXRController,
+	WireframeGeometry,
+	WrapAroundEnding,
+	ZeroCurvatureEnding,
+	ZeroFactor,
+	ZeroSlopeEnding,
+	ZeroStencilOp,
+	createCanvasElement
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const __mfPrebuildExports = __mfPrebuildNamespace;
+    const __mf_0$1 = __mfPrebuildExports["ACESFilmicToneMapping"];
+    const __mf_1$1 = __mfPrebuildExports["AddEquation"];
+    const __mf_2$1 = __mfPrebuildExports["AddOperation"];
+    const __mf_3$1 = __mfPrebuildExports["AdditiveAnimationBlendMode"];
+    const __mf_4$1 = __mfPrebuildExports["AdditiveBlending"];
+    const __mf_5$1 = __mfPrebuildExports["AgXToneMapping"];
+    const __mf_6$1 = __mfPrebuildExports["AlphaFormat"];
+    const __mf_7$1 = __mfPrebuildExports["AlwaysCompare"];
+    const __mf_8$1 = __mfPrebuildExports["AlwaysDepth"];
+    const __mf_9$1 = __mfPrebuildExports["AlwaysStencilFunc"];
+    const __mf_10$1 = __mfPrebuildExports["AmbientLight"];
+    const __mf_11$1 = __mfPrebuildExports["AnimationAction"];
+    const __mf_12$1 = __mfPrebuildExports["AnimationClip"];
+    const __mf_13$1 = __mfPrebuildExports["AnimationLoader"];
+    const __mf_14$1 = __mfPrebuildExports["AnimationMixer"];
+    const __mf_15$1 = __mfPrebuildExports["AnimationObjectGroup"];
+    const __mf_16$1 = __mfPrebuildExports["AnimationUtils"];
+    const __mf_17$1 = __mfPrebuildExports["ArcCurve"];
+    const __mf_18$1 = __mfPrebuildExports["ArrayCamera"];
+    const __mf_19$1 = __mfPrebuildExports["ArrowHelper"];
+    const __mf_20$1 = __mfPrebuildExports["AttachedBindMode"];
+    const __mf_21$1 = __mfPrebuildExports["Audio"];
+    const __mf_22$1 = __mfPrebuildExports["AudioAnalyser"];
+    const __mf_23$1 = __mfPrebuildExports["AudioContext"];
+    const __mf_24$1 = __mfPrebuildExports["AudioListener"];
+    const __mf_25$1 = __mfPrebuildExports["AudioLoader"];
+    const __mf_26$1 = __mfPrebuildExports["AxesHelper"];
+    const __mf_27$1 = __mfPrebuildExports["BackSide"];
+    const __mf_28$1 = __mfPrebuildExports["BasicDepthPacking"];
+    const __mf_29$1 = __mfPrebuildExports["BasicShadowMap"];
+    const __mf_30$1 = __mfPrebuildExports["BatchedMesh"];
+    const __mf_31$1 = __mfPrebuildExports["Bone"];
+    const __mf_32$1 = __mfPrebuildExports["BooleanKeyframeTrack"];
+    const __mf_33$1 = __mfPrebuildExports["Box2"];
+    const __mf_34$1 = __mfPrebuildExports["Box3"];
+    const __mf_35$1 = __mfPrebuildExports["Box3Helper"];
+    const __mf_36$1 = __mfPrebuildExports["BoxGeometry"];
+    const __mf_37$1 = __mfPrebuildExports["BoxHelper"];
+    const __mf_38$1 = __mfPrebuildExports["BufferAttribute"];
+    const __mf_39$1 = __mfPrebuildExports["BufferGeometry"];
+    const __mf_40$1 = __mfPrebuildExports["BufferGeometryLoader"];
+    const __mf_41$1 = __mfPrebuildExports["ByteType"];
+    const __mf_42$1 = __mfPrebuildExports["Cache"];
+    const __mf_43$1 = __mfPrebuildExports["Camera"];
+    const __mf_44$1 = __mfPrebuildExports["CameraHelper"];
+    const __mf_45$1 = __mfPrebuildExports["CanvasTexture"];
+    const __mf_46$1 = __mfPrebuildExports["CapsuleGeometry"];
+    const __mf_47$1 = __mfPrebuildExports["CatmullRomCurve3"];
+    const __mf_48$1 = __mfPrebuildExports["CineonToneMapping"];
+    const __mf_49$1 = __mfPrebuildExports["CircleGeometry"];
+    const __mf_50$1 = __mfPrebuildExports["ClampToEdgeWrapping"];
+    const __mf_51$1 = __mfPrebuildExports["Clock"];
+    const __mf_52$1 = __mfPrebuildExports["Color"];
+    const __mf_53$1 = __mfPrebuildExports["ColorKeyframeTrack"];
+    const __mf_54$1 = __mfPrebuildExports["ColorManagement"];
+    const __mf_55$1 = __mfPrebuildExports["CompressedArrayTexture"];
+    const __mf_56$1 = __mfPrebuildExports["CompressedCubeTexture"];
+    const __mf_57$1 = __mfPrebuildExports["CompressedTexture"];
+    const __mf_58$1 = __mfPrebuildExports["CompressedTextureLoader"];
+    const __mf_59$1 = __mfPrebuildExports["ConeGeometry"];
+    const __mf_60$1 = __mfPrebuildExports["ConstantAlphaFactor"];
+    const __mf_61$1 = __mfPrebuildExports["ConstantColorFactor"];
+    const __mf_62$1 = __mfPrebuildExports["Controls"];
+    const __mf_63$1 = __mfPrebuildExports["CubeCamera"];
+    const __mf_64$1 = __mfPrebuildExports["CubeReflectionMapping"];
+    const __mf_65$1 = __mfPrebuildExports["CubeRefractionMapping"];
+    const __mf_66$1 = __mfPrebuildExports["CubeTexture"];
+    const __mf_67$1 = __mfPrebuildExports["CubeTextureLoader"];
+    const __mf_68$1 = __mfPrebuildExports["CubeUVReflectionMapping"];
+    const __mf_69$1 = __mfPrebuildExports["CubicBezierCurve"];
+    const __mf_70$1 = __mfPrebuildExports["CubicBezierCurve3"];
+    const __mf_71$1 = __mfPrebuildExports["CubicInterpolant"];
+    const __mf_72$1 = __mfPrebuildExports["CullFaceBack"];
+    const __mf_73$1 = __mfPrebuildExports["CullFaceFront"];
+    const __mf_74$1 = __mfPrebuildExports["CullFaceFrontBack"];
+    const __mf_75$1 = __mfPrebuildExports["CullFaceNone"];
+    const __mf_76$1 = __mfPrebuildExports["Curve"];
+    const __mf_77$1 = __mfPrebuildExports["CurvePath"];
+    const __mf_78$1 = __mfPrebuildExports["CustomBlending"];
+    const __mf_79$1 = __mfPrebuildExports["CustomToneMapping"];
+    const __mf_80$1 = __mfPrebuildExports["CylinderGeometry"];
+    const __mf_81$1 = __mfPrebuildExports["Cylindrical"];
+    const __mf_82$1 = __mfPrebuildExports["Data3DTexture"];
+    const __mf_83$1 = __mfPrebuildExports["DataArrayTexture"];
+    const __mf_84$1 = __mfPrebuildExports["DataTexture"];
+    const __mf_85$1 = __mfPrebuildExports["DataTextureLoader"];
+    const __mf_86$1 = __mfPrebuildExports["DataUtils"];
+    const __mf_87$1 = __mfPrebuildExports["DecrementStencilOp"];
+    const __mf_88$1 = __mfPrebuildExports["DecrementWrapStencilOp"];
+    const __mf_89$1 = __mfPrebuildExports["DefaultLoadingManager"];
+    const __mf_90$1 = __mfPrebuildExports["DepthFormat"];
+    const __mf_91$1 = __mfPrebuildExports["DepthStencilFormat"];
+    const __mf_92$1 = __mfPrebuildExports["DepthTexture"];
+    const __mf_93$1 = __mfPrebuildExports["DetachedBindMode"];
+    const __mf_94$1 = __mfPrebuildExports["DirectionalLight"];
+    const __mf_95$1 = __mfPrebuildExports["DirectionalLightHelper"];
+    const __mf_96$1 = __mfPrebuildExports["DiscreteInterpolant"];
+    const __mf_97$1 = __mfPrebuildExports["DodecahedronGeometry"];
+    const __mf_98$1 = __mfPrebuildExports["DoubleSide"];
+    const __mf_99$1 = __mfPrebuildExports["DstAlphaFactor"];
+    const __mf_100$1 = __mfPrebuildExports["DstColorFactor"];
+    const __mf_101$1 = __mfPrebuildExports["DynamicCopyUsage"];
+    const __mf_102$1 = __mfPrebuildExports["DynamicDrawUsage"];
+    const __mf_103$1 = __mfPrebuildExports["DynamicReadUsage"];
+    const __mf_104$1 = __mfPrebuildExports["EdgesGeometry"];
+    const __mf_105$1 = __mfPrebuildExports["EllipseCurve"];
+    const __mf_106$1 = __mfPrebuildExports["EqualCompare"];
+    const __mf_107$1 = __mfPrebuildExports["EqualDepth"];
+    const __mf_108$1 = __mfPrebuildExports["EqualStencilFunc"];
+    const __mf_109$1 = __mfPrebuildExports["EquirectangularReflectionMapping"];
+    const __mf_110$1 = __mfPrebuildExports["EquirectangularRefractionMapping"];
+    const __mf_111$1 = __mfPrebuildExports["Euler"];
+    const __mf_112$1 = __mfPrebuildExports["EventDispatcher"];
+    const __mf_113$1 = __mfPrebuildExports["ExtrudeGeometry"];
+    const __mf_114$1 = __mfPrebuildExports["FileLoader"];
+    const __mf_115$1 = __mfPrebuildExports["Float16BufferAttribute"];
+    const __mf_116$1 = __mfPrebuildExports["Float32BufferAttribute"];
+    const __mf_117$1 = __mfPrebuildExports["FloatType"];
+    const __mf_118$1 = __mfPrebuildExports["Fog"];
+    const __mf_119$1 = __mfPrebuildExports["FogExp2"];
+    const __mf_120$1 = __mfPrebuildExports["FramebufferTexture"];
+    const __mf_121$1 = __mfPrebuildExports["FrontSide"];
+    const __mf_122$1 = __mfPrebuildExports["Frustum"];
+    const __mf_123$1 = __mfPrebuildExports["FrustumArray"];
+    const __mf_124$1 = __mfPrebuildExports["GLBufferAttribute"];
+    const __mf_125$1 = __mfPrebuildExports["GLSL1"];
+    const __mf_126$1 = __mfPrebuildExports["GLSL3"];
+    const __mf_127$1 = __mfPrebuildExports["GreaterCompare"];
+    const __mf_128$1 = __mfPrebuildExports["GreaterDepth"];
+    const __mf_129$1 = __mfPrebuildExports["GreaterEqualCompare"];
+    const __mf_130$1 = __mfPrebuildExports["GreaterEqualDepth"];
+    const __mf_131$1 = __mfPrebuildExports["GreaterEqualStencilFunc"];
+    const __mf_132$1 = __mfPrebuildExports["GreaterStencilFunc"];
+    const __mf_133$1 = __mfPrebuildExports["GridHelper"];
+    const __mf_134$1 = __mfPrebuildExports["Group"];
+    const __mf_135$1 = __mfPrebuildExports["HalfFloatType"];
+    const __mf_136$1 = __mfPrebuildExports["HemisphereLight"];
+    const __mf_137$1 = __mfPrebuildExports["HemisphereLightHelper"];
+    const __mf_138$1 = __mfPrebuildExports["IcosahedronGeometry"];
+    const __mf_139$1 = __mfPrebuildExports["ImageBitmapLoader"];
+    const __mf_140$1 = __mfPrebuildExports["ImageLoader"];
+    const __mf_141$1 = __mfPrebuildExports["ImageUtils"];
+    const __mf_142$1 = __mfPrebuildExports["IncrementStencilOp"];
+    const __mf_143$1 = __mfPrebuildExports["IncrementWrapStencilOp"];
+    const __mf_144$1 = __mfPrebuildExports["InstancedBufferAttribute"];
+    const __mf_145$1 = __mfPrebuildExports["InstancedBufferGeometry"];
+    const __mf_146$1 = __mfPrebuildExports["InstancedInterleavedBuffer"];
+    const __mf_147$1 = __mfPrebuildExports["InstancedMesh"];
+    const __mf_148$1 = __mfPrebuildExports["Int16BufferAttribute"];
+    const __mf_149$1 = __mfPrebuildExports["Int32BufferAttribute"];
+    const __mf_150$1 = __mfPrebuildExports["Int8BufferAttribute"];
+    const __mf_151$1 = __mfPrebuildExports["IntType"];
+    const __mf_152$1 = __mfPrebuildExports["InterleavedBuffer"];
+    const __mf_153$1 = __mfPrebuildExports["InterleavedBufferAttribute"];
+    const __mf_154$1 = __mfPrebuildExports["Interpolant"];
+    const __mf_155$1 = __mfPrebuildExports["InterpolateDiscrete"];
+    const __mf_156$1 = __mfPrebuildExports["InterpolateLinear"];
+    const __mf_157$1 = __mfPrebuildExports["InterpolateSmooth"];
+    const __mf_158$1 = __mfPrebuildExports["InterpolationSamplingMode"];
+    const __mf_159$1 = __mfPrebuildExports["InterpolationSamplingType"];
+    const __mf_160$1 = __mfPrebuildExports["InvertStencilOp"];
+    const __mf_161$1 = __mfPrebuildExports["KeepStencilOp"];
+    const __mf_162$1 = __mfPrebuildExports["KeyframeTrack"];
+    const __mf_163$1 = __mfPrebuildExports["LOD"];
+    const __mf_164$1 = __mfPrebuildExports["LatheGeometry"];
+    const __mf_165$1 = __mfPrebuildExports["Layers"];
+    const __mf_166$1 = __mfPrebuildExports["LessCompare"];
+    const __mf_167$1 = __mfPrebuildExports["LessDepth"];
+    const __mf_168$1 = __mfPrebuildExports["LessEqualCompare"];
+    const __mf_169$1 = __mfPrebuildExports["LessEqualDepth"];
+    const __mf_170$1 = __mfPrebuildExports["LessEqualStencilFunc"];
+    const __mf_171$1 = __mfPrebuildExports["LessStencilFunc"];
+    const __mf_172$1 = __mfPrebuildExports["Light"];
+    const __mf_173$1 = __mfPrebuildExports["LightProbe"];
+    const __mf_174$1 = __mfPrebuildExports["Line"];
+    const __mf_175$1 = __mfPrebuildExports["Line3"];
+    const __mf_176$1 = __mfPrebuildExports["LineBasicMaterial"];
+    const __mf_177$1 = __mfPrebuildExports["LineCurve"];
+    const __mf_178$1 = __mfPrebuildExports["LineCurve3"];
+    const __mf_179$1 = __mfPrebuildExports["LineDashedMaterial"];
+    const __mf_180$1 = __mfPrebuildExports["LineLoop"];
+    const __mf_181$1 = __mfPrebuildExports["LineSegments"];
+    const __mf_182$1 = __mfPrebuildExports["LinearFilter"];
+    const __mf_183$1 = __mfPrebuildExports["LinearInterpolant"];
+    const __mf_184$1 = __mfPrebuildExports["LinearMipMapLinearFilter"];
+    const __mf_185$1 = __mfPrebuildExports["LinearMipMapNearestFilter"];
+    const __mf_186$1 = __mfPrebuildExports["LinearMipmapLinearFilter"];
+    const __mf_187$1 = __mfPrebuildExports["LinearMipmapNearestFilter"];
+    const __mf_188$1 = __mfPrebuildExports["LinearSRGBColorSpace"];
+    const __mf_189$1 = __mfPrebuildExports["LinearToneMapping"];
+    const __mf_190$1 = __mfPrebuildExports["LinearTransfer"];
+    const __mf_191$1 = __mfPrebuildExports["Loader"];
+    const __mf_192$1 = __mfPrebuildExports["LoaderUtils"];
+    const __mf_193$1 = __mfPrebuildExports["LoadingManager"];
+    const __mf_194$1 = __mfPrebuildExports["LoopOnce"];
+    const __mf_195$1 = __mfPrebuildExports["LoopPingPong"];
+    const __mf_196$1 = __mfPrebuildExports["LoopRepeat"];
+    const __mf_197$1 = __mfPrebuildExports["MOUSE"];
+    const __mf_198$1 = __mfPrebuildExports["Material"];
+    const __mf_199$1 = __mfPrebuildExports["MaterialLoader"];
+    const __mf_200$1 = __mfPrebuildExports["MathUtils"];
+    const __mf_201$1 = __mfPrebuildExports["Matrix2"];
+    const __mf_202$1 = __mfPrebuildExports["Matrix3"];
+    const __mf_203$1 = __mfPrebuildExports["Matrix4"];
+    const __mf_204$1 = __mfPrebuildExports["MaxEquation"];
+    const __mf_205$1 = __mfPrebuildExports["Mesh"];
+    const __mf_206$1 = __mfPrebuildExports["MeshBasicMaterial"];
+    const __mf_207$1 = __mfPrebuildExports["MeshDepthMaterial"];
+    const __mf_208$1 = __mfPrebuildExports["MeshDistanceMaterial"];
+    const __mf_209$1 = __mfPrebuildExports["MeshLambertMaterial"];
+    const __mf_210$1 = __mfPrebuildExports["MeshMatcapMaterial"];
+    const __mf_211$1 = __mfPrebuildExports["MeshNormalMaterial"];
+    const __mf_212$1 = __mfPrebuildExports["MeshPhongMaterial"];
+    const __mf_213$1 = __mfPrebuildExports["MeshPhysicalMaterial"];
+    const __mf_214$1 = __mfPrebuildExports["MeshStandardMaterial"];
+    const __mf_215$1 = __mfPrebuildExports["MeshToonMaterial"];
+    const __mf_216$1 = __mfPrebuildExports["MinEquation"];
+    const __mf_217$1 = __mfPrebuildExports["MirroredRepeatWrapping"];
+    const __mf_218$1 = __mfPrebuildExports["MixOperation"];
+    const __mf_219$1 = __mfPrebuildExports["MultiplyBlending"];
+    const __mf_220$1 = __mfPrebuildExports["MultiplyOperation"];
+    const __mf_221$1 = __mfPrebuildExports["NearestFilter"];
+    const __mf_222$1 = __mfPrebuildExports["NearestMipMapLinearFilter"];
+    const __mf_223$1 = __mfPrebuildExports["NearestMipMapNearestFilter"];
+    const __mf_224$1 = __mfPrebuildExports["NearestMipmapLinearFilter"];
+    const __mf_225$1 = __mfPrebuildExports["NearestMipmapNearestFilter"];
+    const __mf_226$1 = __mfPrebuildExports["NeutralToneMapping"];
+    const __mf_227$1 = __mfPrebuildExports["NeverCompare"];
+    const __mf_228$1 = __mfPrebuildExports["NeverDepth"];
+    const __mf_229$1 = __mfPrebuildExports["NeverStencilFunc"];
+    const __mf_230$1 = __mfPrebuildExports["NoBlending"];
+    const __mf_231$1 = __mfPrebuildExports["NoColorSpace"];
+    const __mf_232$1 = __mfPrebuildExports["NoToneMapping"];
+    const __mf_233$1 = __mfPrebuildExports["NormalAnimationBlendMode"];
+    const __mf_234$1 = __mfPrebuildExports["NormalBlending"];
+    const __mf_235$1 = __mfPrebuildExports["NotEqualCompare"];
+    const __mf_236$1 = __mfPrebuildExports["NotEqualDepth"];
+    const __mf_237$1 = __mfPrebuildExports["NotEqualStencilFunc"];
+    const __mf_238$1 = __mfPrebuildExports["NumberKeyframeTrack"];
+    const __mf_239$1 = __mfPrebuildExports["Object3D"];
+    const __mf_240$1 = __mfPrebuildExports["ObjectLoader"];
+    const __mf_241$1 = __mfPrebuildExports["ObjectSpaceNormalMap"];
+    const __mf_242$1 = __mfPrebuildExports["OctahedronGeometry"];
+    const __mf_243$1 = __mfPrebuildExports["OneFactor"];
+    const __mf_244$1 = __mfPrebuildExports["OneMinusConstantAlphaFactor"];
+    const __mf_245$1 = __mfPrebuildExports["OneMinusConstantColorFactor"];
+    const __mf_246$1 = __mfPrebuildExports["OneMinusDstAlphaFactor"];
+    const __mf_247$1 = __mfPrebuildExports["OneMinusDstColorFactor"];
+    const __mf_248$1 = __mfPrebuildExports["OneMinusSrcAlphaFactor"];
+    const __mf_249$1 = __mfPrebuildExports["OneMinusSrcColorFactor"];
+    const __mf_250$1 = __mfPrebuildExports["OrthographicCamera"];
+    const __mf_251$1 = __mfPrebuildExports["PCFShadowMap"];
+    const __mf_252$1 = __mfPrebuildExports["PCFSoftShadowMap"];
+    const __mf_253$1 = __mfPrebuildExports["PMREMGenerator"];
+    const __mf_254$1 = __mfPrebuildExports["Path"];
+    const __mf_255$1 = __mfPrebuildExports["PerspectiveCamera"];
+    const __mf_256$1 = __mfPrebuildExports["Plane"];
+    const __mf_257$1 = __mfPrebuildExports["PlaneGeometry"];
+    const __mf_258$1 = __mfPrebuildExports["PlaneHelper"];
+    const __mf_259$1 = __mfPrebuildExports["PointLight"];
+    const __mf_260$1 = __mfPrebuildExports["PointLightHelper"];
+    const __mf_261$1 = __mfPrebuildExports["Points"];
+    const __mf_262$1 = __mfPrebuildExports["PointsMaterial"];
+    const __mf_263$1 = __mfPrebuildExports["PolarGridHelper"];
+    const __mf_264$1 = __mfPrebuildExports["PolyhedronGeometry"];
+    const __mf_265$1 = __mfPrebuildExports["PositionalAudio"];
+    const __mf_266$1 = __mfPrebuildExports["PropertyBinding"];
+    const __mf_267$1 = __mfPrebuildExports["PropertyMixer"];
+    const __mf_268$1 = __mfPrebuildExports["QuadraticBezierCurve"];
+    const __mf_269$1 = __mfPrebuildExports["QuadraticBezierCurve3"];
+    const __mf_270$1 = __mfPrebuildExports["Quaternion"];
+    const __mf_271$1 = __mfPrebuildExports["QuaternionKeyframeTrack"];
+    const __mf_272$1 = __mfPrebuildExports["QuaternionLinearInterpolant"];
+    const __mf_273$1 = __mfPrebuildExports["RED_GREEN_RGTC2_Format"];
+    const __mf_274$1 = __mfPrebuildExports["RED_RGTC1_Format"];
+    const __mf_275$1 = __mfPrebuildExports["REVISION"];
+    const __mf_276$1 = __mfPrebuildExports["RGBADepthPacking"];
+    const __mf_277$1 = __mfPrebuildExports["RGBAFormat"];
+    const __mf_278$1 = __mfPrebuildExports["RGBAIntegerFormat"];
+    const __mf_279$1 = __mfPrebuildExports["RGBA_ASTC_10x10_Format"];
+    const __mf_280$1 = __mfPrebuildExports["RGBA_ASTC_10x5_Format"];
+    const __mf_281$1 = __mfPrebuildExports["RGBA_ASTC_10x6_Format"];
+    const __mf_282$1 = __mfPrebuildExports["RGBA_ASTC_10x8_Format"];
+    const __mf_283$1 = __mfPrebuildExports["RGBA_ASTC_12x10_Format"];
+    const __mf_284$1 = __mfPrebuildExports["RGBA_ASTC_12x12_Format"];
+    const __mf_285$1 = __mfPrebuildExports["RGBA_ASTC_4x4_Format"];
+    const __mf_286$1 = __mfPrebuildExports["RGBA_ASTC_5x4_Format"];
+    const __mf_287$1 = __mfPrebuildExports["RGBA_ASTC_5x5_Format"];
+    const __mf_288$1 = __mfPrebuildExports["RGBA_ASTC_6x5_Format"];
+    const __mf_289$1 = __mfPrebuildExports["RGBA_ASTC_6x6_Format"];
+    const __mf_290$1 = __mfPrebuildExports["RGBA_ASTC_8x5_Format"];
+    const __mf_291$1 = __mfPrebuildExports["RGBA_ASTC_8x6_Format"];
+    const __mf_292$1 = __mfPrebuildExports["RGBA_ASTC_8x8_Format"];
+    const __mf_293$1 = __mfPrebuildExports["RGBA_BPTC_Format"];
+    const __mf_294$1 = __mfPrebuildExports["RGBA_ETC2_EAC_Format"];
+    const __mf_295$1 = __mfPrebuildExports["RGBA_PVRTC_2BPPV1_Format"];
+    const __mf_296$1 = __mfPrebuildExports["RGBA_PVRTC_4BPPV1_Format"];
+    const __mf_297$1 = __mfPrebuildExports["RGBA_S3TC_DXT1_Format"];
+    const __mf_298$1 = __mfPrebuildExports["RGBA_S3TC_DXT3_Format"];
+    const __mf_299$1 = __mfPrebuildExports["RGBA_S3TC_DXT5_Format"];
+    const __mf_300$1 = __mfPrebuildExports["RGBDepthPacking"];
+    const __mf_301$1 = __mfPrebuildExports["RGBFormat"];
+    const __mf_302$1 = __mfPrebuildExports["RGBIntegerFormat"];
+    const __mf_303$1 = __mfPrebuildExports["RGB_BPTC_SIGNED_Format"];
+    const __mf_304$1 = __mfPrebuildExports["RGB_BPTC_UNSIGNED_Format"];
+    const __mf_305$1 = __mfPrebuildExports["RGB_ETC1_Format"];
+    const __mf_306$1 = __mfPrebuildExports["RGB_ETC2_Format"];
+    const __mf_307$1 = __mfPrebuildExports["RGB_PVRTC_2BPPV1_Format"];
+    const __mf_308$1 = __mfPrebuildExports["RGB_PVRTC_4BPPV1_Format"];
+    const __mf_309$1 = __mfPrebuildExports["RGB_S3TC_DXT1_Format"];
+    const __mf_310$1 = __mfPrebuildExports["RGDepthPacking"];
+    const __mf_311$1 = __mfPrebuildExports["RGFormat"];
+    const __mf_312$1 = __mfPrebuildExports["RGIntegerFormat"];
+    const __mf_313$1 = __mfPrebuildExports["RawShaderMaterial"];
+    const __mf_314$1 = __mfPrebuildExports["Ray"];
+    const __mf_315$1 = __mfPrebuildExports["Raycaster"];
+    const __mf_316$1 = __mfPrebuildExports["RectAreaLight"];
+    const __mf_317$1 = __mfPrebuildExports["RedFormat"];
+    const __mf_318$1 = __mfPrebuildExports["RedIntegerFormat"];
+    const __mf_319$1 = __mfPrebuildExports["ReinhardToneMapping"];
+    const __mf_320$1 = __mfPrebuildExports["RenderTarget"];
+    const __mf_321$1 = __mfPrebuildExports["RenderTarget3D"];
+    const __mf_322$1 = __mfPrebuildExports["RepeatWrapping"];
+    const __mf_323$1 = __mfPrebuildExports["ReplaceStencilOp"];
+    const __mf_324$1 = __mfPrebuildExports["ReverseSubtractEquation"];
+    const __mf_325$1 = __mfPrebuildExports["RingGeometry"];
+    const __mf_326$1 = __mfPrebuildExports["SIGNED_RED_GREEN_RGTC2_Format"];
+    const __mf_327$1 = __mfPrebuildExports["SIGNED_RED_RGTC1_Format"];
+    const __mf_328$1 = __mfPrebuildExports["SRGBColorSpace"];
+    const __mf_329$1 = __mfPrebuildExports["SRGBTransfer"];
+    const __mf_330$1 = __mfPrebuildExports["Scene"];
+    const __mf_331$1 = __mfPrebuildExports["ShaderChunk"];
+    const __mf_332$1 = __mfPrebuildExports["ShaderLib"];
+    const __mf_333$1 = __mfPrebuildExports["ShaderMaterial"];
+    const __mf_334$1 = __mfPrebuildExports["ShadowMaterial"];
+    const __mf_335$1 = __mfPrebuildExports["Shape"];
+    const __mf_336$1 = __mfPrebuildExports["ShapeGeometry"];
+    const __mf_337$1 = __mfPrebuildExports["ShapePath"];
+    const __mf_338$1 = __mfPrebuildExports["ShapeUtils"];
+    const __mf_339$1 = __mfPrebuildExports["ShortType"];
+    const __mf_340$1 = __mfPrebuildExports["Skeleton"];
+    const __mf_341$1 = __mfPrebuildExports["SkeletonHelper"];
+    const __mf_342$1 = __mfPrebuildExports["SkinnedMesh"];
+    const __mf_343$1 = __mfPrebuildExports["Source"];
+    const __mf_344$1 = __mfPrebuildExports["Sphere"];
+    const __mf_345$1 = __mfPrebuildExports["SphereGeometry"];
+    const __mf_346$1 = __mfPrebuildExports["Spherical"];
+    const __mf_347$1 = __mfPrebuildExports["SphericalHarmonics3"];
+    const __mf_348$1 = __mfPrebuildExports["SplineCurve"];
+    const __mf_349$1 = __mfPrebuildExports["SpotLight"];
+    const __mf_350$1 = __mfPrebuildExports["SpotLightHelper"];
+    const __mf_351$1 = __mfPrebuildExports["Sprite"];
+    const __mf_352$1 = __mfPrebuildExports["SpriteMaterial"];
+    const __mf_353$1 = __mfPrebuildExports["SrcAlphaFactor"];
+    const __mf_354$1 = __mfPrebuildExports["SrcAlphaSaturateFactor"];
+    const __mf_355$1 = __mfPrebuildExports["SrcColorFactor"];
+    const __mf_356$1 = __mfPrebuildExports["StaticCopyUsage"];
+    const __mf_357$1 = __mfPrebuildExports["StaticDrawUsage"];
+    const __mf_358$1 = __mfPrebuildExports["StaticReadUsage"];
+    const __mf_359$1 = __mfPrebuildExports["StereoCamera"];
+    const __mf_360$1 = __mfPrebuildExports["StreamCopyUsage"];
+    const __mf_361$1 = __mfPrebuildExports["StreamDrawUsage"];
+    const __mf_362$1 = __mfPrebuildExports["StreamReadUsage"];
+    const __mf_363$1 = __mfPrebuildExports["StringKeyframeTrack"];
+    const __mf_364$1 = __mfPrebuildExports["SubtractEquation"];
+    const __mf_365$1 = __mfPrebuildExports["SubtractiveBlending"];
+    const __mf_366$1 = __mfPrebuildExports["TOUCH"];
+    const __mf_367$1 = __mfPrebuildExports["TangentSpaceNormalMap"];
+    const __mf_368$1 = __mfPrebuildExports["TetrahedronGeometry"];
+    const __mf_369$1 = __mfPrebuildExports["Texture"];
+    const __mf_370$1 = __mfPrebuildExports["TextureLoader"];
+    const __mf_371$1 = __mfPrebuildExports["TextureUtils"];
+    const __mf_372$1 = __mfPrebuildExports["TimestampQuery"];
+    const __mf_373$1 = __mfPrebuildExports["TorusGeometry"];
+    const __mf_374$1 = __mfPrebuildExports["TorusKnotGeometry"];
+    const __mf_375$1 = __mfPrebuildExports["Triangle"];
+    const __mf_376$1 = __mfPrebuildExports["TriangleFanDrawMode"];
+    const __mf_377$1 = __mfPrebuildExports["TriangleStripDrawMode"];
+    const __mf_378$1 = __mfPrebuildExports["TrianglesDrawMode"];
+    const __mf_379$1 = __mfPrebuildExports["TubeGeometry"];
+    const __mf_380$1 = __mfPrebuildExports["UVMapping"];
+    const __mf_381$1 = __mfPrebuildExports["Uint16BufferAttribute"];
+    const __mf_382$1 = __mfPrebuildExports["Uint32BufferAttribute"];
+    const __mf_383$1 = __mfPrebuildExports["Uint8BufferAttribute"];
+    const __mf_384$1 = __mfPrebuildExports["Uint8ClampedBufferAttribute"];
+    const __mf_385$1 = __mfPrebuildExports["Uniform"];
+    const __mf_386$1 = __mfPrebuildExports["UniformsGroup"];
+    const __mf_387$1 = __mfPrebuildExports["UniformsLib"];
+    const __mf_388$1 = __mfPrebuildExports["UniformsUtils"];
+    const __mf_389$1 = __mfPrebuildExports["UnsignedByteType"];
+    const __mf_390$1 = __mfPrebuildExports["UnsignedInt248Type"];
+    const __mf_391$1 = __mfPrebuildExports["UnsignedInt5999Type"];
+    const __mf_392$1 = __mfPrebuildExports["UnsignedIntType"];
+    const __mf_393$1 = __mfPrebuildExports["UnsignedShort4444Type"];
+    const __mf_394$1 = __mfPrebuildExports["UnsignedShort5551Type"];
+    const __mf_395$1 = __mfPrebuildExports["UnsignedShortType"];
+    const __mf_396$1 = __mfPrebuildExports["VSMShadowMap"];
+    const __mf_397$1 = __mfPrebuildExports["Vector2"];
+    const __mf_398$1 = __mfPrebuildExports["Vector3"];
+    const __mf_399$1 = __mfPrebuildExports["Vector4"];
+    const __mf_400$1 = __mfPrebuildExports["VectorKeyframeTrack"];
+    const __mf_401$1 = __mfPrebuildExports["VideoFrameTexture"];
+    const __mf_402$1 = __mfPrebuildExports["VideoTexture"];
+    const __mf_403$1 = __mfPrebuildExports["WebGL3DRenderTarget"];
+    const __mf_404$1 = __mfPrebuildExports["WebGLArrayRenderTarget"];
+    const __mf_405$1 = __mfPrebuildExports["WebGLCoordinateSystem"];
+    const __mf_406$1 = __mfPrebuildExports["WebGLCubeRenderTarget"];
+    const __mf_407$1 = __mfPrebuildExports["WebGLRenderTarget"];
+    const __mf_408$1 = __mfPrebuildExports["WebGLRenderer"];
+    const __mf_409$1 = __mfPrebuildExports["WebGLUtils"];
+    const __mf_410$1 = __mfPrebuildExports["WebGPUCoordinateSystem"];
+    const __mf_411$1 = __mfPrebuildExports["WebXRController"];
+    const __mf_412$1 = __mfPrebuildExports["WireframeGeometry"];
+    const __mf_413$1 = __mfPrebuildExports["WrapAroundEnding"];
+    const __mf_414$1 = __mfPrebuildExports["ZeroCurvatureEnding"];
+    const __mf_415$1 = __mfPrebuildExports["ZeroFactor"];
+    const __mf_416$1 = __mfPrebuildExports["ZeroSlopeEnding"];
+    const __mf_417$1 = __mfPrebuildExports["ZeroStencilOp"];
+    const __mf_418$1 = __mfPrebuildExports["createCanvasElement"];
+
+const __mfLocalShare = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	ACESFilmicToneMapping: __mf_0$1,
+	AddEquation: __mf_1$1,
+	AddOperation: __mf_2$1,
+	AdditiveAnimationBlendMode: __mf_3$1,
+	AdditiveBlending: __mf_4$1,
+	AgXToneMapping: __mf_5$1,
+	AlphaFormat: __mf_6$1,
+	AlwaysCompare: __mf_7$1,
+	AlwaysDepth: __mf_8$1,
+	AlwaysStencilFunc: __mf_9$1,
+	AmbientLight: __mf_10$1,
+	AnimationAction: __mf_11$1,
+	AnimationClip: __mf_12$1,
+	AnimationLoader: __mf_13$1,
+	AnimationMixer: __mf_14$1,
+	AnimationObjectGroup: __mf_15$1,
+	AnimationUtils: __mf_16$1,
+	ArcCurve: __mf_17$1,
+	ArrayCamera: __mf_18$1,
+	ArrowHelper: __mf_19$1,
+	AttachedBindMode: __mf_20$1,
+	Audio: __mf_21$1,
+	AudioAnalyser: __mf_22$1,
+	AudioContext: __mf_23$1,
+	AudioListener: __mf_24$1,
+	AudioLoader: __mf_25$1,
+	AxesHelper: __mf_26$1,
+	BackSide: __mf_27$1,
+	BasicDepthPacking: __mf_28$1,
+	BasicShadowMap: __mf_29$1,
+	BatchedMesh: __mf_30$1,
+	Bone: __mf_31$1,
+	BooleanKeyframeTrack: __mf_32$1,
+	Box2: __mf_33$1,
+	Box3: __mf_34$1,
+	Box3Helper: __mf_35$1,
+	BoxGeometry: __mf_36$1,
+	BoxHelper: __mf_37$1,
+	BufferAttribute: __mf_38$1,
+	BufferGeometry: __mf_39$1,
+	BufferGeometryLoader: __mf_40$1,
+	ByteType: __mf_41$1,
+	Cache: __mf_42$1,
+	Camera: __mf_43$1,
+	CameraHelper: __mf_44$1,
+	CanvasTexture: __mf_45$1,
+	CapsuleGeometry: __mf_46$1,
+	CatmullRomCurve3: __mf_47$1,
+	CineonToneMapping: __mf_48$1,
+	CircleGeometry: __mf_49$1,
+	ClampToEdgeWrapping: __mf_50$1,
+	Clock: __mf_51$1,
+	Color: __mf_52$1,
+	ColorKeyframeTrack: __mf_53$1,
+	ColorManagement: __mf_54$1,
+	CompressedArrayTexture: __mf_55$1,
+	CompressedCubeTexture: __mf_56$1,
+	CompressedTexture: __mf_57$1,
+	CompressedTextureLoader: __mf_58$1,
+	ConeGeometry: __mf_59$1,
+	ConstantAlphaFactor: __mf_60$1,
+	ConstantColorFactor: __mf_61$1,
+	Controls: __mf_62$1,
+	CubeCamera: __mf_63$1,
+	CubeReflectionMapping: __mf_64$1,
+	CubeRefractionMapping: __mf_65$1,
+	CubeTexture: __mf_66$1,
+	CubeTextureLoader: __mf_67$1,
+	CubeUVReflectionMapping: __mf_68$1,
+	CubicBezierCurve: __mf_69$1,
+	CubicBezierCurve3: __mf_70$1,
+	CubicInterpolant: __mf_71$1,
+	CullFaceBack: __mf_72$1,
+	CullFaceFront: __mf_73$1,
+	CullFaceFrontBack: __mf_74$1,
+	CullFaceNone: __mf_75$1,
+	Curve: __mf_76$1,
+	CurvePath: __mf_77$1,
+	CustomBlending: __mf_78$1,
+	CustomToneMapping: __mf_79$1,
+	CylinderGeometry: __mf_80$1,
+	Cylindrical: __mf_81$1,
+	Data3DTexture: __mf_82$1,
+	DataArrayTexture: __mf_83$1,
+	DataTexture: __mf_84$1,
+	DataTextureLoader: __mf_85$1,
+	DataUtils: __mf_86$1,
+	DecrementStencilOp: __mf_87$1,
+	DecrementWrapStencilOp: __mf_88$1,
+	DefaultLoadingManager: __mf_89$1,
+	DepthFormat: __mf_90$1,
+	DepthStencilFormat: __mf_91$1,
+	DepthTexture: __mf_92$1,
+	DetachedBindMode: __mf_93$1,
+	DirectionalLight: __mf_94$1,
+	DirectionalLightHelper: __mf_95$1,
+	DiscreteInterpolant: __mf_96$1,
+	DodecahedronGeometry: __mf_97$1,
+	DoubleSide: __mf_98$1,
+	DstAlphaFactor: __mf_99$1,
+	DstColorFactor: __mf_100$1,
+	DynamicCopyUsage: __mf_101$1,
+	DynamicDrawUsage: __mf_102$1,
+	DynamicReadUsage: __mf_103$1,
+	EdgesGeometry: __mf_104$1,
+	EllipseCurve: __mf_105$1,
+	EqualCompare: __mf_106$1,
+	EqualDepth: __mf_107$1,
+	EqualStencilFunc: __mf_108$1,
+	EquirectangularReflectionMapping: __mf_109$1,
+	EquirectangularRefractionMapping: __mf_110$1,
+	Euler: __mf_111$1,
+	EventDispatcher: __mf_112$1,
+	ExtrudeGeometry: __mf_113$1,
+	FileLoader: __mf_114$1,
+	Float16BufferAttribute: __mf_115$1,
+	Float32BufferAttribute: __mf_116$1,
+	FloatType: __mf_117$1,
+	Fog: __mf_118$1,
+	FogExp2: __mf_119$1,
+	FramebufferTexture: __mf_120$1,
+	FrontSide: __mf_121$1,
+	Frustum: __mf_122$1,
+	FrustumArray: __mf_123$1,
+	GLBufferAttribute: __mf_124$1,
+	GLSL1: __mf_125$1,
+	GLSL3: __mf_126$1,
+	GreaterCompare: __mf_127$1,
+	GreaterDepth: __mf_128$1,
+	GreaterEqualCompare: __mf_129$1,
+	GreaterEqualDepth: __mf_130$1,
+	GreaterEqualStencilFunc: __mf_131$1,
+	GreaterStencilFunc: __mf_132$1,
+	GridHelper: __mf_133$1,
+	Group: __mf_134$1,
+	HalfFloatType: __mf_135$1,
+	HemisphereLight: __mf_136$1,
+	HemisphereLightHelper: __mf_137$1,
+	IcosahedronGeometry: __mf_138$1,
+	ImageBitmapLoader: __mf_139$1,
+	ImageLoader: __mf_140$1,
+	ImageUtils: __mf_141$1,
+	IncrementStencilOp: __mf_142$1,
+	IncrementWrapStencilOp: __mf_143$1,
+	InstancedBufferAttribute: __mf_144$1,
+	InstancedBufferGeometry: __mf_145$1,
+	InstancedInterleavedBuffer: __mf_146$1,
+	InstancedMesh: __mf_147$1,
+	Int16BufferAttribute: __mf_148$1,
+	Int32BufferAttribute: __mf_149$1,
+	Int8BufferAttribute: __mf_150$1,
+	IntType: __mf_151$1,
+	InterleavedBuffer: __mf_152$1,
+	InterleavedBufferAttribute: __mf_153$1,
+	Interpolant: __mf_154$1,
+	InterpolateDiscrete: __mf_155$1,
+	InterpolateLinear: __mf_156$1,
+	InterpolateSmooth: __mf_157$1,
+	InterpolationSamplingMode: __mf_158$1,
+	InterpolationSamplingType: __mf_159$1,
+	InvertStencilOp: __mf_160$1,
+	KeepStencilOp: __mf_161$1,
+	KeyframeTrack: __mf_162$1,
+	LOD: __mf_163$1,
+	LatheGeometry: __mf_164$1,
+	Layers: __mf_165$1,
+	LessCompare: __mf_166$1,
+	LessDepth: __mf_167$1,
+	LessEqualCompare: __mf_168$1,
+	LessEqualDepth: __mf_169$1,
+	LessEqualStencilFunc: __mf_170$1,
+	LessStencilFunc: __mf_171$1,
+	Light: __mf_172$1,
+	LightProbe: __mf_173$1,
+	Line: __mf_174$1,
+	Line3: __mf_175$1,
+	LineBasicMaterial: __mf_176$1,
+	LineCurve: __mf_177$1,
+	LineCurve3: __mf_178$1,
+	LineDashedMaterial: __mf_179$1,
+	LineLoop: __mf_180$1,
+	LineSegments: __mf_181$1,
+	LinearFilter: __mf_182$1,
+	LinearInterpolant: __mf_183$1,
+	LinearMipMapLinearFilter: __mf_184$1,
+	LinearMipMapNearestFilter: __mf_185$1,
+	LinearMipmapLinearFilter: __mf_186$1,
+	LinearMipmapNearestFilter: __mf_187$1,
+	LinearSRGBColorSpace: __mf_188$1,
+	LinearToneMapping: __mf_189$1,
+	LinearTransfer: __mf_190$1,
+	Loader: __mf_191$1,
+	LoaderUtils: __mf_192$1,
+	LoadingManager: __mf_193$1,
+	LoopOnce: __mf_194$1,
+	LoopPingPong: __mf_195$1,
+	LoopRepeat: __mf_196$1,
+	MOUSE: __mf_197$1,
+	Material: __mf_198$1,
+	MaterialLoader: __mf_199$1,
+	MathUtils: __mf_200$1,
+	Matrix2: __mf_201$1,
+	Matrix3: __mf_202$1,
+	Matrix4: __mf_203$1,
+	MaxEquation: __mf_204$1,
+	Mesh: __mf_205$1,
+	MeshBasicMaterial: __mf_206$1,
+	MeshDepthMaterial: __mf_207$1,
+	MeshDistanceMaterial: __mf_208$1,
+	MeshLambertMaterial: __mf_209$1,
+	MeshMatcapMaterial: __mf_210$1,
+	MeshNormalMaterial: __mf_211$1,
+	MeshPhongMaterial: __mf_212$1,
+	MeshPhysicalMaterial: __mf_213$1,
+	MeshStandardMaterial: __mf_214$1,
+	MeshToonMaterial: __mf_215$1,
+	MinEquation: __mf_216$1,
+	MirroredRepeatWrapping: __mf_217$1,
+	MixOperation: __mf_218$1,
+	MultiplyBlending: __mf_219$1,
+	MultiplyOperation: __mf_220$1,
+	NearestFilter: __mf_221$1,
+	NearestMipMapLinearFilter: __mf_222$1,
+	NearestMipMapNearestFilter: __mf_223$1,
+	NearestMipmapLinearFilter: __mf_224$1,
+	NearestMipmapNearestFilter: __mf_225$1,
+	NeutralToneMapping: __mf_226$1,
+	NeverCompare: __mf_227$1,
+	NeverDepth: __mf_228$1,
+	NeverStencilFunc: __mf_229$1,
+	NoBlending: __mf_230$1,
+	NoColorSpace: __mf_231$1,
+	NoToneMapping: __mf_232$1,
+	NormalAnimationBlendMode: __mf_233$1,
+	NormalBlending: __mf_234$1,
+	NotEqualCompare: __mf_235$1,
+	NotEqualDepth: __mf_236$1,
+	NotEqualStencilFunc: __mf_237$1,
+	NumberKeyframeTrack: __mf_238$1,
+	Object3D: __mf_239$1,
+	ObjectLoader: __mf_240$1,
+	ObjectSpaceNormalMap: __mf_241$1,
+	OctahedronGeometry: __mf_242$1,
+	OneFactor: __mf_243$1,
+	OneMinusConstantAlphaFactor: __mf_244$1,
+	OneMinusConstantColorFactor: __mf_245$1,
+	OneMinusDstAlphaFactor: __mf_246$1,
+	OneMinusDstColorFactor: __mf_247$1,
+	OneMinusSrcAlphaFactor: __mf_248$1,
+	OneMinusSrcColorFactor: __mf_249$1,
+	OrthographicCamera: __mf_250$1,
+	PCFShadowMap: __mf_251$1,
+	PCFSoftShadowMap: __mf_252$1,
+	PMREMGenerator: __mf_253$1,
+	Path: __mf_254$1,
+	PerspectiveCamera: __mf_255$1,
+	Plane: __mf_256$1,
+	PlaneGeometry: __mf_257$1,
+	PlaneHelper: __mf_258$1,
+	PointLight: __mf_259$1,
+	PointLightHelper: __mf_260$1,
+	Points: __mf_261$1,
+	PointsMaterial: __mf_262$1,
+	PolarGridHelper: __mf_263$1,
+	PolyhedronGeometry: __mf_264$1,
+	PositionalAudio: __mf_265$1,
+	PropertyBinding: __mf_266$1,
+	PropertyMixer: __mf_267$1,
+	QuadraticBezierCurve: __mf_268$1,
+	QuadraticBezierCurve3: __mf_269$1,
+	Quaternion: __mf_270$1,
+	QuaternionKeyframeTrack: __mf_271$1,
+	QuaternionLinearInterpolant: __mf_272$1,
+	RED_GREEN_RGTC2_Format: __mf_273$1,
+	RED_RGTC1_Format: __mf_274$1,
+	REVISION: __mf_275$1,
+	RGBADepthPacking: __mf_276$1,
+	RGBAFormat: __mf_277$1,
+	RGBAIntegerFormat: __mf_278$1,
+	RGBA_ASTC_10x10_Format: __mf_279$1,
+	RGBA_ASTC_10x5_Format: __mf_280$1,
+	RGBA_ASTC_10x6_Format: __mf_281$1,
+	RGBA_ASTC_10x8_Format: __mf_282$1,
+	RGBA_ASTC_12x10_Format: __mf_283$1,
+	RGBA_ASTC_12x12_Format: __mf_284$1,
+	RGBA_ASTC_4x4_Format: __mf_285$1,
+	RGBA_ASTC_5x4_Format: __mf_286$1,
+	RGBA_ASTC_5x5_Format: __mf_287$1,
+	RGBA_ASTC_6x5_Format: __mf_288$1,
+	RGBA_ASTC_6x6_Format: __mf_289$1,
+	RGBA_ASTC_8x5_Format: __mf_290$1,
+	RGBA_ASTC_8x6_Format: __mf_291$1,
+	RGBA_ASTC_8x8_Format: __mf_292$1,
+	RGBA_BPTC_Format: __mf_293$1,
+	RGBA_ETC2_EAC_Format: __mf_294$1,
+	RGBA_PVRTC_2BPPV1_Format: __mf_295$1,
+	RGBA_PVRTC_4BPPV1_Format: __mf_296$1,
+	RGBA_S3TC_DXT1_Format: __mf_297$1,
+	RGBA_S3TC_DXT3_Format: __mf_298$1,
+	RGBA_S3TC_DXT5_Format: __mf_299$1,
+	RGBDepthPacking: __mf_300$1,
+	RGBFormat: __mf_301$1,
+	RGBIntegerFormat: __mf_302$1,
+	RGB_BPTC_SIGNED_Format: __mf_303$1,
+	RGB_BPTC_UNSIGNED_Format: __mf_304$1,
+	RGB_ETC1_Format: __mf_305$1,
+	RGB_ETC2_Format: __mf_306$1,
+	RGB_PVRTC_2BPPV1_Format: __mf_307$1,
+	RGB_PVRTC_4BPPV1_Format: __mf_308$1,
+	RGB_S3TC_DXT1_Format: __mf_309$1,
+	RGDepthPacking: __mf_310$1,
+	RGFormat: __mf_311$1,
+	RGIntegerFormat: __mf_312$1,
+	RawShaderMaterial: __mf_313$1,
+	Ray: __mf_314$1,
+	Raycaster: __mf_315$1,
+	RectAreaLight: __mf_316$1,
+	RedFormat: __mf_317$1,
+	RedIntegerFormat: __mf_318$1,
+	ReinhardToneMapping: __mf_319$1,
+	RenderTarget: __mf_320$1,
+	RenderTarget3D: __mf_321$1,
+	RepeatWrapping: __mf_322$1,
+	ReplaceStencilOp: __mf_323$1,
+	ReverseSubtractEquation: __mf_324$1,
+	RingGeometry: __mf_325$1,
+	SIGNED_RED_GREEN_RGTC2_Format: __mf_326$1,
+	SIGNED_RED_RGTC1_Format: __mf_327$1,
+	SRGBColorSpace: __mf_328$1,
+	SRGBTransfer: __mf_329$1,
+	Scene: __mf_330$1,
+	ShaderChunk: __mf_331$1,
+	ShaderLib: __mf_332$1,
+	ShaderMaterial: __mf_333$1,
+	ShadowMaterial: __mf_334$1,
+	Shape: __mf_335$1,
+	ShapeGeometry: __mf_336$1,
+	ShapePath: __mf_337$1,
+	ShapeUtils: __mf_338$1,
+	ShortType: __mf_339$1,
+	Skeleton: __mf_340$1,
+	SkeletonHelper: __mf_341$1,
+	SkinnedMesh: __mf_342$1,
+	Source: __mf_343$1,
+	Sphere: __mf_344$1,
+	SphereGeometry: __mf_345$1,
+	Spherical: __mf_346$1,
+	SphericalHarmonics3: __mf_347$1,
+	SplineCurve: __mf_348$1,
+	SpotLight: __mf_349$1,
+	SpotLightHelper: __mf_350$1,
+	Sprite: __mf_351$1,
+	SpriteMaterial: __mf_352$1,
+	SrcAlphaFactor: __mf_353$1,
+	SrcAlphaSaturateFactor: __mf_354$1,
+	SrcColorFactor: __mf_355$1,
+	StaticCopyUsage: __mf_356$1,
+	StaticDrawUsage: __mf_357$1,
+	StaticReadUsage: __mf_358$1,
+	StereoCamera: __mf_359$1,
+	StreamCopyUsage: __mf_360$1,
+	StreamDrawUsage: __mf_361$1,
+	StreamReadUsage: __mf_362$1,
+	StringKeyframeTrack: __mf_363$1,
+	SubtractEquation: __mf_364$1,
+	SubtractiveBlending: __mf_365$1,
+	TOUCH: __mf_366$1,
+	TangentSpaceNormalMap: __mf_367$1,
+	TetrahedronGeometry: __mf_368$1,
+	Texture: __mf_369$1,
+	TextureLoader: __mf_370$1,
+	TextureUtils: __mf_371$1,
+	TimestampQuery: __mf_372$1,
+	TorusGeometry: __mf_373$1,
+	TorusKnotGeometry: __mf_374$1,
+	Triangle: __mf_375$1,
+	TriangleFanDrawMode: __mf_376$1,
+	TriangleStripDrawMode: __mf_377$1,
+	TrianglesDrawMode: __mf_378$1,
+	TubeGeometry: __mf_379$1,
+	UVMapping: __mf_380$1,
+	Uint16BufferAttribute: __mf_381$1,
+	Uint32BufferAttribute: __mf_382$1,
+	Uint8BufferAttribute: __mf_383$1,
+	Uint8ClampedBufferAttribute: __mf_384$1,
+	Uniform: __mf_385$1,
+	UniformsGroup: __mf_386$1,
+	UniformsLib: __mf_387$1,
+	UniformsUtils: __mf_388$1,
+	UnsignedByteType: __mf_389$1,
+	UnsignedInt248Type: __mf_390$1,
+	UnsignedInt5999Type: __mf_391$1,
+	UnsignedIntType: __mf_392$1,
+	UnsignedShort4444Type: __mf_393$1,
+	UnsignedShort5551Type: __mf_394$1,
+	UnsignedShortType: __mf_395$1,
+	VSMShadowMap: __mf_396$1,
+	Vector2: __mf_397$1,
+	Vector3: __mf_398$1,
+	Vector4: __mf_399$1,
+	VectorKeyframeTrack: __mf_400$1,
+	VideoFrameTexture: __mf_401$1,
+	VideoTexture: __mf_402$1,
+	WebGL3DRenderTarget: __mf_403$1,
+	WebGLArrayRenderTarget: __mf_404$1,
+	WebGLCoordinateSystem: __mf_405$1,
+	WebGLCubeRenderTarget: __mf_406$1,
+	WebGLRenderTarget: __mf_407$1,
+	WebGLRenderer: __mf_408$1,
+	WebGLUtils: __mf_409$1,
+	WebGPUCoordinateSystem: __mf_410$1,
+	WebXRController: __mf_411$1,
+	WireframeGeometry: __mf_412$1,
+	WrapAroundEnding: __mf_413$1,
+	ZeroCurvatureEnding: __mf_414$1,
+	ZeroFactor: __mf_415$1,
+	ZeroSlopeEnding: __mf_416$1,
+	ZeroStencilOp: __mf_417$1,
+	createCanvasElement: __mf_418$1,
+	default: __mfPrebuildExports
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const __mfCacheGlobalKey = "__mf_module_cache__";
+globalThis[__mfCacheGlobalKey] ||= { share: {}, remote: {} };
+globalThis[__mfCacheGlobalKey].share ||= {};
+globalThis[__mfCacheGlobalKey].remote ||= {};
+const __mfModuleCache = globalThis[__mfCacheGlobalKey];
+
+    const __mfNormalizeShareModule = (mod) => {
+      let current = mod;
+      for (let i = 0; i < 5; i++) {
+        const defaultExport = current?.default;
+        if (!defaultExport || typeof defaultExport !== "object") break;
+        const namedValues = Object.keys(current).filter((key) => key !== "default").map((key) => current[key]);
+        if (namedValues.length > 0 && namedValues.some((value) => value !== undefined)) break;
+        current = defaultExport;
+      }
+      return current;
+    };
+    let exportModule = __mfModuleCache.share["three"];
+    if (exportModule === undefined) {
+      exportModule = __mfNormalizeShareModule(__mfLocalShare);
+      __mfModuleCache.share["three"] = exportModule;
+    }
+    const __mfDefaultExport = (() => {
+      let current = exportModule;
+      for (let i = 0; i < 5; i++) {
+        const defaultExport = current?.default;
+        if (!defaultExport || typeof defaultExport !== "object") return defaultExport ?? current;
+        current = defaultExport;
+      }
+      return current;
+    })();
+    const { ACESFilmicToneMapping: __mf_0, AddEquation: __mf_1, AddOperation: __mf_2, AdditiveAnimationBlendMode: __mf_3, AdditiveBlending: __mf_4, AgXToneMapping: __mf_5, AlphaFormat: __mf_6, AlwaysCompare: __mf_7, AlwaysDepth: __mf_8, AlwaysStencilFunc: __mf_9, AmbientLight: __mf_10, AnimationAction: __mf_11, AnimationClip: __mf_12, AnimationLoader: __mf_13, AnimationMixer: __mf_14, AnimationObjectGroup: __mf_15, AnimationUtils: __mf_16, ArcCurve: __mf_17, ArrayCamera: __mf_18, ArrowHelper: __mf_19, AttachedBindMode: __mf_20, Audio: __mf_21, AudioAnalyser: __mf_22, AudioContext: __mf_23, AudioListener: __mf_24, AudioLoader: __mf_25, AxesHelper: __mf_26, BackSide: __mf_27, BasicDepthPacking: __mf_28, BasicShadowMap: __mf_29, BatchedMesh: __mf_30, Bone: __mf_31, BooleanKeyframeTrack: __mf_32, Box2: __mf_33, Box3: __mf_34, Box3Helper: __mf_35, BoxGeometry: __mf_36, BoxHelper: __mf_37, BufferAttribute: __mf_38, BufferGeometry: __mf_39, BufferGeometryLoader: __mf_40, ByteType: __mf_41, Cache: __mf_42, Camera: __mf_43, CameraHelper: __mf_44, CanvasTexture: __mf_45, CapsuleGeometry: __mf_46, CatmullRomCurve3: __mf_47, CineonToneMapping: __mf_48, CircleGeometry: __mf_49, ClampToEdgeWrapping: __mf_50, Clock: __mf_51, Color: __mf_52, ColorKeyframeTrack: __mf_53, ColorManagement: __mf_54, CompressedArrayTexture: __mf_55, CompressedCubeTexture: __mf_56, CompressedTexture: __mf_57, CompressedTextureLoader: __mf_58, ConeGeometry: __mf_59, ConstantAlphaFactor: __mf_60, ConstantColorFactor: __mf_61, Controls: __mf_62, CubeCamera: __mf_63, CubeReflectionMapping: __mf_64, CubeRefractionMapping: __mf_65, CubeTexture: __mf_66, CubeTextureLoader: __mf_67, CubeUVReflectionMapping: __mf_68, CubicBezierCurve: __mf_69, CubicBezierCurve3: __mf_70, CubicInterpolant: __mf_71, CullFaceBack: __mf_72, CullFaceFront: __mf_73, CullFaceFrontBack: __mf_74, CullFaceNone: __mf_75, Curve: __mf_76, CurvePath: __mf_77, CustomBlending: __mf_78, CustomToneMapping: __mf_79, CylinderGeometry: __mf_80, Cylindrical: __mf_81, Data3DTexture: __mf_82, DataArrayTexture: __mf_83, DataTexture: __mf_84, DataTextureLoader: __mf_85, DataUtils: __mf_86, DecrementStencilOp: __mf_87, DecrementWrapStencilOp: __mf_88, DefaultLoadingManager: __mf_89, DepthFormat: __mf_90, DepthStencilFormat: __mf_91, DepthTexture: __mf_92, DetachedBindMode: __mf_93, DirectionalLight: __mf_94, DirectionalLightHelper: __mf_95, DiscreteInterpolant: __mf_96, DodecahedronGeometry: __mf_97, DoubleSide: __mf_98, DstAlphaFactor: __mf_99, DstColorFactor: __mf_100, DynamicCopyUsage: __mf_101, DynamicDrawUsage: __mf_102, DynamicReadUsage: __mf_103, EdgesGeometry: __mf_104, EllipseCurve: __mf_105, EqualCompare: __mf_106, EqualDepth: __mf_107, EqualStencilFunc: __mf_108, EquirectangularReflectionMapping: __mf_109, EquirectangularRefractionMapping: __mf_110, Euler: __mf_111, EventDispatcher: __mf_112, ExtrudeGeometry: __mf_113, FileLoader: __mf_114, Float16BufferAttribute: __mf_115, Float32BufferAttribute: __mf_116, FloatType: __mf_117, Fog: __mf_118, FogExp2: __mf_119, FramebufferTexture: __mf_120, FrontSide: __mf_121, Frustum: __mf_122, FrustumArray: __mf_123, GLBufferAttribute: __mf_124, GLSL1: __mf_125, GLSL3: __mf_126, GreaterCompare: __mf_127, GreaterDepth: __mf_128, GreaterEqualCompare: __mf_129, GreaterEqualDepth: __mf_130, GreaterEqualStencilFunc: __mf_131, GreaterStencilFunc: __mf_132, GridHelper: __mf_133, Group: __mf_134, HalfFloatType: __mf_135, HemisphereLight: __mf_136, HemisphereLightHelper: __mf_137, IcosahedronGeometry: __mf_138, ImageBitmapLoader: __mf_139, ImageLoader: __mf_140, ImageUtils: __mf_141, IncrementStencilOp: __mf_142, IncrementWrapStencilOp: __mf_143, InstancedBufferAttribute: __mf_144, InstancedBufferGeometry: __mf_145, InstancedInterleavedBuffer: __mf_146, InstancedMesh: __mf_147, Int16BufferAttribute: __mf_148, Int32BufferAttribute: __mf_149, Int8BufferAttribute: __mf_150, IntType: __mf_151, InterleavedBuffer: __mf_152, InterleavedBufferAttribute: __mf_153, Interpolant: __mf_154, InterpolateDiscrete: __mf_155, InterpolateLinear: __mf_156, InterpolateSmooth: __mf_157, InterpolationSamplingMode: __mf_158, InterpolationSamplingType: __mf_159, InvertStencilOp: __mf_160, KeepStencilOp: __mf_161, KeyframeTrack: __mf_162, LOD: __mf_163, LatheGeometry: __mf_164, Layers: __mf_165, LessCompare: __mf_166, LessDepth: __mf_167, LessEqualCompare: __mf_168, LessEqualDepth: __mf_169, LessEqualStencilFunc: __mf_170, LessStencilFunc: __mf_171, Light: __mf_172, LightProbe: __mf_173, Line: __mf_174, Line3: __mf_175, LineBasicMaterial: __mf_176, LineCurve: __mf_177, LineCurve3: __mf_178, LineDashedMaterial: __mf_179, LineLoop: __mf_180, LineSegments: __mf_181, LinearFilter: __mf_182, LinearInterpolant: __mf_183, LinearMipMapLinearFilter: __mf_184, LinearMipMapNearestFilter: __mf_185, LinearMipmapLinearFilter: __mf_186, LinearMipmapNearestFilter: __mf_187, LinearSRGBColorSpace: __mf_188, LinearToneMapping: __mf_189, LinearTransfer: __mf_190, Loader: __mf_191, LoaderUtils: __mf_192, LoadingManager: __mf_193, LoopOnce: __mf_194, LoopPingPong: __mf_195, LoopRepeat: __mf_196, MOUSE: __mf_197, Material: __mf_198, MaterialLoader: __mf_199, MathUtils: __mf_200, Matrix2: __mf_201, Matrix3: __mf_202, Matrix4: __mf_203, MaxEquation: __mf_204, Mesh: __mf_205, MeshBasicMaterial: __mf_206, MeshDepthMaterial: __mf_207, MeshDistanceMaterial: __mf_208, MeshLambertMaterial: __mf_209, MeshMatcapMaterial: __mf_210, MeshNormalMaterial: __mf_211, MeshPhongMaterial: __mf_212, MeshPhysicalMaterial: __mf_213, MeshStandardMaterial: __mf_214, MeshToonMaterial: __mf_215, MinEquation: __mf_216, MirroredRepeatWrapping: __mf_217, MixOperation: __mf_218, MultiplyBlending: __mf_219, MultiplyOperation: __mf_220, NearestFilter: __mf_221, NearestMipMapLinearFilter: __mf_222, NearestMipMapNearestFilter: __mf_223, NearestMipmapLinearFilter: __mf_224, NearestMipmapNearestFilter: __mf_225, NeutralToneMapping: __mf_226, NeverCompare: __mf_227, NeverDepth: __mf_228, NeverStencilFunc: __mf_229, NoBlending: __mf_230, NoColorSpace: __mf_231, NoToneMapping: __mf_232, NormalAnimationBlendMode: __mf_233, NormalBlending: __mf_234, NotEqualCompare: __mf_235, NotEqualDepth: __mf_236, NotEqualStencilFunc: __mf_237, NumberKeyframeTrack: __mf_238, Object3D: __mf_239, ObjectLoader: __mf_240, ObjectSpaceNormalMap: __mf_241, OctahedronGeometry: __mf_242, OneFactor: __mf_243, OneMinusConstantAlphaFactor: __mf_244, OneMinusConstantColorFactor: __mf_245, OneMinusDstAlphaFactor: __mf_246, OneMinusDstColorFactor: __mf_247, OneMinusSrcAlphaFactor: __mf_248, OneMinusSrcColorFactor: __mf_249, OrthographicCamera: __mf_250, PCFShadowMap: __mf_251, PCFSoftShadowMap: __mf_252, PMREMGenerator: __mf_253, Path: __mf_254, PerspectiveCamera: __mf_255, Plane: __mf_256, PlaneGeometry: __mf_257, PlaneHelper: __mf_258, PointLight: __mf_259, PointLightHelper: __mf_260, Points: __mf_261, PointsMaterial: __mf_262, PolarGridHelper: __mf_263, PolyhedronGeometry: __mf_264, PositionalAudio: __mf_265, PropertyBinding: __mf_266, PropertyMixer: __mf_267, QuadraticBezierCurve: __mf_268, QuadraticBezierCurve3: __mf_269, Quaternion: __mf_270, QuaternionKeyframeTrack: __mf_271, QuaternionLinearInterpolant: __mf_272, RED_GREEN_RGTC2_Format: __mf_273, RED_RGTC1_Format: __mf_274, REVISION: __mf_275, RGBADepthPacking: __mf_276, RGBAFormat: __mf_277, RGBAIntegerFormat: __mf_278, RGBA_ASTC_10x10_Format: __mf_279, RGBA_ASTC_10x5_Format: __mf_280, RGBA_ASTC_10x6_Format: __mf_281, RGBA_ASTC_10x8_Format: __mf_282, RGBA_ASTC_12x10_Format: __mf_283, RGBA_ASTC_12x12_Format: __mf_284, RGBA_ASTC_4x4_Format: __mf_285, RGBA_ASTC_5x4_Format: __mf_286, RGBA_ASTC_5x5_Format: __mf_287, RGBA_ASTC_6x5_Format: __mf_288, RGBA_ASTC_6x6_Format: __mf_289, RGBA_ASTC_8x5_Format: __mf_290, RGBA_ASTC_8x6_Format: __mf_291, RGBA_ASTC_8x8_Format: __mf_292, RGBA_BPTC_Format: __mf_293, RGBA_ETC2_EAC_Format: __mf_294, RGBA_PVRTC_2BPPV1_Format: __mf_295, RGBA_PVRTC_4BPPV1_Format: __mf_296, RGBA_S3TC_DXT1_Format: __mf_297, RGBA_S3TC_DXT3_Format: __mf_298, RGBA_S3TC_DXT5_Format: __mf_299, RGBDepthPacking: __mf_300, RGBFormat: __mf_301, RGBIntegerFormat: __mf_302, RGB_BPTC_SIGNED_Format: __mf_303, RGB_BPTC_UNSIGNED_Format: __mf_304, RGB_ETC1_Format: __mf_305, RGB_ETC2_Format: __mf_306, RGB_PVRTC_2BPPV1_Format: __mf_307, RGB_PVRTC_4BPPV1_Format: __mf_308, RGB_S3TC_DXT1_Format: __mf_309, RGDepthPacking: __mf_310, RGFormat: __mf_311, RGIntegerFormat: __mf_312, RawShaderMaterial: __mf_313, Ray: __mf_314, Raycaster: __mf_315, RectAreaLight: __mf_316, RedFormat: __mf_317, RedIntegerFormat: __mf_318, ReinhardToneMapping: __mf_319, RenderTarget: __mf_320, RenderTarget3D: __mf_321, RepeatWrapping: __mf_322, ReplaceStencilOp: __mf_323, ReverseSubtractEquation: __mf_324, RingGeometry: __mf_325, SIGNED_RED_GREEN_RGTC2_Format: __mf_326, SIGNED_RED_RGTC1_Format: __mf_327, SRGBColorSpace: __mf_328, SRGBTransfer: __mf_329, Scene: __mf_330, ShaderChunk: __mf_331, ShaderLib: __mf_332, ShaderMaterial: __mf_333, ShadowMaterial: __mf_334, Shape: __mf_335, ShapeGeometry: __mf_336, ShapePath: __mf_337, ShapeUtils: __mf_338, ShortType: __mf_339, Skeleton: __mf_340, SkeletonHelper: __mf_341, SkinnedMesh: __mf_342, Source: __mf_343, Sphere: __mf_344, SphereGeometry: __mf_345, Spherical: __mf_346, SphericalHarmonics3: __mf_347, SplineCurve: __mf_348, SpotLight: __mf_349, SpotLightHelper: __mf_350, Sprite: __mf_351, SpriteMaterial: __mf_352, SrcAlphaFactor: __mf_353, SrcAlphaSaturateFactor: __mf_354, SrcColorFactor: __mf_355, StaticCopyUsage: __mf_356, StaticDrawUsage: __mf_357, StaticReadUsage: __mf_358, StereoCamera: __mf_359, StreamCopyUsage: __mf_360, StreamDrawUsage: __mf_361, StreamReadUsage: __mf_362, StringKeyframeTrack: __mf_363, SubtractEquation: __mf_364, SubtractiveBlending: __mf_365, TOUCH: __mf_366, TangentSpaceNormalMap: __mf_367, TetrahedronGeometry: __mf_368, Texture: __mf_369, TextureLoader: __mf_370, TextureUtils: __mf_371, TimestampQuery: __mf_372, TorusGeometry: __mf_373, TorusKnotGeometry: __mf_374, Triangle: __mf_375, TriangleFanDrawMode: __mf_376, TriangleStripDrawMode: __mf_377, TrianglesDrawMode: __mf_378, TubeGeometry: __mf_379, UVMapping: __mf_380, Uint16BufferAttribute: __mf_381, Uint32BufferAttribute: __mf_382, Uint8BufferAttribute: __mf_383, Uint8ClampedBufferAttribute: __mf_384, Uniform: __mf_385, UniformsGroup: __mf_386, UniformsLib: __mf_387, UniformsUtils: __mf_388, UnsignedByteType: __mf_389, UnsignedInt248Type: __mf_390, UnsignedInt5999Type: __mf_391, UnsignedIntType: __mf_392, UnsignedShort4444Type: __mf_393, UnsignedShort5551Type: __mf_394, UnsignedShortType: __mf_395, VSMShadowMap: __mf_396, Vector2: __mf_397, Vector3: __mf_398, Vector4: __mf_399, VectorKeyframeTrack: __mf_400, VideoFrameTexture: __mf_401, VideoTexture: __mf_402, WebGL3DRenderTarget: __mf_403, WebGLArrayRenderTarget: __mf_404, WebGLCoordinateSystem: __mf_405, WebGLCubeRenderTarget: __mf_406, WebGLRenderTarget: __mf_407, WebGLRenderer: __mf_408, WebGLUtils: __mf_409, WebGPUCoordinateSystem: __mf_410, WebXRController: __mf_411, WireframeGeometry: __mf_412, WrapAroundEnding: __mf_413, ZeroCurvatureEnding: __mf_414, ZeroFactor: __mf_415, ZeroSlopeEnding: __mf_416, ZeroStencilOp: __mf_417, createCanvasElement: __mf_418 } = exportModule;
+  
+const __moduleExports = exportModule;
+
+const THREE = /*#__PURE__*/_mergeNamespaces({
+	__proto__: null,
+	ACESFilmicToneMapping: __mf_0,
+	AddEquation: __mf_1,
+	AddOperation: __mf_2,
+	AdditiveAnimationBlendMode: __mf_3,
+	AdditiveBlending: __mf_4,
+	AgXToneMapping: __mf_5,
+	AlphaFormat: __mf_6,
+	AlwaysCompare: __mf_7,
+	AlwaysDepth: __mf_8,
+	AlwaysStencilFunc: __mf_9,
+	AmbientLight: __mf_10,
+	AnimationAction: __mf_11,
+	AnimationClip: __mf_12,
+	AnimationLoader: __mf_13,
+	AnimationMixer: __mf_14,
+	AnimationObjectGroup: __mf_15,
+	AnimationUtils: __mf_16,
+	ArcCurve: __mf_17,
+	ArrayCamera: __mf_18,
+	ArrowHelper: __mf_19,
+	AttachedBindMode: __mf_20,
+	Audio: __mf_21,
+	AudioAnalyser: __mf_22,
+	AudioContext: __mf_23,
+	AudioListener: __mf_24,
+	AudioLoader: __mf_25,
+	AxesHelper: __mf_26,
+	BackSide: __mf_27,
+	BasicDepthPacking: __mf_28,
+	BasicShadowMap: __mf_29,
+	BatchedMesh: __mf_30,
+	Bone: __mf_31,
+	BooleanKeyframeTrack: __mf_32,
+	Box2: __mf_33,
+	Box3: __mf_34,
+	Box3Helper: __mf_35,
+	BoxGeometry: __mf_36,
+	BoxHelper: __mf_37,
+	BufferAttribute: __mf_38,
+	BufferGeometry: __mf_39,
+	BufferGeometryLoader: __mf_40,
+	ByteType: __mf_41,
+	Cache: __mf_42,
+	Camera: __mf_43,
+	CameraHelper: __mf_44,
+	CanvasTexture: __mf_45,
+	CapsuleGeometry: __mf_46,
+	CatmullRomCurve3: __mf_47,
+	CineonToneMapping: __mf_48,
+	CircleGeometry: __mf_49,
+	ClampToEdgeWrapping: __mf_50,
+	Clock: __mf_51,
+	Color: __mf_52,
+	ColorKeyframeTrack: __mf_53,
+	ColorManagement: __mf_54,
+	CompressedArrayTexture: __mf_55,
+	CompressedCubeTexture: __mf_56,
+	CompressedTexture: __mf_57,
+	CompressedTextureLoader: __mf_58,
+	ConeGeometry: __mf_59,
+	ConstantAlphaFactor: __mf_60,
+	ConstantColorFactor: __mf_61,
+	Controls: __mf_62,
+	CubeCamera: __mf_63,
+	CubeReflectionMapping: __mf_64,
+	CubeRefractionMapping: __mf_65,
+	CubeTexture: __mf_66,
+	CubeTextureLoader: __mf_67,
+	CubeUVReflectionMapping: __mf_68,
+	CubicBezierCurve: __mf_69,
+	CubicBezierCurve3: __mf_70,
+	CubicInterpolant: __mf_71,
+	CullFaceBack: __mf_72,
+	CullFaceFront: __mf_73,
+	CullFaceFrontBack: __mf_74,
+	CullFaceNone: __mf_75,
+	Curve: __mf_76,
+	CurvePath: __mf_77,
+	CustomBlending: __mf_78,
+	CustomToneMapping: __mf_79,
+	CylinderGeometry: __mf_80,
+	Cylindrical: __mf_81,
+	Data3DTexture: __mf_82,
+	DataArrayTexture: __mf_83,
+	DataTexture: __mf_84,
+	DataTextureLoader: __mf_85,
+	DataUtils: __mf_86,
+	DecrementStencilOp: __mf_87,
+	DecrementWrapStencilOp: __mf_88,
+	DefaultLoadingManager: __mf_89,
+	DepthFormat: __mf_90,
+	DepthStencilFormat: __mf_91,
+	DepthTexture: __mf_92,
+	DetachedBindMode: __mf_93,
+	DirectionalLight: __mf_94,
+	DirectionalLightHelper: __mf_95,
+	DiscreteInterpolant: __mf_96,
+	DodecahedronGeometry: __mf_97,
+	DoubleSide: __mf_98,
+	DstAlphaFactor: __mf_99,
+	DstColorFactor: __mf_100,
+	DynamicCopyUsage: __mf_101,
+	DynamicDrawUsage: __mf_102,
+	DynamicReadUsage: __mf_103,
+	EdgesGeometry: __mf_104,
+	EllipseCurve: __mf_105,
+	EqualCompare: __mf_106,
+	EqualDepth: __mf_107,
+	EqualStencilFunc: __mf_108,
+	EquirectangularReflectionMapping: __mf_109,
+	EquirectangularRefractionMapping: __mf_110,
+	Euler: __mf_111,
+	EventDispatcher: __mf_112,
+	ExtrudeGeometry: __mf_113,
+	FileLoader: __mf_114,
+	Float16BufferAttribute: __mf_115,
+	Float32BufferAttribute: __mf_116,
+	FloatType: __mf_117,
+	Fog: __mf_118,
+	FogExp2: __mf_119,
+	FramebufferTexture: __mf_120,
+	FrontSide: __mf_121,
+	Frustum: __mf_122,
+	FrustumArray: __mf_123,
+	GLBufferAttribute: __mf_124,
+	GLSL1: __mf_125,
+	GLSL3: __mf_126,
+	GreaterCompare: __mf_127,
+	GreaterDepth: __mf_128,
+	GreaterEqualCompare: __mf_129,
+	GreaterEqualDepth: __mf_130,
+	GreaterEqualStencilFunc: __mf_131,
+	GreaterStencilFunc: __mf_132,
+	GridHelper: __mf_133,
+	Group: __mf_134,
+	HalfFloatType: __mf_135,
+	HemisphereLight: __mf_136,
+	HemisphereLightHelper: __mf_137,
+	IcosahedronGeometry: __mf_138,
+	ImageBitmapLoader: __mf_139,
+	ImageLoader: __mf_140,
+	ImageUtils: __mf_141,
+	IncrementStencilOp: __mf_142,
+	IncrementWrapStencilOp: __mf_143,
+	InstancedBufferAttribute: __mf_144,
+	InstancedBufferGeometry: __mf_145,
+	InstancedInterleavedBuffer: __mf_146,
+	InstancedMesh: __mf_147,
+	Int16BufferAttribute: __mf_148,
+	Int32BufferAttribute: __mf_149,
+	Int8BufferAttribute: __mf_150,
+	IntType: __mf_151,
+	InterleavedBuffer: __mf_152,
+	InterleavedBufferAttribute: __mf_153,
+	Interpolant: __mf_154,
+	InterpolateDiscrete: __mf_155,
+	InterpolateLinear: __mf_156,
+	InterpolateSmooth: __mf_157,
+	InterpolationSamplingMode: __mf_158,
+	InterpolationSamplingType: __mf_159,
+	InvertStencilOp: __mf_160,
+	KeepStencilOp: __mf_161,
+	KeyframeTrack: __mf_162,
+	LOD: __mf_163,
+	LatheGeometry: __mf_164,
+	Layers: __mf_165,
+	LessCompare: __mf_166,
+	LessDepth: __mf_167,
+	LessEqualCompare: __mf_168,
+	LessEqualDepth: __mf_169,
+	LessEqualStencilFunc: __mf_170,
+	LessStencilFunc: __mf_171,
+	Light: __mf_172,
+	LightProbe: __mf_173,
+	Line: __mf_174,
+	Line3: __mf_175,
+	LineBasicMaterial: __mf_176,
+	LineCurve: __mf_177,
+	LineCurve3: __mf_178,
+	LineDashedMaterial: __mf_179,
+	LineLoop: __mf_180,
+	LineSegments: __mf_181,
+	LinearFilter: __mf_182,
+	LinearInterpolant: __mf_183,
+	LinearMipMapLinearFilter: __mf_184,
+	LinearMipMapNearestFilter: __mf_185,
+	LinearMipmapLinearFilter: __mf_186,
+	LinearMipmapNearestFilter: __mf_187,
+	LinearSRGBColorSpace: __mf_188,
+	LinearToneMapping: __mf_189,
+	LinearTransfer: __mf_190,
+	Loader: __mf_191,
+	LoaderUtils: __mf_192,
+	LoadingManager: __mf_193,
+	LoopOnce: __mf_194,
+	LoopPingPong: __mf_195,
+	LoopRepeat: __mf_196,
+	MOUSE: __mf_197,
+	Material: __mf_198,
+	MaterialLoader: __mf_199,
+	MathUtils: __mf_200,
+	Matrix2: __mf_201,
+	Matrix3: __mf_202,
+	Matrix4: __mf_203,
+	MaxEquation: __mf_204,
+	Mesh: __mf_205,
+	MeshBasicMaterial: __mf_206,
+	MeshDepthMaterial: __mf_207,
+	MeshDistanceMaterial: __mf_208,
+	MeshLambertMaterial: __mf_209,
+	MeshMatcapMaterial: __mf_210,
+	MeshNormalMaterial: __mf_211,
+	MeshPhongMaterial: __mf_212,
+	MeshPhysicalMaterial: __mf_213,
+	MeshStandardMaterial: __mf_214,
+	MeshToonMaterial: __mf_215,
+	MinEquation: __mf_216,
+	MirroredRepeatWrapping: __mf_217,
+	MixOperation: __mf_218,
+	MultiplyBlending: __mf_219,
+	MultiplyOperation: __mf_220,
+	NearestFilter: __mf_221,
+	NearestMipMapLinearFilter: __mf_222,
+	NearestMipMapNearestFilter: __mf_223,
+	NearestMipmapLinearFilter: __mf_224,
+	NearestMipmapNearestFilter: __mf_225,
+	NeutralToneMapping: __mf_226,
+	NeverCompare: __mf_227,
+	NeverDepth: __mf_228,
+	NeverStencilFunc: __mf_229,
+	NoBlending: __mf_230,
+	NoColorSpace: __mf_231,
+	NoToneMapping: __mf_232,
+	NormalAnimationBlendMode: __mf_233,
+	NormalBlending: __mf_234,
+	NotEqualCompare: __mf_235,
+	NotEqualDepth: __mf_236,
+	NotEqualStencilFunc: __mf_237,
+	NumberKeyframeTrack: __mf_238,
+	Object3D: __mf_239,
+	ObjectLoader: __mf_240,
+	ObjectSpaceNormalMap: __mf_241,
+	OctahedronGeometry: __mf_242,
+	OneFactor: __mf_243,
+	OneMinusConstantAlphaFactor: __mf_244,
+	OneMinusConstantColorFactor: __mf_245,
+	OneMinusDstAlphaFactor: __mf_246,
+	OneMinusDstColorFactor: __mf_247,
+	OneMinusSrcAlphaFactor: __mf_248,
+	OneMinusSrcColorFactor: __mf_249,
+	OrthographicCamera: __mf_250,
+	PCFShadowMap: __mf_251,
+	PCFSoftShadowMap: __mf_252,
+	PMREMGenerator: __mf_253,
+	Path: __mf_254,
+	PerspectiveCamera: __mf_255,
+	Plane: __mf_256,
+	PlaneGeometry: __mf_257,
+	PlaneHelper: __mf_258,
+	PointLight: __mf_259,
+	PointLightHelper: __mf_260,
+	Points: __mf_261,
+	PointsMaterial: __mf_262,
+	PolarGridHelper: __mf_263,
+	PolyhedronGeometry: __mf_264,
+	PositionalAudio: __mf_265,
+	PropertyBinding: __mf_266,
+	PropertyMixer: __mf_267,
+	QuadraticBezierCurve: __mf_268,
+	QuadraticBezierCurve3: __mf_269,
+	Quaternion: __mf_270,
+	QuaternionKeyframeTrack: __mf_271,
+	QuaternionLinearInterpolant: __mf_272,
+	RED_GREEN_RGTC2_Format: __mf_273,
+	RED_RGTC1_Format: __mf_274,
+	REVISION: __mf_275,
+	RGBADepthPacking: __mf_276,
+	RGBAFormat: __mf_277,
+	RGBAIntegerFormat: __mf_278,
+	RGBA_ASTC_10x10_Format: __mf_279,
+	RGBA_ASTC_10x5_Format: __mf_280,
+	RGBA_ASTC_10x6_Format: __mf_281,
+	RGBA_ASTC_10x8_Format: __mf_282,
+	RGBA_ASTC_12x10_Format: __mf_283,
+	RGBA_ASTC_12x12_Format: __mf_284,
+	RGBA_ASTC_4x4_Format: __mf_285,
+	RGBA_ASTC_5x4_Format: __mf_286,
+	RGBA_ASTC_5x5_Format: __mf_287,
+	RGBA_ASTC_6x5_Format: __mf_288,
+	RGBA_ASTC_6x6_Format: __mf_289,
+	RGBA_ASTC_8x5_Format: __mf_290,
+	RGBA_ASTC_8x6_Format: __mf_291,
+	RGBA_ASTC_8x8_Format: __mf_292,
+	RGBA_BPTC_Format: __mf_293,
+	RGBA_ETC2_EAC_Format: __mf_294,
+	RGBA_PVRTC_2BPPV1_Format: __mf_295,
+	RGBA_PVRTC_4BPPV1_Format: __mf_296,
+	RGBA_S3TC_DXT1_Format: __mf_297,
+	RGBA_S3TC_DXT3_Format: __mf_298,
+	RGBA_S3TC_DXT5_Format: __mf_299,
+	RGBDepthPacking: __mf_300,
+	RGBFormat: __mf_301,
+	RGBIntegerFormat: __mf_302,
+	RGB_BPTC_SIGNED_Format: __mf_303,
+	RGB_BPTC_UNSIGNED_Format: __mf_304,
+	RGB_ETC1_Format: __mf_305,
+	RGB_ETC2_Format: __mf_306,
+	RGB_PVRTC_2BPPV1_Format: __mf_307,
+	RGB_PVRTC_4BPPV1_Format: __mf_308,
+	RGB_S3TC_DXT1_Format: __mf_309,
+	RGDepthPacking: __mf_310,
+	RGFormat: __mf_311,
+	RGIntegerFormat: __mf_312,
+	RawShaderMaterial: __mf_313,
+	Ray: __mf_314,
+	Raycaster: __mf_315,
+	RectAreaLight: __mf_316,
+	RedFormat: __mf_317,
+	RedIntegerFormat: __mf_318,
+	ReinhardToneMapping: __mf_319,
+	RenderTarget: __mf_320,
+	RenderTarget3D: __mf_321,
+	RepeatWrapping: __mf_322,
+	ReplaceStencilOp: __mf_323,
+	ReverseSubtractEquation: __mf_324,
+	RingGeometry: __mf_325,
+	SIGNED_RED_GREEN_RGTC2_Format: __mf_326,
+	SIGNED_RED_RGTC1_Format: __mf_327,
+	SRGBColorSpace: __mf_328,
+	SRGBTransfer: __mf_329,
+	Scene: __mf_330,
+	ShaderChunk: __mf_331,
+	ShaderLib: __mf_332,
+	ShaderMaterial: __mf_333,
+	ShadowMaterial: __mf_334,
+	Shape: __mf_335,
+	ShapeGeometry: __mf_336,
+	ShapePath: __mf_337,
+	ShapeUtils: __mf_338,
+	ShortType: __mf_339,
+	Skeleton: __mf_340,
+	SkeletonHelper: __mf_341,
+	SkinnedMesh: __mf_342,
+	Source: __mf_343,
+	Sphere: __mf_344,
+	SphereGeometry: __mf_345,
+	Spherical: __mf_346,
+	SphericalHarmonics3: __mf_347,
+	SplineCurve: __mf_348,
+	SpotLight: __mf_349,
+	SpotLightHelper: __mf_350,
+	Sprite: __mf_351,
+	SpriteMaterial: __mf_352,
+	SrcAlphaFactor: __mf_353,
+	SrcAlphaSaturateFactor: __mf_354,
+	SrcColorFactor: __mf_355,
+	StaticCopyUsage: __mf_356,
+	StaticDrawUsage: __mf_357,
+	StaticReadUsage: __mf_358,
+	StereoCamera: __mf_359,
+	StreamCopyUsage: __mf_360,
+	StreamDrawUsage: __mf_361,
+	StreamReadUsage: __mf_362,
+	StringKeyframeTrack: __mf_363,
+	SubtractEquation: __mf_364,
+	SubtractiveBlending: __mf_365,
+	TOUCH: __mf_366,
+	TangentSpaceNormalMap: __mf_367,
+	TetrahedronGeometry: __mf_368,
+	Texture: __mf_369,
+	TextureLoader: __mf_370,
+	TextureUtils: __mf_371,
+	TimestampQuery: __mf_372,
+	TorusGeometry: __mf_373,
+	TorusKnotGeometry: __mf_374,
+	Triangle: __mf_375,
+	TriangleFanDrawMode: __mf_376,
+	TriangleStripDrawMode: __mf_377,
+	TrianglesDrawMode: __mf_378,
+	TubeGeometry: __mf_379,
+	UVMapping: __mf_380,
+	Uint16BufferAttribute: __mf_381,
+	Uint32BufferAttribute: __mf_382,
+	Uint8BufferAttribute: __mf_383,
+	Uint8ClampedBufferAttribute: __mf_384,
+	Uniform: __mf_385,
+	UniformsGroup: __mf_386,
+	UniformsLib: __mf_387,
+	UniformsUtils: __mf_388,
+	UnsignedByteType: __mf_389,
+	UnsignedInt248Type: __mf_390,
+	UnsignedInt5999Type: __mf_391,
+	UnsignedIntType: __mf_392,
+	UnsignedShort4444Type: __mf_393,
+	UnsignedShort5551Type: __mf_394,
+	UnsignedShortType: __mf_395,
+	VSMShadowMap: __mf_396,
+	Vector2: __mf_397,
+	Vector3: __mf_398,
+	Vector4: __mf_399,
+	VectorKeyframeTrack: __mf_400,
+	VideoFrameTexture: __mf_401,
+	VideoTexture: __mf_402,
+	WebGL3DRenderTarget: __mf_403,
+	WebGLArrayRenderTarget: __mf_404,
+	WebGLCoordinateSystem: __mf_405,
+	WebGLCubeRenderTarget: __mf_406,
+	WebGLRenderTarget: __mf_407,
+	WebGLRenderer: __mf_408,
+	WebGLUtils: __mf_409,
+	WebGPUCoordinateSystem: __mf_410,
+	WebXRController: __mf_411,
+	WireframeGeometry: __mf_412,
+	WrapAroundEnding: __mf_413,
+	ZeroCurvatureEnding: __mf_414,
+	ZeroFactor: __mf_415,
+	ZeroSlopeEnding: __mf_416,
+	ZeroStencilOp: __mf_417,
+	createCanvasElement: __mf_418,
+	default: __mfDefaultExport
+}, [__moduleExports]);
+
+export { __mf_271 as $, __mf_346 as A, __mf_399 as B, __mf_111 as C, __mf_200 as D, __mf_275 as E, __mf_205 as F, __mf_147 as G, __mf_84 as H, __mf_117 as I, __mf_322 as J, __mf_221 as K, __mf_38 as L, __mf_378 as M, __mf_376 as N, __mf_377 as O, __mf_39 as P, __mf_102 as Q, __mf_344 as R, __mf_333 as S, THREE as T, __mf_27 as U, __mf_388 as V, __mf_36 as W, __mf_138 as X, __mf_14 as Y, __mf_400 as Z, __mf_165 as _, __mf_52 as a, __mf_10 as a$, __mf_12 as a0, __mf_341 as a1, __mf_375 as a2, __mf_239 as a3, __mf_206 as a4, __mf_176 as a5, __mf_80 as a6, __mf_116 as a7, __mf_174 as a8, __mf_257 as a9, __mf_224 as aA, __mf_187 as aB, __mf_225 as aC, __mf_217 as aD, __mf_50 as aE, __mf_262 as aF, __mf_198 as aG, __mf_214 as aH, __mf_266 as aI, __mf_342 as aJ, __mf_181 as aK, __mf_180 as aL, __mf_261 as aM, __mf_340 as aN, __mf_31 as aO, __mf_155 as aP, __mf_156 as aQ, __mf_369 as aR, __mf_238 as aS, __mf_121 as aT, __mf_154 as aU, __mf_113 as aV, __mf_122 as aW, __mf_76 as aX, __mf_212 as aY, __mf_209 as aZ, __mf_109 as a_, __mf_242 as aa, __mf_345 as ab, __mf_373 as ac, __mf_197 as ad, __mf_366 as ae, __mf_314 as af, __mf_134 as ag, __mf_34 as ah, __mf_105 as ai, __mf_133 as aj, __mf_407 as ak, __mf_182 as al, __mf_230 as am, __mf_191 as an, __mf_192 as ao, __mf_114 as ap, __mf_213 as aq, __mf_349 as ar, __mf_259 as as, __mf_94 as at, __mf_144 as au, __mf_370 as av, __mf_139 as aw, __mf_152 as ax, __mf_153 as ay, __mf_186 as az, __mf_277 as b, __mf_353 as b$, __mf_381 as b0, __mf_337 as b1, __mf_57 as b2, __mf_64 as b3, __mf_289 as b4, __mf_317 as b5, __mf_311 as b6, __mf_135 as b7, __mf_309 as b8, __mf_308 as b9, __mf_331 as bA, __mf_385 as bB, __mf_104 as bC, __mf_243 as bD, __mf_234 as bE, __mf_78 as bF, __mf_278 as bG, __mf_392 as bH, __mf_92 as bI, __mf_406 as bJ, __mf_63 as bK, __mf_77 as bL, __mf_45 as bM, __mf_67 as bN, __mf_402 as bO, __mf_90 as bP, __mf_395 as bQ, __mf_43 as bR, __mf_30 as bS, __mf_151 as bT, __mf_41 as bU, __mf_339 as bV, __mf_312 as bW, __mf_318 as bX, __mf_380 as bY, __mf_193 as bZ, __mf_184 as b_, __mf_306 as ba, __mf_305 as bb, __mf_299 as bc, __mf_296 as bd, __mf_294 as be, __mf_293 as bf, __mf_285 as bg, __mf_85 as bh, __mf_86 as bi, __mf_33 as bj, __mf_338 as bk, __mf_335 as bl, __mf_254 as bm, __mf_145 as bn, __mf_146 as bo, __mf_412 as bp, __mf_387 as bq, __mf_175 as br, __mf_269 as bs, __mf_70 as bt, __mf_47 as bu, __mf_24 as bv, __mf_25 as bw, __mf_208 as bx, __mf_207 as by, __mf_276 as bz, __mf_389 as c, __mf_211 as c0, __mf_44 as c1, __mf_4 as c2, __mf_323 as c3, __mf_9 as c4, __mf_161 as c5, __mf_237 as c6, __mf_108 as c7, __mf_112 as c8, __mfLocalShare as c9, __mf_328 as d, __mf_408 as e, __mf_315 as f, __mf_250 as g, __mf_255 as h, __mf_330 as i, __mf_252 as j, __mf_396 as k, __mf_251 as l, __mf_29 as m, __mf_54 as n, __mf_188 as o, __mf_232 as p, __mf_0 as q, __mf_397 as r, __mf_398 as s, __mf_51 as t, __mf_98 as u, __mf_89 as v, __mf_256 as w, __mf_203 as x, __mf_270 as y, __mf_202 as z };

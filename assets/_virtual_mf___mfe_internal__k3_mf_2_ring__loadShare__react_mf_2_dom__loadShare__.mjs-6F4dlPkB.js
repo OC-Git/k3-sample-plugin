@@ -1,5 +1,5 @@
-import { g as getDefaultExportFromCjs } from './_commonjsHelpers-B85MJLTf.js';
-import { k as k3_mf_2_ring__loadShare__react__loadShare__ } from './k3_mf_2_ring__loadShare__react__loadShare__-eKDACVd6.js';
+import { g as getDefaultExportFromCjs } from './_virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react_mf_1_jsx_mf_2_runtime__loadShare__.mjs-fXKQsZNi.js';
+import { _ as __mfDefaultExport$1 } from './__virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react__loadShare__.mjs_commonjs-proxy-BhAEIthT.js';
 
 function _mergeNamespaces(n, m) {
   for (var i = 0; i < m.length; i++) {
@@ -32,7 +32,7 @@ var reactDom_production = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var React = k3_mf_2_ring__loadShare__react__loadShare__;
+var React = __mfDefaultExport$1;
 function formatProdErrorMessage(code) {
   var url = "https://react.dev/errors/" + code;
   if (1 < arguments.length) {
@@ -69,7 +69,7 @@ var Internals = {
   REACT_PORTAL_TYPE = Symbol.for("react.portal");
 function createPortal$1(children, containerInfo, implementation) {
   var key =
-    3 < arguments.length && undefined !== arguments[3] ? arguments[3] : null;
+    3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
   return {
     $$typeof: REACT_PORTAL_TYPE,
     key: null == key ? null : "" + key,
@@ -89,7 +89,7 @@ reactDom_production.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE
   Internals;
 reactDom_production.createPortal = function (children, container) {
   var key =
-    2 < arguments.length && undefined !== arguments[2] ? arguments[2] : null;
+    2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
   if (
     !container ||
     (1 !== container.nodeType &&
@@ -119,7 +119,7 @@ reactDom_production.preconnect = function (href, options) {
             ? "use-credentials" === options
               ? options
               : ""
-            : undefined))
+            : void 0))
       : (options = null),
     Internals.d.C(href, options));
 };
@@ -131,15 +131,15 @@ reactDom_production.preinit = function (href, options) {
     var as = options.as,
       crossOrigin = getCrossOriginStringAs(as, options.crossOrigin),
       integrity =
-        "string" === typeof options.integrity ? options.integrity : undefined,
+        "string" === typeof options.integrity ? options.integrity : void 0,
       fetchPriority =
         "string" === typeof options.fetchPriority
           ? options.fetchPriority
-          : undefined;
+          : void 0;
     "style" === as
       ? Internals.d.S(
           href,
-          "string" === typeof options.precedence ? options.precedence : undefined,
+          "string" === typeof options.precedence ? options.precedence : void 0,
           {
             crossOrigin: crossOrigin,
             integrity: integrity,
@@ -151,7 +151,7 @@ reactDom_production.preinit = function (href, options) {
           crossOrigin: crossOrigin,
           integrity: integrity,
           fetchPriority: fetchPriority,
-          nonce: "string" === typeof options.nonce ? options.nonce : undefined
+          nonce: "string" === typeof options.nonce ? options.nonce : void 0
         });
   }
 };
@@ -166,8 +166,8 @@ reactDom_production.preinitModule = function (href, options) {
         Internals.d.M(href, {
           crossOrigin: crossOrigin,
           integrity:
-            "string" === typeof options.integrity ? options.integrity : undefined,
-          nonce: "string" === typeof options.nonce ? options.nonce : undefined
+            "string" === typeof options.integrity ? options.integrity : void 0,
+          nonce: "string" === typeof options.nonce ? options.nonce : void 0
         });
       }
     } else null == options && Internals.d.M(href);
@@ -184,22 +184,22 @@ reactDom_production.preload = function (href, options) {
     Internals.d.L(href, as, {
       crossOrigin: crossOrigin,
       integrity:
-        "string" === typeof options.integrity ? options.integrity : undefined,
-      nonce: "string" === typeof options.nonce ? options.nonce : undefined,
-      type: "string" === typeof options.type ? options.type : undefined,
+        "string" === typeof options.integrity ? options.integrity : void 0,
+      nonce: "string" === typeof options.nonce ? options.nonce : void 0,
+      type: "string" === typeof options.type ? options.type : void 0,
       fetchPriority:
         "string" === typeof options.fetchPriority
           ? options.fetchPriority
-          : undefined,
+          : void 0,
       referrerPolicy:
         "string" === typeof options.referrerPolicy
           ? options.referrerPolicy
-          : undefined,
+          : void 0,
       imageSrcSet:
-        "string" === typeof options.imageSrcSet ? options.imageSrcSet : undefined,
+        "string" === typeof options.imageSrcSet ? options.imageSrcSet : void 0,
       imageSizes:
-        "string" === typeof options.imageSizes ? options.imageSizes : undefined,
-      media: "string" === typeof options.media ? options.media : undefined
+        "string" === typeof options.imageSizes ? options.imageSizes : void 0,
+      media: "string" === typeof options.media ? options.media : void 0
     });
   }
 };
@@ -211,10 +211,10 @@ reactDom_production.preloadModule = function (href, options) {
         as:
           "string" === typeof options.as && "script" !== options.as
             ? options.as
-            : undefined,
+            : void 0,
         crossOrigin: crossOrigin,
         integrity:
-          "string" === typeof options.integrity ? options.integrity : undefined
+          "string" === typeof options.integrity ? options.integrity : void 0
       });
     } else Internals.d.m(href);
 };
@@ -250,9 +250,98 @@ function checkDCE() {
 var reactDomExports = reactDom.exports;
 const index = /*@__PURE__*/getDefaultExportFromCjs(reactDomExports);
 
-const index$1 = /*#__PURE__*/_mergeNamespaces({
+const __mfPrebuildNamespace = /*#__PURE__*/_mergeNamespaces({
   __proto__: null,
   default: index
 }, [reactDomExports]);
 
-export { index$1 as i };
+const __mfPrebuildExports = __mfPrebuildNamespace;
+    const __mf_0$1 = __mfPrebuildExports["__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE"];
+    const __mf_1$1 = __mfPrebuildExports["createPortal"];
+    const __mf_2$1 = __mfPrebuildExports["flushSync"];
+    const __mf_3$1 = __mfPrebuildExports["preconnect"];
+    const __mf_4$1 = __mfPrebuildExports["prefetchDNS"];
+    const __mf_5$1 = __mfPrebuildExports["preinit"];
+    const __mf_6$1 = __mfPrebuildExports["preinitModule"];
+    const __mf_7$1 = __mfPrebuildExports["preload"];
+    const __mf_8$1 = __mfPrebuildExports["preloadModule"];
+    const __mf_9$1 = __mfPrebuildExports["requestFormReset"];
+    const __mf_10$1 = __mfPrebuildExports["unstable_batchedUpdates"];
+    const __mf_11$1 = __mfPrebuildExports["useFormState"];
+    const __mf_12$1 = __mfPrebuildExports["useFormStatus"];
+    const __mf_13$1 = __mfPrebuildExports["version"];
+
+const __mfLocalShare = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  __DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE: __mf_0$1,
+  createPortal: __mf_1$1,
+  default: __mfPrebuildExports,
+  flushSync: __mf_2$1,
+  preconnect: __mf_3$1,
+  prefetchDNS: __mf_4$1,
+  preinit: __mf_5$1,
+  preinitModule: __mf_6$1,
+  preload: __mf_7$1,
+  preloadModule: __mf_8$1,
+  requestFormReset: __mf_9$1,
+  unstable_batchedUpdates: __mf_10$1,
+  useFormState: __mf_11$1,
+  useFormStatus: __mf_12$1,
+  version: __mf_13$1
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const __mfCacheGlobalKey = "__mf_module_cache__";
+globalThis[__mfCacheGlobalKey] ||= { share: {}, remote: {} };
+globalThis[__mfCacheGlobalKey].share ||= {};
+globalThis[__mfCacheGlobalKey].remote ||= {};
+const __mfModuleCache = globalThis[__mfCacheGlobalKey];
+
+    const __mfNormalizeShareModule = (mod) => {
+      let current = mod;
+      for (let i = 0; i < 5; i++) {
+        const defaultExport = current?.default;
+        if (!defaultExport || typeof defaultExport !== "object") break;
+        const namedValues = Object.keys(current).filter((key) => key !== "default").map((key) => current[key]);
+        if (namedValues.length > 0 && namedValues.some((value) => value !== undefined)) break;
+        current = defaultExport;
+      }
+      return current;
+    };
+    let exportModule = __mfModuleCache.share["react-dom"];
+    if (exportModule === undefined) {
+      exportModule = __mfNormalizeShareModule(__mfLocalShare);
+      __mfModuleCache.share["react-dom"] = exportModule;
+    }
+    const __mfDefaultExport = (() => {
+      let current = exportModule;
+      for (let i = 0; i < 5; i++) {
+        const defaultExport = current?.default;
+        if (!defaultExport || typeof defaultExport !== "object") return defaultExport ?? current;
+        current = defaultExport;
+      }
+      return current;
+    })();
+    const { __DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE: __mf_0, createPortal: __mf_1, flushSync: __mf_2, preconnect: __mf_3, prefetchDNS: __mf_4, preinit: __mf_5, preinitModule: __mf_6, preload: __mf_7, preloadModule: __mf_8, requestFormReset: __mf_9, unstable_batchedUpdates: __mf_10, useFormState: __mf_11, useFormStatus: __mf_12, version: __mf_13 } = exportModule;
+  
+const __moduleExports = exportModule;
+
+const _virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react_mf_2_dom__loadShare__ = /*#__PURE__*/_mergeNamespaces({
+  __proto__: null,
+  __DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE: __mf_0,
+  createPortal: __mf_1,
+  default: __mfDefaultExport,
+  flushSync: __mf_2,
+  preconnect: __mf_3,
+  prefetchDNS: __mf_4,
+  preinit: __mf_5,
+  preinitModule: __mf_6,
+  preload: __mf_7,
+  preloadModule: __mf_8,
+  requestFormReset: __mf_9,
+  unstable_batchedUpdates: __mf_10,
+  useFormState: __mf_11,
+  useFormStatus: __mf_12,
+  version: __mf_13
+}, [__moduleExports]);
+
+export { _virtual_mf___mfe_internal__k3_mf_2_ring__loadShare__react_mf_2_dom__loadShare__ as _, __mfDefaultExport as a, __mf_1 as b, __mf_2 as c, __mfPrebuildNamespace as d, __mfLocalShare as e };
