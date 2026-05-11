@@ -35,6 +35,7 @@ const WeddingRing = (props: any) => {
 export const dynamicRing: DynamicModel = {
   type: "ringPlugin",
   label: "Ehering",
+  description: "Sample wedding ring 3D model for K3 configurator",
   disabledForAR: false,
   component: WeddingRing,
   propsDialog: {

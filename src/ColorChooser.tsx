@@ -1,6 +1,8 @@
 import { Input, Stack, TextField } from "@mui/material";
+import type { K3VariableComponentProps } from "k3-plugin-api";
 
-export const ColorChooser = () => (props: any) => {
+export const ColorChooser: React.FC<K3VariableComponentProps> = (props) => {
+  const valueId = props.values?.[0]?.id;
   return (
     <Stack direction="row" gap={3}>
       <Input
@@ -9,7 +11,11 @@ export const ColorChooser = () => (props: any) => {
         sx={{ width: "60px" }}
         value={"" + props.selection?.data?.inputText || "#000000"}
         onChange={(e) =>
-          props.onChange(props.value.id, { inputText: e.target.value })
+          valueId != null &&
+          props.onChange(valueId, {
+            inputValue: undefined,
+            inputText: e.target.value,
+          } as any)
         }
       />
       <TextField
