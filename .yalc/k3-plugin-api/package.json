@@ -1,0 +1,43 @@
+{
+  "name": "k3-plugin-api",
+  "version": "1.5.0",
+  "description": "Official TypeScript types and plugin API for the K3 product configurator",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "k3",
+    "k3-konfigurator",
+    "product-configurator",
+    "configurator",
+    "plugin",
+    "plugin-api",
+    "typescript",
+    "objectcode",
+    "3d",
+    "react"
+  ],
+  "author": "ObjectCode GmbH <info@objectcode.de> (https://k3-konfigurator.de/)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsdown",
+    "prepublishOnly": "pnpm build",
+    "yalc": "pnpm build && yalc publish"
+  },
+  "peerDependencies": {
+    "react": ">=19"
+  },
+  "yalcSig": "60b8de5a58648b0e580e8a17c95bbc61"
+}

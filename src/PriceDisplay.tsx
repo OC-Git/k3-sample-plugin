@@ -1,11 +1,18 @@
 import { Stack, Typography } from "@mui/material";
-import type { CustomLayoutComponentProps } from "k3-plugin-api";
+import { useBOM, useFormattedTotalPrice, type K3BomEntry } from "k3-plugin-api";
 
-export const PriceDisplay = (props: CustomLayoutComponentProps) => {
+export const PriceDisplay = () => {
+  const bom = useBOM();
+  const formattedPrice = useFormattedTotalPrice();
+  console.log("BOM in PriceDisplay:", bom);
   return (
-    <Stack direction="row" gap={3}>
-      <Typography>Anzahl Artikel: {props.bom.length}</Typography>
-      <Typography>Preis: {props.totalPrice}</Typography>
+    <Stack gap={1}>
+      {bom.map((entry: K3BomEntry) => (
+        <Typography key={`${entry.article.id}`} variant="body2">
+          {entry.article.name} &times;{entry.qty}
+        </Typography>
+      ))}
+      <Typography variant="h6">{formattedPrice}</Typography>
     </Stack>
   );
 };

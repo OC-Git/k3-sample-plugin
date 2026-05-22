@@ -13,6 +13,7 @@ export default defineConfig({
         "./Plugin": "./src/Plugin.tsx",
       },
       shared: {
+        "k3-plugin-api": { singleton: true, requiredVersion: "^1.4.5" },
         react: { singleton: true, requiredVersion: "19.1.1" },
         "react-dom": { singleton: true, requiredVersion: "19.1.1" },
 
@@ -30,6 +31,9 @@ export default defineConfig({
     }),
   ],
   build: {
+    rollupOptions: {
+      external: ["./k3-plugin-api"],
+    },
     modulePreload: false,
     target: "esnext",
     minify: false,

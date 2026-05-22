@@ -1,7 +1,8 @@
 import { ColorChooser } from "./ColorChooser";
 import { dynamicRing } from "./DynamicRing";
 import { PriceDisplay } from "./PriceDisplay";
-import { K3PluginDescriptor } from "k3-plugin-api";
+import { Settings } from "./Settings";
+import type { K3PluginDescriptor } from "k3-plugin-api";
 
 export default {
   id: "sample.ring-plugin",
@@ -22,4 +23,10 @@ export default {
     models: [dynamicRing],
     customLayoutComponents: { PriceDisplay },
   },
-} satisfies K3PluginDescriptor;
+  settings: Settings,
+} as K3PluginDescriptor & {
+  settings: React.ComponentType<{
+    settings: unknown;
+    onSave: (settings: unknown) => void;
+  }>;
+};

@@ -11,12 +11,11 @@
     "deploy": "gh-pages -d dist --dotfiles"
   },
   "devDependencies": {
-    "k3-plugin-api": "^1.5.0",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.5",
     "@eslint/js": "^9.17.0",
-    "@module-federation/vite": "^1.5.1",
+    "@module-federation/vite": "1.13.2",
     "@mui/material": "^7.1.1",
     "@mui/styled-engine": "7.1.1",
     "@react-three/drei": "^10.1.2",
@@ -30,6 +29,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "gh-pages": "^6.3.0",
     "globals": "^15.14.0",
+    "k3-plugin-api": "file:.yalc/k3-plugin-api",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-ga4": "^2.0.0",
