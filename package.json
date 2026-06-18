@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "serve": "vite preview --port 5002 --strictPort",
-    "deploy": "gh-pages -d dist --dotfiles"
+    "deploy": "pnpm build && k3-deploy",
+    "deploy:dev": "pnpm build && node ../k3-plugin-api/scripts/deploy.js"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
@@ -21,6 +22,7 @@
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
     "@react-three/postprocessing": "^3.0.4",
+    "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/three": "^0.183.1",

@@ -4,7 +4,6 @@ import { ColorChooser } from "./ColorChooser";
 import { DemoSliderInput } from "./DemoSliderInput";
 import { dynamicRing } from "./DynamicRing";
 import { dynamicVariableRefDemo } from "./DynamicVariableRefDemo";
-import { dynamicLegacyModel } from "./DynamicLegacyModel";
 import { PriceDisplay } from "./PriceDisplay";
 import { createSlotHOC } from "./DemoHoc";
 import { createGenericInput } from "./DemoGenericInput";
@@ -271,7 +270,7 @@ export default {
       // One can add it to the scene via <CustomLayoutComponent name="PriceDisplay2" price="2"/>.
       PriceDisplay2: PriceDisplay,
     },
-    models: [dynamicRing, dynamicVariableRefDemo],
+    models: [dynamicVariableRefDemo],
     labels: {
       display: {
         hoc: createSlotHOC("labelsDisplay"),
@@ -346,7 +345,6 @@ export default {
     core: {
       preprocessFullApp: {
         fn: (app) => {
-          console.log("[plugin] preprocessFullApp", app);
           return app;
         },
         description:
@@ -371,5 +369,5 @@ export default {
   // ── Legacy (shim tests) ──────────────────────────────────────────────────
 
   /** @deprecated mapped to viewer.models internally */
-  dynamicModels: [dynamicLegacyModel],
+  dynamicModels: [dynamicRing],
 } satisfies K3PluginDescriptor;
