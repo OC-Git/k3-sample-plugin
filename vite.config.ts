@@ -15,6 +15,7 @@ export default defineConfig({
       shared: {
         react: { singleton: true, requiredVersion: "19.1.1" },
         "react-dom": { singleton: true, requiredVersion: "19.1.1" },
+        "k3-plugin-api": { singleton: true, requiredVersion: "*" },
 
         "@mui/material": { singleton: true, requiredVersion: "^7.1.1" },
         "@mui/styled-engine": { singleton: true, requiredVersion: "^7.1.1" },
