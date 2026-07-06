@@ -1,5 +1,6 @@
 import { ColorChooser } from "./ColorChooser";
 import { dynamicRing } from "./DynamicRing";
+import { hoverInfoModel } from "./HoverInfoModel";
 import { PriceDisplay } from "./PriceDisplay";
 import { K3PluginDescriptor } from "k3-plugin-api";
 
@@ -19,7 +20,7 @@ export default {
     },
   },
   viewer: {
-    models: [dynamicRing],
+    models: [dynamicRing, hoverInfoModel],
     customLayoutComponents: { PriceDisplay },
   },
 } satisfies K3PluginDescriptor;
