@@ -16,6 +16,13 @@ export default defineConfig({
         react: { singleton: true, requiredVersion: "19.1.1" },
         "react-dom": { singleton: true, requiredVersion: "19.1.1" },
 
+        // REQUIRED as soon as the plugin calls a k3-plugin-api *runtime hook*
+        // (useSetCameraPosition, useOpenInstance, useConfigurationVariable, …).
+        // Those hooks read module-level state that the host populates via init();
+        // a plugin bundling its own copy gets an uninitialised module and throws
+        // "k3-plugin-api not initialized". Type-only imports do not need this.
+        "k3-plugin-api": { singleton: true, requiredVersion: "^2.3.0" },
+
         "@mui/material": { singleton: true, requiredVersion: "^7.1.1" },
         "@mui/styled-engine": { singleton: true, requiredVersion: "^7.1.1" },
 

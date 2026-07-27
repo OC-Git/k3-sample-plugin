@@ -63,8 +63,8 @@ importers:
         specifier: ^15.14.0
         version: 15.14.0
       k3-plugin-api:
-        specifier: ^1.5.0
-        version: 1.5.0(react@19.1.1)
+        specifier: file:.yalc/k3-plugin-api
+        version: file:.yalc/k3-plugin-api(react@19.1.1)
       react:
         specifier: 19.1.1
         version: 19.1.1
@@ -1502,8 +1502,9 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  k3-plugin-api@1.5.0:
-    resolution: {integrity: sha512-8MjtV8y8StONfILL+NDUvvtkRiQb+zU12ZZMsatodTUIWTJ8Ke0MkJFGrZWpCevZs5Z4JhwOo1b4It/RrGaXzg==}
+  k3-plugin-api@file:.yalc/k3-plugin-api:
+    resolution: {directory: .yalc/k3-plugin-api, type: directory}
+    hasBin: true
     peerDependencies:
       react: '>=19'
 
@@ -3569,7 +3570,7 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  k3-plugin-api@1.5.0(react@19.1.1):
+  k3-plugin-api@file:.yalc/k3-plugin-api(react@19.1.1):
     dependencies:
       react: 19.1.1
 

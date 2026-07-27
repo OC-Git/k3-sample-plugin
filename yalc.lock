@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "k3-plugin-api": {
+      "signature": "53470708b559e70d9d805483ed879e80",
+      "file": true,
+      "replaced": "^2.3.0"
+    }
+  }
+}
